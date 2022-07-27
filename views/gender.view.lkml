@@ -1,11 +1,44 @@
-view: interests {
+view: gender {
 
-  dimension: category_id {
+  dimension: id {
+    sql: ${TABLE}.id ;;
     type: string
-    sql: ${TABLE}.category_id ;;
     primary_key: yes
-
   }
+
+  dimension: name {
+    sql: ${TABLE}.name ;;
+    type: string
+  }
+
+  dimension: value {
+    sql: ${TABLE}.value ;;
+    type: string
+  }
+
+  dimension: count {
+    sql: ${TABLE}.count ;;
+    type: number
+  }
+
+  dimension: target_audience_percent {
+    sql: ${TABLE}.target_audience_percent ;;
+    type: number
+    value_format: "0.00\%"
+  }
+
+  dimension: reference_audience_percent {
+    sql: ${TABLE}.reference_audience_percent ;;
+    type: number
+    value_format: "0.00\%"
+  }
+
+  dimension: target_index_to_reference {
+    sql: ${TABLE}.target_index_to_reference ;;
+    type: number
+  }
+
+
 
 
 

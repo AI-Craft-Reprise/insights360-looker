@@ -17,10 +17,21 @@ view: snap {
     sql: ${response}.request_status ;;
   }
 
+  dimension: request_id {
+    type: string
+    sql: ${response}.request_id ;;
+  }
+
+
+
+
+
   dimension: request_country_code {
     type: string
     sql: ${response}.country_code ;;
   }
+
+
 
   measure: count {
     type: count

@@ -18,5 +18,14 @@ explore: snap {
   unnest(
     response.targeting_insights.categories.demographics.distribution.age_groups.insight
   ) t(age_groups) ;;
-  }
-}
+  }}
+
+#   join: gender {
+#     relationship: one_to_many
+#     sql: ,
+#         unnest(
+#           request.targeting_insights.categories.demographics.distribution.interests.insight
+#         ) t(age_groups) ;;
+#   }
+
+# }
