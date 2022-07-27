@@ -12,6 +12,11 @@ view: snap {
     sql: ${TABLE}.response ;;
   }
 
+  dimension: request_status {
+    type: string
+    sql: ${response}.request_status ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
