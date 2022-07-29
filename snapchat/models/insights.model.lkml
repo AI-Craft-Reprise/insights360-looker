@@ -1,7 +1,7 @@
 connection: "insights_athena"
 
 # include all the views
-include: "/views/**/*.view"
+include: "/snapchat/views/**/*.view"
 
 datagroup: insights_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -44,20 +44,12 @@ explore: snap {
   ) t(age_groups_gender) ;;
   }
 
-  join: target_audience {
+  join: base_spec_geos {
     relationship: one_to_many
     sql: ,
         unnest(
-          response.targeting_insights
-        ) t(target_audience);;
-        }
-
-  join: reference_audience {
-    relationship: one_to_many
-    sql: ,
-        unnest(
-          response.targeting_insights
-        ) t(reference_audience);;
+          request.base_spec.geos
+        ) t(base_spec_geos) ;;
   }
 
 }

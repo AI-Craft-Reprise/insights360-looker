@@ -1,16 +1,10 @@
-view: reference_audience {
+view: base_spec_geos {
 
-  dimension: audience_size_minimum {
-    sql: ${TABLE}.audience_size_minimum ;;
+
+  dimension: country_code {
     type: string
+    sql: ${TABLE}.country_code ;;
   }
-
-  dimension: audience_size_maximum {
-    sql: ${TABLE}.audience_size_maximum ;;
-    type: string
-  }
-
-
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #
@@ -41,7 +35,7 @@ view: reference_audience {
   # }
 }
 
-# view: reference_audience {
+# view: base_spec_geos {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT
