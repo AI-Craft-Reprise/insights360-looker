@@ -52,4 +52,37 @@ explore: snap {
         ) t(base_spec_geos) ;;
   }
 
+  join: targeting_spec_geos {
+    relationship: one_to_many
+    sql: ,
+        unnest(
+          request.targeting_spec.geos
+        ) t(targeting_spec_geos) ;;
+  }
+
+  join: targeting_spec_interests {
+    relationship: one_to_many
+    sql: ,
+        unnest(
+          request.targeting_spec.interests
+        ) t(targeting_spec_interests) ;;
+  }
+
+  join: targeting_spec_age_groups {
+    relationship: one_to_many
+    sql: ,
+        unnest(
+          request.targeting_spec.demographics
+        ) t(targeting_spec_age_groups) ;;
+  }
+
+  join: targeting_spec_gender {
+    relationship: one_to_many
+    sql: ,
+        unnest(
+          request.targeting_spec.demographics
+        ) t(targeting_spec_gender) ;;
+  }
+
+
 }
