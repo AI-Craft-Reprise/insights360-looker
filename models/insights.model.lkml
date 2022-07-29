@@ -16,7 +16,7 @@ explore: snap {
     relationship: one_to_many
     sql: ,
   unnest(
-    requeste.targeting_insights.categories.demographics.distribution.age_groups.insight
+    response.targeting_insights.categories.demographics.distribution.age_groups.insight
   ) t(age_groups) ;;
   }
 
@@ -34,6 +34,30 @@ explore: snap {
   unnest(
     response.targeting_insights.categories.demographics.distribution.languages.insight
   ) t(languages) ;;
+  }
+
+  join: age_groups_gender {
+    relationship: one_to_many
+    sql: ,
+  unnest(
+    response.targeting_insights.categories.demographics.distribution.age_groups_gender.insight
+  ) t(age_groups_gender) ;;
+  }
+
+  join: target_audience {
+    relationship: one_to_many
+    sql: ,
+        unnest(
+          response.targeting_insights
+        ) t(target_audience);;
+        }
+
+  join: reference_audience {
+    relationship: one_to_many
+    sql: ,
+        unnest(
+          response.targeting_insights
+        ) t(reference_audience);;
   }
 
 }

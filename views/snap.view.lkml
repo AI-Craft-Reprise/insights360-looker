@@ -19,19 +19,9 @@ view: snap {
 
   dimension: request_id {
     type: string
+    primary_key: yes
     sql: ${response}.request_id ;;
   }
-
-
-
-
-
-  dimension: request_country_code {
-    type: string
-    sql: ${response}.country_code ;;
-  }
-
-
 
   measure: count {
     type: count

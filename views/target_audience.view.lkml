@@ -1,47 +1,14 @@
-view: age_groups {
+view: target_audience {
 
-  dimension: id {
-    sql: ${TABLE}.id ;;
-    type: string
-    primary_key: yes
-  }
-
-  dimension: name {
-    sql: ${TABLE}.name ;;
+  dimension: audience_size_minimum {
+    sql: ${TABLE}.audience_size_minimum ;;
     type: string
   }
 
-  dimension: value {
-    sql: ${TABLE}.value ;;
+  dimension: audience_size_maximum {
+    sql: ${TABLE}.audience_size_maximum ;;
     type: string
   }
-
-  dimension: count {
-    sql: ${TABLE}.count ;;
-    type: number
-  }
-
-  dimension: target_audience_percent {
-    sql: ${TABLE}.target_audience_percent ;;
-    type: number
-    value_format: "0.00\%"
-  }
-
-  dimension: reference_audience_percent {
-    sql: ${TABLE}.reference_audience_percent ;;
-    type: number
-    value_format: "0.00\%"
-  }
-
-  dimension: target_index_to_reference {
-    sql: ${TABLE}.target_index_to_reference ;;
-    type: number
-  }
-
-  measure: count_freq {
-
-  }
-
 
 
   # # You can specify the table name if it's different from the view name:
@@ -74,7 +41,7 @@ view: age_groups {
   # }
 }
 
-# view: age_groups {
+# view: target_audience {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT
