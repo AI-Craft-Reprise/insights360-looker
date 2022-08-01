@@ -86,6 +86,16 @@ explore: snap {
         ) t(targeting_spec_age_groups) ;;
   }
 
+  join:  targeting_spec_age_groups_unnest {
+    required_joins: [targeting_spec_age_groups]
+    relationship: one_to_many
+    sql:  ,
+        unnest(
+          targeting_spec_age_groups.age_groups
+        ) t(targeting_spec_age_groups_unnest)
+    ;;
+  }
+
   join: targeting_spec_gender {
     relationship: one_to_many
     sql: ,

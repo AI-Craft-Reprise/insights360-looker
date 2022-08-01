@@ -1,9 +1,6 @@
 view: targeting_spec_age_groups {
 
-  dimension: age_groups {
-    type: string
-    sql: ${TABLE}.age_groups ;;
-  }
+
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #

@@ -1,60 +1,9 @@
-view: gender {
+view: targeting_spec_age_groups_unnest {
 
-  dimension: id {
-    sql: ${TABLE}.id ;;
+  dimension: age_groups {
     type: string
-    primary_key: yes
-  }
-
-  dimension: name {
-    sql: ${TABLE}.name ;;
-    type: string
-  }
-
-  dimension: value {
-    sql: ${TABLE}.value ;;
-    type: string
-  }
-
-  dimension: count {
-    sql: ${TABLE}.count ;;
-    type: number
-  }
-
-  dimension: target_audience_percent {
-    sql: ${TABLE}.target_audience_percent ;;
-    type: number
-    value_format: "0.00\%"
-  }
-
-  dimension: reference_audience_percent {
-    sql: ${TABLE}.reference_audience_percent ;;
-    type: number
-    value_format: "0.00\%"
-  }
-
-  dimension: target_index_to_reference {
-    sql: ${TABLE}.target_index_to_reference ;;
-    type: number
-  }
-
-  measure: target_audience {
-    type: sum
-    sql: ${target_audience_percent} ;;
-    value_format: "0.0\%"
-  }
-
-  measure: reference_audience {
-    type: sum
-    sql: ${reference_audience_percent} ;;
-    value_format: "0.0\%"
-  }
-
-
-
-
-
-
+    sql: ${TABLE} ;;
+    }
 
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
@@ -86,7 +35,7 @@ view: gender {
   # }
 }
 
-# view: interests {
+# view: targeting_spec_age_groups_unnest {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT

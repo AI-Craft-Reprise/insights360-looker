@@ -38,8 +38,16 @@ view: age_groups {
     type: number
   }
 
-  measure: count_freq {
+  measure: target_audience_age_group_percent {
+    type: sum
+      sql: ${target_audience_percent} ;;
+    value_format: "0.0\%"
+  }
 
+measure: reference_audience_age_group_percent {
+  type: sum
+  sql: ${reference_audience_percent} ;;
+  value_format: "0.0\%"
   }
 
 

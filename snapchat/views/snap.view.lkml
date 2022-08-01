@@ -24,24 +24,45 @@ view: snap {
   }
 
   dimension: target_audience_size_minimum {
-    sql: ${TABLE}.target_audience.audience_size_minimum ;;
+    sql:  ${response}.targeting_insights.target_audience.audience_size_minimum ;;
     type: string
   }
 
   dimension: target_audience_size_maximum {
-    sql: ${TABLE}.target_audience.audience_size_maximum ;;
+    sql:  ${response}.targeting_insights.target_audience.audience_size_maximum ;;
     type: string
   }
 
   dimension: reference_audience_size_minimum {
-    sql: ${TABLE}.reference_audience.audience_size_minimum ;;
+    sql:  ${response}.targeting_insights.reference_audience.audience_size_minimum ;;
     type: string
   }
 
   dimension: reference_audience_size_maximum {
-    sql: ${TABLE}.reference_audience.audience_size_maximum ;;
+    sql: ${response}.targeting_insights.reference_audience.audience_size_maximum ;;
     type: string
   }
+
+  dimension: target_audience_size_maximum_n {
+    type: number
+    sql: CAST(${target_audience_size_maximum} as INTEGER);;
+  }
+
+  measure: target_audience_size_max {
+    type: sum
+    sql: ${target_audience_size_maximum_n} ;;
+  }
+
+  measure: reference_audience_size_max {
+    type: max
+    sql: ${reference_audience_size_maximum} ;;
+  }
+
+  measure: reference_audience_size_min {
+    type: min
+    sql: ${reference_audience_size_minimum} ;;
+  }
+
 
   measure: count {
     type: count
