@@ -1,9 +1,7 @@
 view: targeting_spec_interests {
 
-  dimension: category_id{
-    type: string
-    sql: ${TABLE}.category_id;;
-  }
+}
+
 
 
   # # You can specify the table name if it's different from the view name:
@@ -34,7 +32,7 @@ view: targeting_spec_interests {
   #   type: sum
   #   sql: ${lifetime_orders} ;;
   # }
-}
+
 
 # view: interests {
 #   # Or, you could make this view a derived table, like this:
