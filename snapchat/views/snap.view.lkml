@@ -48,9 +48,19 @@ view: snap {
     sql: CAST(${target_audience_size_maximum} as INTEGER);;
   }
 
+  dimension: target_audience_size_minimum_n {
+    type: number
+    sql: CAST(${target_audience_size_minimum} as INTEGER);;
+  }
+
   measure: target_audience_size_max {
     type: sum
     sql: ${target_audience_size_maximum_n} ;;
+  }
+
+  measure: target_audience_size_min {
+    type: sum
+    sql: ${target_audience_size_minimum_n} ;;
   }
 
   measure: reference_audience_size_max {
