@@ -24,43 +24,33 @@ view: snap {
   }
 
   dimension: target_audience_size_minimum {
-    sql:  ${response}.targeting_insights.target_audience.audience_size_minimum ;;
-    type: string
+    sql:  CAST(${response}.targeting_insights.target_audience.audience_size_minimum as INTEGER) ;;
+    type: number
   }
 
   dimension: target_audience_size_maximum {
-    sql:  ${response}.targeting_insights.target_audience.audience_size_maximum ;;
-    type: string
+    sql:  CAST(${response}.targeting_insights.target_audience.audience_size_maximum as INTEGER) ;;
+    type: number
   }
 
   dimension: reference_audience_size_minimum {
-    sql:  ${response}.targeting_insights.reference_audience.audience_size_minimum ;;
-    type: string
+    sql:  CAST(${response}.targeting_insights.reference_audience.audience_size_minimum as INTEGER) ;;
+    type: number
   }
 
   dimension: reference_audience_size_maximum {
-    sql: ${response}.targeting_insights.reference_audience.audience_size_maximum ;;
-    type: string
-  }
-
-  dimension: target_audience_size_maximum_n {
+    sql: CAST(${response}.targeting_insights.reference_audience.audience_size_maximum as INTEGER) ;;
     type: number
-    sql: CAST(${target_audience_size_maximum} as INTEGER);;
-  }
-
-  dimension: target_audience_size_minimum_n {
-    type: number
-    sql: CAST(${target_audience_size_minimum} as INTEGER);;
   }
 
   measure: target_audience_size_max {
     type: sum
-    sql: ${target_audience_size_maximum_n} ;;
+    sql: ${target_audience_size_maximum} ;;
   }
 
   measure: target_audience_size_min {
     type: sum
-    sql: ${target_audience_size_minimum_n} ;;
+    sql: ${target_audience_size_minimum} ;;
   }
 
   measure: reference_audience_size_max {
