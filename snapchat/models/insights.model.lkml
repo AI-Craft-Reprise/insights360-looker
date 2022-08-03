@@ -11,7 +11,7 @@ datagroup: insights_default_datagroup {
 persist_with: insights_default_datagroup
 
 explore: snap {
-
+sql_always_where: ${gender.name}<>'gender_unknown' ;;
   join: age_groups {
     relationship: one_to_many
     sql: ,

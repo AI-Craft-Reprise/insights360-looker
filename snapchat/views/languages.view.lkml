@@ -37,6 +37,18 @@ view: languages {
       sql: ${TABLE}.target_index_to_reference ;;
       type: number
     }
+
+  measure: target_audience_language_percent {
+    type: sum
+    sql: ${target_audience_percent} ;;
+    value_format: "0.0\%"
+  }
+
+  measure: reference_audience_language_percent {
+    type: sum
+    sql: ${reference_audience_percent} ;;
+    value_format: "0.0\%"
+  }
 }
 
 
