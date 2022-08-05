@@ -1,5 +1,5 @@
-view: v1 {
-  sql_table_name: snowflake_extractions.v1 ;;
+view: v2 {
+  sql_table_name: snowflake_extractions.v2 ;;
   suggestions: no
 
   dimension: agency {
@@ -17,6 +17,11 @@ view: v1 {
     sql: ${TABLE}.audience_name ;;
   }
 
+  dimension: audience_size {
+    type: string
+    sql: ${TABLE}.audience_size ;;
+  }
+
   dimension: client {
     type: string
     sql: ${TABLE}.client ;;
@@ -27,15 +32,14 @@ view: v1 {
     sql: ${TABLE}.created ;;
   }
 
+  dimension: genpop_cnt {
+    type: number
+    sql: ${TABLE}.genpop_cnt ;;
+  }
+
   dimension: genpop_count {
     type: number
     sql: ${TABLE}.genpop_count ;;
-  }
-
-  dimension: genpop_percent {
-    type: number
-    sql: ${TABLE}.genpop_percent ;;
-    value_format: "0.0%"
   }
 
   dimension: genpop_total {
@@ -51,12 +55,11 @@ view: v1 {
   dimension: keyword {
     type: string
     sql: ${TABLE}.keyword ;;
-    primary_key: yes
   }
 
-  dimension: overall_index {
-    type: number
-    sql: ${TABLE}.overall_index ;;
+  dimension: partition_0 {
+    type: string
+    sql: ${TABLE}.partition_0 ;;
   }
 
   dimension: question_answer_concat {
@@ -89,9 +92,14 @@ view: v1 {
     sql: ${TABLE}.source ;;
   }
 
-  dimension: table {
+  dimension: statement {
     type: string
-    sql: ${TABLE}."table" ;;
+    sql: ${TABLE}.statement ;;
+  }
+
+  dimension: target_cnt {
+    type: number
+    sql: ${TABLE}.target_cnt ;;
   }
 
   dimension: target_count {
@@ -99,36 +107,13 @@ view: v1 {
     sql: ${TABLE}.target_count ;;
   }
 
-  dimension: target_percent {
-    type: number
-    sql: ${TABLE}.target_percent;;
-    value_format: "0.0%"
-  }
-
   dimension: target_total {
     type: number
     sql: ${TABLE}.target_total ;;
   }
 
-  measure: gen_pop_total {
-    type: max
-    sql: ${genpop_total} ;;
-  }
-
-  # measure: target_percent_value {
-  #   type: sum
-  #   sql: ${target_percent} ;;
-  #   value_format: "0.0%"
-  # }
-
-  # measure: genpop_percent_value {
-  #   type: sum
-  #   sql: ${genpop_percent} ;;
-  #   value_format: "0.0%"
-  # }
-
   measure: count {
     type: count
-    drill_fields: [audience_name,keyword]
+    drill_fields: [audience_name]
   }
 }
