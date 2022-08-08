@@ -1,4 +1,5 @@
 view: targeting_spec_gender {
+  label: "Targeting_Spec"
 
   dimension: targeting_spec_gender {
     type: string

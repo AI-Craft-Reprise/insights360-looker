@@ -1,5 +1,7 @@
 view: targeting_spec_interests_category_ids {
-  dimension: category_id {
+  label: "Targeting_Spec"
+
+  dimension: interest_category_id {
     type:  string
     sql:  ${TABLE} ;;
   }

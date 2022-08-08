@@ -1,5 +1,7 @@
 view: targeting_spec_age_groups_unnest {
 
+  label: "Targeting_Spec"
+
   dimension: age_groups {
     type: string
     sql: ${TABLE} ;;

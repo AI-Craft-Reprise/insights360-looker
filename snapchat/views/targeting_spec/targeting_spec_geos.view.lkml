@@ -1,4 +1,5 @@
 view: targeting_spec_geos {
+  label: "Targeting_Spec"
 
   dimension: country_code {
     type: string

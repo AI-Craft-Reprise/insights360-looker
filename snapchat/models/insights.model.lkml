@@ -11,8 +11,11 @@ datagroup: insights_default_datagroup {
 persist_with: insights_default_datagroup
 
 explore: snap {
-sql_always_where: ${gender.name}<>'gender_unknown' ;;
-  join: age_groups {
+  always_filter: {
+    filters: [base_spec_geos.country_code: "us"]}
+  sql_always_where: ${gender.name}<>'gender_unknown' ;;
+
+ join: age_groups {
     relationship: one_to_many
     sql: ,
   unnest(
@@ -102,6 +105,11 @@ sql_always_where: ${gender.name}<>'gender_unknown' ;;
         unnest(
           request.targeting_spec.demographics
         ) t(targeting_spec_gender) ;;
+  }
+
+  join: categories {
+    relationship: one_to_one
+    sql_on: ${targeting_spec_interests_category_ids.interest_category_id}=${categories.interest_id} ;;
   }
 
 
