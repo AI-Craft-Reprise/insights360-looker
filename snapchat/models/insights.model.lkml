@@ -108,9 +108,14 @@ explore: snap {
   }
 
   join: categories {
+    type: inner
     relationship: one_to_one
-    sql_on: ${targeting_spec_interests_category_ids.interest_category_id}=${categories.interest_id} ;;
+    sql_on:  ,
+        unnest(
+          request.targeting_spec.demographics.id
+        ) as interest_category_id=${categories.interest_id} ;;
   }
+
 
 
 }
