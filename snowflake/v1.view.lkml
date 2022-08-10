@@ -127,6 +127,27 @@ view: v1 {
   #   value_format: "0.0%"
   # }
 
+  measure: target {
+    type: sum
+    sql: ${target_count};;
+  }
+
+  measure: target_v2 {
+    type: count_distinct
+    sql: ${keyword};;
+  }
+
+  measure:total_target {
+    type: sum
+    sql: ${target_total};;
+  }
+
+  measure: target_percentage {
+    type: number
+    sql: ${target}/NULLIF(${total_target},0) ;;
+    value_format_name: percent_2
+  }
+
   measure: count {
     type: count
     drill_fields: [audience_name,keyword]

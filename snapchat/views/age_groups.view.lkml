@@ -50,6 +50,11 @@ view: age_groups {
     value_format: "0.0\%"
   }
 
+  measure: index_target_to_reference_age_groups {
+    type: sum
+    sql: ${target_index_to_reference} ;;
+  }
+
 
 
   # # You can specify the table name if it's different from the view name:

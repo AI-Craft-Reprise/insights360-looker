@@ -13,7 +13,7 @@ persist_with: insights_default_datagroup
 explore: snap {
   always_filter: {
     filters: [base_spec_geos.country_code: "us"]}
-  sql_always_where: ${gender.name}<>'gender_unknown' ;;
+  sql_always_where: ${gender.name}<>'gender_unknown' and ${age_groups.name}<>'unknown' ;;
 
  join: age_groups {
     relationship: one_to_many
@@ -107,14 +107,6 @@ explore: snap {
         ) t(targeting_spec_gender) ;;
   }
 
-  join: categories {
-    type: inner
-    relationship: one_to_one
-    sql_on:  ,
-        unnest(
-          request.targeting_spec.demographics.id
-        ) as interest_category_id=${categories.interest_id} ;;
-  }
 
 
 

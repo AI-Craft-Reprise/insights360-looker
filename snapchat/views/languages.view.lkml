@@ -49,6 +49,11 @@ view: languages {
     sql: ${reference_audience_percent} ;;
     value_format: "0.0\%"
   }
+
+  measure: index_target_to_reference {
+    type: sum
+    sql: ${target_index_to_reference} ;;
+  }
 }
 
 
