@@ -107,6 +107,12 @@ explore: snap {
         ) t(targeting_spec_gender) ;;
   }
 
+  join: categories {
+    type: left_outer
+    sql_on: ${targeting_spec_interests_category_ids.interest_category_id}=${categories.interest_id} ;;
+    relationship: many_to_one
+  }
+
 
 
 
