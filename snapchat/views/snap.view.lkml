@@ -63,6 +63,18 @@ view: snap {
     sql: ${reference_audience_size_minimum} ;;
   }
 
+  measure: target_incidence {
+    type: number
+    sql: ${target_audience_size_max}/NULLIF(${reference_audience_size_max},0) ;;
+    value_format: "0.00\%"
+  }
+
+  measure: target_incidence_min {
+    type: number
+    sql: ${target_audience_size_min}/NULLIF(${reference_audience_size_min},0) ;;
+    value_format: "0.00\%"
+    }
+
 
   measure: count {
     type: count

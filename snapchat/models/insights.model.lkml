@@ -47,6 +47,14 @@ explore: snap {
   ) t(age_groups_gender) ;;
   }
 
+  join: advanced_demographics {
+    relationship: one_to_many
+    sql: ,
+        unnest(
+          response.targeting_insights.categories.demographics.distribution.advanced_demographics.insight
+        ) t(advanced_demographics) ;;
+  }
+
   join: base_spec_geos {
     relationship: one_to_many
     sql: ,
