@@ -1,0 +1,24 @@
+view: profiles {
+  sql_table_name: amazon.profiles ;;
+  suggestions: no
+
+  dimension: _airbyte_ab_id {
+    type: string
+    sql: ${TABLE}._airbyte_ab_id ;;
+  }
+
+  dimension: _airbyte_data {
+    type: string
+    sql: ${TABLE}._airbyte_data ;;
+  }
+
+  dimension: _airbyte_emitted_at {
+    type: number
+    sql: ${TABLE}._airbyte_emitted_at ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: []
+  }
+}
