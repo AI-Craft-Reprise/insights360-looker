@@ -8,6 +8,7 @@ view: advertisers {
   }
 
   dimension: _airbyte_data {
+    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_data ;;
   }
@@ -46,6 +47,16 @@ view: advertisers {
   dimension: url {
     type: string
     sql: ${response}.url ;;
+  }
+
+  dimension: country {
+    type: string
+    sql: ${response}.country ;;
+  }
+
+  dimension: timezone {
+    type: string
+    sql: ${response}.timezone ;;
   }
 
 
