@@ -153,6 +153,12 @@ view: v1 {
     value_format_name: percent_2
   }
 
+  measure: index  {
+    type: sum
+    sql: ${overall_index} ;;
+    value_format: "0.00"
+  }
+
   measure: count {
     type: count
     drill_fields: [audience_name,keyword]
