@@ -67,10 +67,15 @@ view: v2 {
     sql: ${TABLE}.question_answer_concat ;;
   }
 
-  dimension: question_level_1 {
-    type: string
-    sql: ${TABLE}.question_level_1 ;;
-  }
+    dimension: question_level_1 {
+      type: string
+      sql: ${TABLE}.question_level_1 ;;
+      suggestions: ["PSYCHOGRAPHICS","ELECTRONICS","HOME","PERSONAL ITEMS","AUTOMOTIVE","AUTOMOTIVE AFTERMARKET",
+        "DEMOGRAPHICS","TOBACCO","FINANCIAL","HOUSEHOLD PRODUCTS","PERSONAL CARE",
+        "POLITICAL OUTLOOK/AFFILIATION & VOTING","TRUCKS/ATV/MOTORCYCLES","APPAREL/ACCESSORIES",
+        "AUTOMOTIVE MISCELLANEOUS","CANDY/SWEETS/SNACKS","HEALTH & BEAUTY AIDS","MEDIA","SHOPPING",
+        "BEVERAGES","INSURANCE","LEISURE/SPORTS","TRAVEL"]
+    }
 
   dimension: question_level_2 {
     type: string
@@ -111,6 +116,33 @@ view: v2 {
     type: number
     sql: ${TABLE}.target_total ;;
   }
+
+  measure: gen_pop_total {
+    type: max
+    sql: ${genpop_total} ;;
+  }
+
+  measure: target {
+    type: sum
+    sql: ${target_count};;
+  }
+
+  measure: target_v2 {
+    type: count_distinct
+    sql: ${keyword};;
+  }
+
+  measure:total_target {
+    type: sum
+    sql: ${target_total};;
+  }
+
+  measure: target_percentage {
+    type: number
+    sql: ${target}/NULLIF(${total_target},0) ;;
+    value_format_name: percent_2
+  }
+
 
   measure: count {
     type: count
