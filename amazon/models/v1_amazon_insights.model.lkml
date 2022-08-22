@@ -13,6 +13,7 @@ persist_with: insights_default_datagroup
 
 explore: persona_insights{
 
+
   # join: pi_interests {
   #   relationship: one_to_many
   #       sql: ,
