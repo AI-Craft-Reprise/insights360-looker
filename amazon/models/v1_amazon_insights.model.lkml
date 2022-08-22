@@ -11,53 +11,62 @@ datagroup: insights_default_datagroup {
 
 persist_with: insights_default_datagroup
 
-explore: personas{
+explore: persona_insights{
 
-  join: persona_demographics{
-    type: left_outer
-    relationship: many_to_one
-    sql: ${persona_demographics.advertiserid}=${persona_demographics.advertiserid} ;;
-    }
+  # join: pi_interests {
+  #   relationship: one_to_many
+  #       sql: ,
+  #             unnest(
+  #               _airbyte_data.response.topaudiences.interests
+  #             ) t(pi_interests) ;;
+  # }
 
-  join: persona_demographics_age {
-      relationship: one_to_many
-      sql: ,
-            unnest(
-              _airbyte_data.response.age
-            ) t(persona_demographics_age) ;;
-    }
 
-  join: persona_demographics_gender {
-      relationship: one_to_many
-      sql: ,
-            unnest(
-              _airbyte_data.response.gender
-            ) t(persona_demographics_gender) ;;
-    }
+  # join: persona_demographics{
+  #   type: left_outer
+  #   relationship: many_to_one
+  #   sql: ${persona_demographics.advertiserid}=${persona_demographics.advertiserid} ;;
+  #   }
 
-  join: persona_demographics_income {
-      relationship: one_to_many
-      sql: ,
-            unnest(
-              _airbyte_data.response.income
-            ) t(persona_demographics_income) ;;
-    }
+  # join: persona_demographics_age {
+  #     relationship: one_to_many
+  #     sql: ,
+  #           unnest(
+  #             _airbyte_data.response.age
+  #           ) t(persona_demographics_age) ;;
+  #   }
 
-  join: persona_demographics_propertyownership {
-        relationship: one_to_many
-        sql: ,
-            unnest(
-              _airbyte_data.response.propertyownership
-            ) t(persona_demographics_propertyownership) ;;
-      }
+  # join: persona_demographics_gender {
+  #     relationship: one_to_many
+  #     sql: ,
+  #           unnest(
+  #             _airbyte_data.response.gender
+  #           ) t(persona_demographics_gender) ;;
+  #   }
 
-  join: persona_demographics_relationship {
-      relationship: one_to_many
-      sql: ,
-            unnest(
-              _airbyte_data.response.relationship
-            ) t(persona_demographics_relationship) ;;
-    }
+  # join: persona_demographics_income {
+  #     relationship: one_to_many
+  #     sql: ,
+  #           unnest(
+  #             _airbyte_data.response.income
+  #           ) t(persona_demographics_income) ;;
+  #   }
+
+  # join: persona_demographics_propertyownership {
+  #       relationship: one_to_many
+  #       sql: ,
+  #           unnest(
+  #             _airbyte_data.response.propertyownership
+  #           ) t(persona_demographics_propertyownership) ;;
+  #     }
+
+  # join: persona_demographics_relationship {
+  #     relationship: one_to_many
+  #     sql: ,
+  #           unnest(
+  #             _airbyte_data.response.relationship
+  #           ) t(persona_demographics_relationship) ;;
+  #   }
 
 
   # join: personas {
@@ -92,7 +101,6 @@ explore: personas{
 
   }
 
-  explore: advertisers {}
 
 
 
