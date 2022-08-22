@@ -29,17 +29,88 @@ explore: persona_insights{
             ) t(inmarket)            ;;
   }
 
+  join: lifestyle {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.topaudiences.lifestyle
+            ) t(lifestyle)            ;;
+  }
+
+  join: lifeevents {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.topaudiences.lifeevents
+            ) t(lifeevents)            ;;
+  }
+
+  join: lookalike {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.topaudiences.lookalike
+            ) t(lookalike)            ;;
+  }
 
 
+  join: topretailcategories {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.topretailcategories
+            ) t(topretailcategories)            ;;
+  }
+
+  join: topretailcategories_path {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.topretailcategories.path
+            ) t(topretailcategories_path)            ;;
+  }
+
+  join: demographics_age {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.demographics.age
+            ) t(demographics_age)            ;;
+  }
+
+  join: demographics_gender {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.demographics.gender
+            ) t(demographics_gender)            ;;
+  }
+
+  join: demographics_income {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.demographics.income
+            ) t(demographics_income)            ;;
+  }
+
+  join: demographics_propertyownership {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.demographics.propertyownership
+            ) t(demographics_propertyownership)            ;;
+  }
+
+  join: demographics_relationship {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.demographics.relationship
+            ) t(demographics_relationship)            ;;
+  }
 
 
-  # join: pi_interests {
-  #   relationship: one_to_many
-  #       sql: ,
-  #             unnest(
-  #               _airbyte_data.response.topaudiences.interests
-  #             ) t(pi_interests) ;;
-  # }
 
 
   # join: persona_demographics{
