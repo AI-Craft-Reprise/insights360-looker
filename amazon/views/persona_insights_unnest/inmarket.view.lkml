@@ -1,4 +1,4 @@
-view: insights_demographics_income {
+view: inmarket {
 
   dimension: percentage {
     type: number
@@ -10,10 +10,16 @@ view: insights_demographics_income {
     sql: ${TABLE}.affinity ;;
   }
 
-  dimension: attribute {
+  dimension: name {
     type: string
-    sql: ${TABLE}.attribute ;;
+    sql: ${TABLE}.name ;;
   }
+
+  dimension: id {
+    type: string
+    sql: ${TABLE}.id ;;
+  }
+
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #
@@ -44,7 +50,7 @@ view: insights_demographics_income {
   # }
 }
 
-# view: insights_demographics_income {
+# view: inmarket {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT

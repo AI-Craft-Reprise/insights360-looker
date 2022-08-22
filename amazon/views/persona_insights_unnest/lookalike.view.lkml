@@ -1,4 +1,4 @@
-view: insights_lookalike {
+view: lookalike {
 
   dimension: percentage {
     type: number
@@ -19,8 +19,6 @@ view: insights_lookalike {
     type: string
     sql: ${TABLE}.id ;;
   }
-
-
 
 
   # # You can specify the table name if it's different from the view name:
@@ -53,7 +51,7 @@ view: insights_lookalike {
   # }
 }
 
-# view: top_audience_lookalike {
+# view: lookalike {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT

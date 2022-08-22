@@ -13,6 +13,25 @@ persist_with: insights_default_datagroup
 
 explore: persona_insights{
 
+  join: interests {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.topaudiences.interests
+            ) t(interests)            ;;
+  }
+
+  join: inmarket {
+    relationship: one_to_many
+    sql: ,
+          unnest(
+            _airbyte_data.response.topaudiences.inmarket
+            ) t(inmarket)            ;;
+  }
+
+
+
+
 
   # join: pi_interests {
   #   relationship: one_to_many

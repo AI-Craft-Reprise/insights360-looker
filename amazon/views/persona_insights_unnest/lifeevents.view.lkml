@@ -1,4 +1,4 @@
-view: insights_lifestyle {
+view: lifeevents {
 
   dimension: percentage {
     type: number
@@ -19,6 +19,7 @@ view: insights_lifestyle {
     type: string
     sql: ${TABLE}.id ;;
   }
+
 
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
@@ -50,7 +51,7 @@ view: insights_lifestyle {
   # }
 }
 
-# view: insights_lifestyle {
+# view: lifeevents {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT

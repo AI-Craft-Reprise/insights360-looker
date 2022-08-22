@@ -1,4 +1,4 @@
-view: insights_interests {
+view: demographics_relationship {
 
   dimension: percentage {
     type: number
@@ -10,14 +10,9 @@ view: insights_interests {
     sql: ${TABLE}.affinity ;;
   }
 
-  dimension: name {
+  dimension: attribute {
     type: string
-    sql: ${TABLE}.name ;;
-  }
-
-  dimension: id {
-    type: string
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.attribute ;;
   }
 
   # # You can specify the table name if it's different from the view name:
@@ -50,7 +45,7 @@ view: insights_interests {
   # }
 }
 
-# view: topaudiences_interests {
+# view: demographics_relationship {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT
