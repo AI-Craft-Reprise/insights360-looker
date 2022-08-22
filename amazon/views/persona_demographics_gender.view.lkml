@@ -1,5 +1,7 @@
 view: persona_demographics_gender {
 
+  label: "Demographics"
+
   dimension: gender {
     type: string
     sql: ${TABLE} ;;

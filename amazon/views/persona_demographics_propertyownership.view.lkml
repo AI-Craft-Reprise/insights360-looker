@@ -1,5 +1,7 @@
 view: persona_demographics_propertyownership {
 
+  label: "Demographics"
+
   dimension: propertyownership {
     type: string
     sql: ${TABLE} ;;

@@ -13,6 +13,12 @@ persist_with: insights_default_datagroup
 
 explore: persona_demographics{
 
+  join: advertisers {
+    type: left_outer
+    relationship: one_to_many
+    sql: ${persona_demographics.advertiserid}=${advertisers.advertiserid} ;;
+  }
+
     join: persona_demographics_propertyownership {
       relationship: one_to_many
       sql: ,
@@ -52,6 +58,23 @@ explore: persona_demographics{
             _airbyte_data.response.age
           ) t(persona_demographics_age) ;;
   }
+
+
+  join: top_audience_lookalike {
+    relationship: one_to_many
+    sql: ,
+        unnest(
+          _airbyte_data.response.topaudiences.lookalike
+        ) t(lookalike) ;;
+  }
+
+  join: persona_insights{
+    type: left_outer
+    relationship: one_to_many
+    sql: ${persona_demographics.advertiserid}=${persona_insights.advertiserid} ;;
+  }
+
+
   }
 
 

@@ -17,6 +17,35 @@ view: persona_insights {
     sql: ${TABLE}._airbyte_emitted_at ;;
   }
 
+  dimension: response {
+    hidden: yes
+    type: string
+    sql: ${_airbyte_data}.response ;;
+  }
+
+  dimension: advertiserid {
+    type: string
+    sql: ${response}.advertiserid ;;
+  }
+
+  dimension: topaudiences {
+    type: string
+    hidden: yes
+    sql: ${response}.topaudiences ;;
+  }
+
+  dimension: thirdparty {
+    type: string
+    sql: ${topaudiences}.thirdparty ;;
+  }
+
+  dimension: lookalike {
+    type: string
+    hidden: yes
+    sql: ${response}.lookalike ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: []

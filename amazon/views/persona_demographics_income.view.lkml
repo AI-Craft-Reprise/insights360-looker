@@ -1,5 +1,7 @@
 view: persona_demographics_income {
 
+  label: "Demographics"
+
 
     dimension: income {
       type: string

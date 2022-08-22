@@ -1,4 +1,5 @@
 view: persona_demographics {
+  label: "Demographics"
   sql_table_name: amazon.persona_demographics ;;
   suggestions: no
 

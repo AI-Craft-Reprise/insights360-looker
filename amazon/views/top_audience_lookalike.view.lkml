@@ -1,12 +1,28 @@
-view: persona_demographics_relationship {
+view: top_audience_lookalike {
 
-  label: "Demographics"
+    dimension: percentage {
+      type: number
+      sql: ${TABLE}.percentage ;;
+      }
 
-    dimension: relationship {
-      type: string
-      sql: ${TABLE} ;;
-
+  dimension: affinity {
+    type: number
+    sql: ${TABLE}.affinity ;;
   }
+
+  dimension: name {
+    type: string
+    sql: ${TABLE}.name ;;
+  }
+
+  dimension: id {
+    type: string
+    sql: ${TABLE}.id ;;
+  }
+
+
+
+
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #
@@ -37,7 +53,7 @@ view: persona_demographics_relationship {
   # }
 }
 
-# view: persona_demographics_relationship {
+# view: top_audience_lookalike {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT
