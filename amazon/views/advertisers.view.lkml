@@ -3,6 +3,7 @@ view: advertisers {
   suggestions: no
 
   dimension: _airbyte_ab_id {
+    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_ab_id ;;
   }
@@ -14,8 +15,33 @@ view: advertisers {
   }
 
   dimension: _airbyte_emitted_at {
+    hidden: yes
     type: number
     sql: ${TABLE}._airbyte_emitted_at ;;
+  }
+
+  dimension: request {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.request ;;
+  }
+
+  dimension: body {
+    type: string
+    hidden: yes
+    sql: ${request}.body ;;
+  }
+
+  dimension: headers {
+    type: string
+    hidden: yes
+    sql: ${body}.headers ;;
+  }
+
+  dimension: amazon_advertising_api_clientid {
+    type: string
+    hidden: yes
+    sql: ${headers}.amazon-advertising-api-clientid ;;
   }
 
   dimension: response {

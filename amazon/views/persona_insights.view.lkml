@@ -39,11 +39,27 @@ view: persona_insights {
     sql: ${topaudiences}.thirdparty ;;
   }
 
-  dimension: lookalike {
+  dimension: estimatedsize {
     type: string
-    hidden: yes
-    sql: ${response}.lookalike ;;
+    sql: ${topaudiences}.estimatedsize ;;
   }
+
+  dimension: personaid {
+    type: string
+    sql: ${topaudiences}.personaid ;;
+  }
+
+  dimension: lastupdatedat {
+    type: date
+    sql: ${topaudiences}.lastupdatedat ;;
+  }
+
+
+  # dimension: lookalike {
+  #   type: string
+  #   hidden: yes
+  #   sql: ${response}.lookalike ;;
+  # }
 
 
   measure: count {
