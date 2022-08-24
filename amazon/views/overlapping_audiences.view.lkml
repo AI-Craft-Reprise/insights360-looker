@@ -54,7 +54,7 @@ view: overlapping_audiences {
   dimension: dailyreach_req {
     hidden: yes
     type: string
-    sql: ${audienceforecast_req}.category;;
+    sql: ${audienceforecast_req}.dailyreach;;
   }
 
   dimension: lowerbound {
@@ -80,12 +80,12 @@ view: overlapping_audiences {
 
   dimension: name_aud {
     type: string
-    sql: ${audiencemetadata}.audienceid;;
+    sql: ${audiencemetadata}.name;;
   }
 
   dimension: category_aud {
     type: string
-    sql: ${audiencemetadata}.audienceid;;
+    sql: ${audiencemetadata}.category;;
   }
 
   dimension: audienceforecast_aud {
@@ -97,7 +97,7 @@ view: overlapping_audiences {
   dimension: dailyreach_aud {
     hidden: yes
     type: string
-    sql: ${audienceforecast_aud}.category;;
+    sql: ${audienceforecast_aud}.dailyreach;;
   }
 
   dimension: lowerbound_aud {
@@ -112,7 +112,7 @@ view: overlapping_audiences {
 
   dimension: affinity {
     type: number
-    sql: ${dailyreach_aud}.affinity;;
+    sql: ${response}.affinity;;
   }
 
 
