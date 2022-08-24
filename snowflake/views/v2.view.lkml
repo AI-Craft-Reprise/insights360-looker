@@ -117,31 +117,36 @@ view: v2 {
     sql: ${TABLE}.target_total ;;
   }
 
+  measure: target {
+    type: sum
+    sql: ${TABLE}.target_cnt ;;
+  }
+
   measure: gen_pop_total {
     type: max
     sql: ${genpop_total} ;;
   }
 
-  measure: target {
-    type: sum
-    sql: ${target_count};;
-  }
+  # measure: target {
+  #   type: sum
+  #   sql: ${target_cnt};;
+  # }
 
-  measure: target_v2 {
-    type: count_distinct
-    sql: ${keyword};;
-  }
+  # measure: target_v2 {
+  #   type: count_distinct
+  #   sql: ${keyword};;
+  # }
 
-  measure:total_target {
-    type: sum
-    sql: ${target_total};;
-  }
+  # measure:total_target {
+  #   type: sum
+  #   sql: ${target_total};;
+  # }
 
-  measure: target_percentage {
-    type: number
-    sql: ${target}/NULLIF(${total_target},0) ;;
-    value_format_name: percent_2
-  }
+  # measure: target_percentage {
+  #   type: number
+  #   sql: ${target_cnt}/NULLIF(${total_target},0) ;;
+  #   value_format_name: percent_2
+  # }
 
 
   measure: count {
