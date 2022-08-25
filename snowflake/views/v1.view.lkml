@@ -163,4 +163,21 @@ view: v1 {
     type: count
     drill_fields: [audience_name,keyword]
   }
+
+  dimension: media {
+    type: string
+    sql: CASE WHEN ${question_level_1} = 'MEDIA' THEN ${question_level_2}
+
+        ELSE NULL END ;;
+    suggestions: ["CABLE", "DIGITAL PLACE-BASED/ALTERNATIVE ADVERTISING", "INTERNET", "MAGAZINE", "NEWSPAPER",
+                  "RADIO/AUDIO", "SUMMARIES", "TELEVISION", "YELLOW PAGES"]
+  }
+  dimension: media_internet_websites_apps {
+    type: string
+    sql: CASE WHEN ${question_level_3} = 'SOCIAL MEDIA, PHOTO OR VIDEO-SHARING SERVICES VISITED OR USED IN THE LAST 30 DAYS' THEN ${question_level_2}
+
+        ELSE NULL END ;;
+    suggestions: ["EMAIL", "ENTERTAINMENT", "FINANCE", "GAMES/GAMING", "HEALTH", "INFORMATION/REFERENCE", "JOBS/CAREERS", "NEWS/COMMENTARY",
+                  "SHOPPING", "SOCIALIZING/DATING", "SPANISH LANGUAGE", "SPORTS", "TECHNOLOGY", "TRAVEL/MAPS", "WEATHER"]
+  }
 }

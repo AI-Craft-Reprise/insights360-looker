@@ -79,11 +79,13 @@ view: overlapping_audiences {
   }
 
   dimension: name_aud {
+    label: "Target Audience"
     type: string
     sql: ${audiencemetadata}.name;;
   }
 
   dimension: category_aud {
+    label: "Target Audience Category"
     type: string
     sql: ${audiencemetadata}.category;;
   }
@@ -101,11 +103,13 @@ view: overlapping_audiences {
   }
 
   dimension: lowerbound_aud {
+    label: "Lowerbound"
     type: number
     sql: ${dailyreach_aud}.lowerbound;;
   }
 
   dimension: upperbound_aud {
+    label: "Upperbound"
     type: number
     sql: ${dailyreach_aud}.upperbound;;
   }
@@ -113,6 +117,12 @@ view: overlapping_audiences {
   dimension: affinity {
     type: number
     sql: ${response}.affinity;;
+    value_format: "0.00"
+  }
+
+  measure: affinity_total {
+    type: sum
+    sql: ${affinity} ;;
   }
 
 
