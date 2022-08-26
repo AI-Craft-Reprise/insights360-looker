@@ -172,6 +172,7 @@ view: v1 {
     suggestions: ["CABLE", "DIGITAL PLACE-BASED/ALTERNATIVE ADVERTISING", "INTERNET", "MAGAZINE", "NEWSPAPER",
                   "RADIO/AUDIO", "SUMMARIES", "TELEVISION", "YELLOW PAGES"]
   }
+
   dimension: media_internet_websites_apps {
     type: string
     sql: CASE WHEN ${question_level_3} = 'WEBSITES VISITED OR APPS USED IN THE LAST 30 DAYS' THEN ${question_level_4}
@@ -180,4 +181,23 @@ view: v1 {
     suggestions: ["EMAIL", "ENTERTAINMENT", "FINANCE", "GAMES/GAMING", "HEALTH", "INFORMATION/REFERENCE", "JOBS/CAREERS", "NEWS/COMMENTARY",
                   "SHOPPING", "SOCIALIZING/DATING", "SPANISH LANGUAGE", "SPORTS", "TECHNOLOGY", "TRAVEL/MAPS", "WEATHER"]
   }
+
+  dimension: social_media {
+    type: string
+    sql: CASE WHEN ${question_level_3} = 'SOCIAL MEDIA, PHOTO OR VIDEO-SHARING SERVICES VISITED OR USED IN THE LAST 30 DAYS' THEN ${question_level_4}
+
+        ELSE NULL END ;;
+    suggestions: ["ANY SOCIAL MEDIA/PHOTO/VIDEO-SHARING SERVICES", "FACEBOOK", "FLICKR", "GOOGLE PHOTOS", "INSTAGRAM", "LINKEDIN",
+                  "PINTEREST", "REDDIT", "SHUTTERFLY", "SNAPCHAT", "TIKTOK", "TUMBLR", "TWITCH", "TWITTER", "VIMEO", "YELP", "YOUTUBE"]
+  }
+
+
+
+
+
+
+
+
+
+
 }
