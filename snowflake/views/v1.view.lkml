@@ -212,17 +212,35 @@ view: v1 {
     sql: CASE WHEN ${question_level_1} = 'MEDIA QUINTILE/TERCILE CODES' THEN ${question_level_4}
 
               ELSE NULL END ;;
-    suggestions: ["TV (PRIME TIME) I (HEAVY)", "TV (PRIME TIME) V (LIGHT)", "SOCIAL MEDIA III", "NEWSPAPER II", "OUTDOOR V (LIGHT)",
-                  "MAGAZINES II", "TV (TOTAL) III", "SOCIAL MEDIA I (HEAVY)", "MAGAZINES IV", "INTERNET III", "OUTDOOR III", "TV (TOTAL) II",
-                  "TV (TOTAL) I (HEAVY)", "SOCIAL MEDIA II", "SOCIAL MEDIA IV", "OUTDOOR II", "MAGAZINES III", "OUTDOOR IV", "OUTDOOR I (HEAVY)",
-                  "RADIO/AUDIO (PRIMETIME) II", "NEWSPAPER I (HEAVY)", "TV (PRIME TIME) IV", "INTERNET I (HEAVY)", "RADIO/AUDIO (WEEKDAYS) III",
-                  "RADIO/AUDIO (PRIMETIME) I (HEAVY)", "NEWSPAPER III", "RADIO/AUDIO (WEEKDAYS) V (LIGHT)", "MAGAZINES I (HEAVY)",
-                  "TV (PRIME TIME) III", "RADIO/AUDIO (PRIMETIME) III", "INTERNET IV", "RADIO/AUDIO (WEEKDAYS) IV", "TV (PRIME TIME) II",
-                  "TV (DAY TIME) III (LIGHT)", "INTERNET V (LIGHT)", "TV (DAY TIME) I (HEAVY)", "TV (TOTAL) V (LIGHT)", "INTERNET II",
-                  "RADIO/AUDIO (WEEKDAYS) II", "RADIO/AUDIO (WEEKDAYS) I (HEAVY)", "NEWSPAPER IV", "RADIO/AUDIO (PRIMETIME) IV", "MAGAZINES V (LIGHT)",
-                  "RADIO/AUDIO (PRIMETIME) V (LIGHT)", "TV (DAY TIME) II", "SOCIAL MEDIA V (LIGHT)", "TV (TOTAL) IV", "NEWSPAPER V (LIGHT)"]
+    suggestions: [" INTERNET I (HEAVY)", "INTERNET II", "INTERNET III", "INTERNET IV", "INTERNET V (LIGHT)", "MAGAZINES I (HEAVY)",
+      "MAGAZINES II", "MAGAZINES III", "MAGAZINES IV", "MAGAZINES V (LIGHT)", "NEWSPAPER I (HEAVY)", "NEWSPAPER II", "NEWSPAPER III",
+      "NEWSPAPER IV", "NEWSPAPER V (LIGHT)", "OUTDOOR I (HEAVY)", "OUTDOOR II", "OUTDOOR III", "OUTDOOR IV", "OUTDOOR V (LIGHT)",
+      "RADIO/AUDIO (PRIMETIME) I (HEAVY)", "RADIO/AUDIO (PRIMETIME) II", "RADIO/AUDIO (PRIMETIME) III", "RADIO/AUDIO (PRIMETIME) IV",
+      "RADIO/AUDIO (PRIMETIME) V (LIGHT)", "RADIO/AUDIO (WEEKDAYS) I (HEAVY)", "RADIO/AUDIO (WEEKDAYS) II", "RADIO/AUDIO (WEEKDAYS) III",
+      "RADIO/AUDIO (WEEKDAYS) IV", "RADIO/AUDIO (WEEKDAYS) V (LIGHT)", "SOCIAL MEDIA I (HEAVY)", "SOCIAL MEDIA II", "SOCIAL MEDIA III",
+      "SOCIAL MEDIA IV", "SOCIAL MEDIA V (LIGHT)", "TV (DAY TIME) I (HEAVY)", "TV (DAY TIME) II", "TV (DAY TIME) III (LIGHT)",
+      "TV (PRIME TIME) I (HEAVY)", "TV (PRIME TIME) II", "TV (PRIME TIME) III", "TV (PRIME TIME) IV", "TV (PRIME TIME) V (LIGHT)",
+      "TV (TOTAL) I (HEAVY)", "TV (TOTAL) II", "TV (TOTAL) III", "TV (TOTAL) IV", "TV (TOTAL) V (LIGHT)"]
   }
 
+
+  # dimension: media_summaries_category {
+  #   case: {
+  #     when: {
+  #       sql: ${question_level_4} LIKE "%TV%" THEN "TV"
+  #       ELSE NULL END;;
+  #     }
+      # when: {
+      #   sql: ${order_amount} > 50 AND ${order_amount} <= 150;;
+      #   label: "Medium"
+      # }
+      # when: {
+      #   sql: ${order_amount} > 150;;
+      #   label: "Large"
+      # }
+      # else:"Unknown"
+  #   }
+  # }
 
 
 
