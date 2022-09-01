@@ -157,6 +157,12 @@ view: v1 {
     type: sum
     sql: ${overall_index} ;;
     value_format: "0.00"
+  }
+
+  measure: index_overall  {
+    type: sum
+    sql: ${overall_index} ;;
+    value_format: "0.00"
     html: {{ rendered_value }} || {{ answer._rendered_value }};;
   }
 

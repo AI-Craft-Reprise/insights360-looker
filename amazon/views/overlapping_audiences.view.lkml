@@ -58,11 +58,13 @@ view: overlapping_audiences {
   }
 
   dimension: lowerbound {
+    hidden: yes
     type: number
     sql: ${dailyreach_req}.lowerbound;;
   }
 
   dimension: upperbound {
+    hidden: yes
     type: number
     sql: ${dailyreach_req}.upperbound;;
   }
@@ -88,6 +90,7 @@ view: overlapping_audiences {
     label: "Target Audience Category"
     type: string
     sql: ${audiencemetadata}.category;;
+    suggestions: ["In-market", "Interest", "Life event", "Lifestyle"]
   }
 
   dimension: audienceforecast_aud {
@@ -124,6 +127,26 @@ view: overlapping_audiences {
     type: sum
     sql: ${affinity} ;;
   }
+
+  measure: lowerbound_m {
+    hidden: yes
+    type: number
+    sql: ${lowerbound_aud} ;;
+  }
+
+  measure: upperbound_m {
+    hidden: yes
+    type: number
+    sql: ${upperbound_aud} ;;
+  }
+
+  measure: average_bound {
+    type: number
+    sql: (${lowerbound_m}+${upperbound_m})/2;;
+  }
+
+
+
 
 
   measure: count {
