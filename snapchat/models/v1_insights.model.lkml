@@ -12,7 +12,11 @@ persist_with: insights_default_datagroup
 
 explore: snap {
   always_filter: {
-    filters: [base_spec_geos.country_code: "us"]}
+    filters: [base_spec_geos.country_code: "us",
+              ]}
+  # targeting_spec_interests_category_ids.interest_category_id: "SLC1",
+  # targeting_spec_geos.country_code: "us",
+  # targeting_spec_gender.targeting_spec_gender: "male"
   sql_always_where: ${gender.name}<>'gender_unknown' and ${age_groups.name}<>'unknown' ;;
 
  join: age_groups {

@@ -50,7 +50,10 @@ view: gender {
     value_format: "0.0\%"
   }
 
-
+  measure: index_target_to_reference_advanced_demographics {
+    type: sum
+    sql: ${target_index_to_reference} ;;
+  }
 
 
 

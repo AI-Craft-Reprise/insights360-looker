@@ -38,6 +38,12 @@ view: advanced_demographics {
       type: number
     }
 
+    # dimension: education {
+    #   type: string
+    #   sql: CASE WHEN ${name} = 'Education%' THEN ${name}
+    #           ELSE NULL END  ;;
+    # }
+
     # measure: target_audience_advanced_demographics {
     #   type: average
     #   sql: ${target_audience_percent} ;;
@@ -53,6 +59,12 @@ view: advanced_demographics {
     measure: index_target_to_reference_advanced_demographics {
       type: sum
       sql: ${target_index_to_reference} ;;
+    }
+
+    measure: target_audience_advanced_demo_percent {
+    type: average
+    sql: ${target_audience_percent} ;;
+    value_format: "0.0\%"
     }
 
 
