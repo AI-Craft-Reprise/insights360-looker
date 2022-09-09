@@ -63,6 +63,46 @@ view: content_insights {
     sql: ${_airbyte_data}.insight_value ;;
   }
 
+  dimension: age_groups{
+    type: string
+    sql: CASE WHEN ${dimension} = 'age_group' THEN ${insight_key}
+
+                          ELSE NULL END ;;
+    suggestions: ["18-24", "25-34", "35-44", "45-54", "55-64", "65+"]
+  }
+
+  dimension: gender{
+    type: string
+    sql: CASE WHEN ${dimension} = 'gender' THEN ${insight_key}
+
+                          ELSE NULL END ;;
+    suggestions: ["UNKNOWN", "MALE", "FEMALE"]
+  }
+
+  dimension: time_of_day{
+    type: string
+    sql: CASE WHEN ${dimension} = 'time_of_day' THEN ${insight_key}
+
+                          ELSE NULL END ;;
+    suggestions: ["afternoon", "morning", "night"]
+  }
+
+  dimension: device{
+    type: string
+    sql: CASE WHEN ${dimension} = 'device' THEN ${insight_key}
+
+                          ELSE NULL END ;;
+    suggestions: ["desktop  device", "mobile  device", "tablet"]
+  }
+
+  dimension: days_of_week{
+    type: string
+    sql: CASE WHEN ${dimension} = 'days_of_week' THEN ${insight_key}
+
+                          ELSE NULL END ;;
+    suggestions: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  }
+
   measure: count {
     type: count
     drill_fields: []

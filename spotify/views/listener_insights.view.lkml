@@ -42,6 +42,46 @@ view: listener_insights {
     sql: ${_airbyte_data}.insight_value ;;
   }
 
+  dimension: time_of_day{
+    type: string
+    sql: CASE WHEN ${dimension} = 'time_of_day' THEN ${insight_key}
+
+                                ELSE NULL END ;;
+    suggestions: ["afternoon", "morning", "night"]
+  }
+
+  dimension: days_of_week{
+    type: string
+    sql: CASE WHEN ${dimension} = 'days_of_week' THEN ${insight_key}
+
+                          ELSE NULL END ;;
+    suggestions: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  }
+
+  dimension: city{
+    type: string
+    sql: CASE WHEN ${dimension} = 'city' THEN ${insight_key}
+
+                                ELSE NULL END ;;
+    # suggestions: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  }
+
+  dimension: genre{
+    type: string
+    sql: CASE WHEN ${dimension} = 'genre' THEN ${insight_key}
+
+                                ELSE NULL END ;;
+    # suggestions: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  }
+
+  dimension: platform{
+    type: string
+    sql: CASE WHEN ${dimension} = 'platform' THEN ${insight_key}
+
+                                ELSE NULL END ;;
+    suggestions: ["Car", "Desktop", "Game Console", "Mobile", "Speaker", "Tablet",  "TV", "Wearable", "Web", "Other"]
+    }
+
   measure: count {
     type: count
     drill_fields: []
