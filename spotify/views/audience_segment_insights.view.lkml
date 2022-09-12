@@ -26,6 +26,10 @@ view: audience_segment_insights {
   dimension: name {
     type: string
     sql: ${segment_info}.name ;;
+    suggestions: ["Automotive Users", "Enhanced_Cooking Enthusiasts", "Enhanced_Dads", "Enhanced_Fitness Enthusiasts",
+                  "Enhanced_Gamers", "Enhanced_Gen Z", "Enhanced_Live Entertainment / Concert Goers", "Enhanced_Millennials",
+                  "Enhanced_Moms", "Enhanced_Parents", "Enhanced_Socialites/Partiers", "Enhanced_Tech Early Adopters",
+                  "Enhanced_Teens", "Enhanced_Travelers", "Test: Podcast Listeners"]
   }
 
   dimension: id {
@@ -41,6 +45,7 @@ view: audience_segment_insights {
   dimension: aggregation {
     type: string
     sql: ${_airbyte_data}.aggregation ;;
+    suggestions: ["day", "hour", "month", "week"]
   }
 
   dimension: dimension {
