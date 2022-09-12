@@ -20,11 +20,13 @@ view: listener_insights {
   dimension: field {
     type: string
     sql: ${_airbyte_data}.field ;;
+    suggestions: ["minutes", "streams", "minutes_percent", "streams_percent"]
   }
 
   dimension: aggregation {
     type: string
     sql: ${_airbyte_data}.aggregation ;;
+    suggestions: ["day", "hour", "month", "week"]
   }
 
   dimension: dimension {
