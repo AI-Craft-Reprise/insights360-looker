@@ -17,10 +17,34 @@ view: audience_segment_insights {
     sql: ${TABLE}._airbyte_emitted_at ;;
   }
 
+  dimension: request {
+    type: string
+    hidden: yes
+    sql: ${_airbyte_data}.request ;;
+  }
+
+  dimension: body {
+    type: string
+    hidden: yes
+    sql: ${request}.body ;;
+  }
+
+  dimension: country {
+    type: string
+    sql: SUBSTRING(${body},26,2) ;;
+  }
+
+
+  dimension: response {
+    type: string
+    hidden: yes
+    sql: ${_airbyte_data}.response ;;
+  }
+
   dimension: segment_info {
     hidden: yes
     type: string
-    sql: ${_airbyte_data}.segment_info ;;
+    sql: ${response}.segment_info ;;
   }
 
   dimension: name {
@@ -39,28 +63,28 @@ view: audience_segment_insights {
 
   dimension: field {
     type: string
-    sql: ${_airbyte_data}.field ;;
+    sql: ${response}.field ;;
   }
 
   dimension: aggregation {
     type: string
-    sql: ${_airbyte_data}.aggregation ;;
+    sql: ${response}.aggregation ;;
     suggestions: ["day", "hour", "month", "week"]
   }
 
   dimension: dimension {
     type: string
-    sql: ${_airbyte_data}.dimension ;;
+    sql: ${response}.dimension ;;
   }
 
   dimension: insight_key {
     type: string
-    sql: ${_airbyte_data}.insight_key ;;
+    sql: ${response}.insight_key ;;
   }
 
   dimension: insight_value {
     type: number
-    sql: ${_airbyte_data}.insight_value ;;
+    sql: ${response}.insight_value ;;
   }
 
   dimension: age_groups{

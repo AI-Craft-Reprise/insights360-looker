@@ -17,21 +17,28 @@ view: listener_insights {
     sql: ${TABLE}._airbyte_emitted_at ;;
   }
 
+   dimension: response {
+    type: string
+    hidden: yes
+    sql: ${_airbyte_data}.response ;;
+  }
+
+
   dimension: field {
     type: string
-    sql: ${_airbyte_data}.field ;;
+    sql: ${response}.field ;;
     suggestions: ["minutes", "streams", "minutes_percent", "streams_percent"]
   }
 
   dimension: aggregation {
     type: string
-    sql: ${_airbyte_data}.aggregation ;;
+    sql: ${response}.aggregation ;;
     suggestions: ["day", "hour", "month", "week"]
   }
 
   dimension: dimension {
     type: string
-    sql: ${_airbyte_data}.dimension ;;
+    sql: ${response}.dimension ;;
   }
 
   dimension: insight_key {
