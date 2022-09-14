@@ -8,6 +8,8 @@ view: audience_segment_insights {
   }
 
   dimension: _airbyte_data {
+    primary_key: yes
+    hidden:  yes
     type: string
     sql: ${TABLE}._airbyte_data ;;
   }
@@ -19,7 +21,6 @@ view: audience_segment_insights {
 
   dimension: request {
     type: string
-    hidden: yes
     sql: ${_airbyte_data}.request ;;
   }
 
@@ -35,6 +36,11 @@ view: audience_segment_insights {
     sql: ${body}.filters ;;
   }
 
+  dimension: request_key {
+    type:  string
+    sql:  ${country} ;;
+  }
+
   dimension: country {
     type: string
     sql: ${filters}.country ;;
@@ -43,7 +49,6 @@ view: audience_segment_insights {
 
   dimension: response {
     type: string
-    hidden: yes
     sql: ${_airbyte_data}.response ;;
   }
 
@@ -53,7 +58,7 @@ view: audience_segment_insights {
     sql: ${response}.segment_info ;;
   }
 
-  dimension: name {
+  dimension: segment_name {
     type: string
     sql: ${segment_info}.name ;;
     suggestions: ["Automotive Users", "Enhanced_Cooking Enthusiasts", "Enhanced_Dads", "Enhanced_Fitness Enthusiasts",
@@ -62,8 +67,9 @@ view: audience_segment_insights {
                   "Enhanced_Teens", "Enhanced_Travelers", "Test: Podcast Listeners"]
   }
 
-  dimension: id {
+  dimension: segment_id {
     type: string
+    hidden: yes
     sql: ${segment_info}.id ;;
   }
 
@@ -90,7 +96,7 @@ view: audience_segment_insights {
 
   dimension: insight_value {
     type: number
-    sql: ${response}.insight_value ;;
+    sql: cast(${response}.insight_value as double)  ;;
   }
 
   dimension: age_groups{
