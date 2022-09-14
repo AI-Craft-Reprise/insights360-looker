@@ -3,24 +3,56 @@ view: content_insights {
   suggestions: no
 
   dimension: _airbyte_ab_id {
+    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_ab_id ;;
   }
 
   dimension: _airbyte_data {
+    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_data ;;
   }
 
   dimension: _airbyte_emitted_at {
+    hidden: yes
     type: number
     sql: ${TABLE}._airbyte_emitted_at ;;
+  }
+
+  dimension: request {
+    hidden: yes
+    type: string
+    sql: ${_airbyte_data}.request ;;
+  }
+
+  dimension: body {
+    hidden: yes
+    type: string
+    sql: ${request}.body ;;
+  }
+
+  dimension: filters {
+    type: string
+    sql: ${body}.filters ;;
+  }
+
+  dimension: age_group {
+    type: string
+    hidden: yes
+    sql: ${filters}.age_group ;;
+  }
+
+  dimension: response {
+    hidden: yes
+    type: string
+    sql: ${_airbyte_data}.response ;;
   }
 
   dimension: content_info {
     hidden: yes
     type: string
-    sql: ${_airbyte_data}.content_info ;;
+    sql: ${response}.content_info ;;
   }
 
   dimension: name {
@@ -31,6 +63,7 @@ view: content_insights {
   dimension: content_type {
     type: string
     sql: ${content_info}.content_type ;;
+    suggestions: ["playlist", "podcast"]
   }
 
   dimension: uri {
@@ -40,27 +73,27 @@ view: content_insights {
 
   dimension: field {
     type: string
-    sql: ${_airbyte_data}.field ;;
+    sql: ${response}.field ;;
   }
 
   dimension: aggregation {
     type: string
-    sql: ${_airbyte_data}.aggregation ;;
+    sql: ${response}.aggregation ;;
   }
 
   dimension: dimension {
     type: string
-    sql: ${_airbyte_data}.dimension ;;
+    sql: ${response}.dimension ;;
   }
 
   dimension: insight_key {
     type: string
-    sql: ${_airbyte_data}.insight_key ;;
+    sql: ${response}.insight_key ;;
   }
 
   dimension: insight_value {
     type: number
-    sql: ${_airbyte_data}.insight_value ;;
+    sql: ${response}.insight_value ;;
   }
 
   dimension: age_groups{
@@ -92,7 +125,7 @@ view: content_insights {
     sql: CASE WHEN ${dimension} = 'device' THEN ${insight_key}
 
                           ELSE NULL END ;;
-    suggestions: ["desktop  device", "mobile  device", "tablet"]
+    suggestions: ["desktop", "mobile", "tablet"]
   }
 
   dimension: days_of_week{

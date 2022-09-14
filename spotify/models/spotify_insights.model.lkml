@@ -8,7 +8,10 @@ include: "/spotify/**/*.view"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
-  explore: audience_segment_insights {}
+  explore: audience_segment_insights {
+    # sql_always_where: ${age_groups} IS NOT NULL;;
+  }
+
 
   explore: content_insights {}
 

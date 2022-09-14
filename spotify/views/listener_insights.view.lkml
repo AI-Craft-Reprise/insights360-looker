@@ -43,12 +43,12 @@ view: listener_insights {
 
   dimension: insight_key {
     type: string
-    sql: ${_airbyte_data}.insight_key ;;
+    sql: ${response}.insight_key ;;
   }
 
   dimension: insight_value {
     type: number
-    sql: ${_airbyte_data}.insight_value ;;
+    sql: ${response}.insight_value ;;
   }
 
   dimension: time_of_day{
@@ -96,7 +96,7 @@ view: listener_insights {
     drill_fields: []
   }
 
-  measure: value {
+  measure: value_total {
     type: sum
     sql: ${insight_value} ;;
   }

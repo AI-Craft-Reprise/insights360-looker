@@ -29,11 +29,17 @@ view: audience_segment_insights {
     sql: ${request}.body ;;
   }
 
-  dimension: country {
+  dimension: filters {
     type: string
-    sql: SUBSTRING(${body},26,2) ;;
+    hidden: yes
+    sql: ${body}.filters ;;
   }
 
+  dimension: country {
+    type: string
+    sql: ${filters}.country ;;
+    suggestions: ["CA", "GB", "US"]
+  }
 
   dimension: response {
     type: string
