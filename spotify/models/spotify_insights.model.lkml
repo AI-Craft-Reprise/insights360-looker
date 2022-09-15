@@ -72,6 +72,37 @@ include: "/spotify/**/*.view"
       relationship:  one_to_one
     }
 
+    # join: time_of_day  {
+    #   from: time_of_day
+    #   view_label: "Time of Day"
+    #   sql_on: ${audience_segment_insights.request} = ${time_of_day.request} and ${audience_segment_insights.segment_id} = ${time_of_day.segment_id} and ${audience_segment_insights.country} = ${time_of_day.country};;
+    #   relationship: one_to_many
+    # }
+
+    # join: time_of_day_minutes {
+    #   view_label: "Time of Day"
+    #   sql_on: ${time_of_day.pk} = ${time_of_day_minutes.pk};;
+    #   relationship:  one_to_one
+    # }
+
+    # join: time_of_day_minutes_percent {
+    #   view_label: "Time of Day"
+    #   sql_on: ${time_of_day.pk} = ${time_of_day_minutes_percent.pk};;
+    #   relationship:  one_to_one
+    # }
+
+    # join: time_of_day_streams {
+    #   view_label: "Time of Day"
+    #   sql_on: ${time_of_day.pk} = ${time_of_day_streams.pk};;
+    #   relationship:  one_to_one
+    # }
+
+    # join: time_of_day_streams_percent {
+    #   view_label: "Time of Day"
+    #   sql_on: ${time_of_day.pk} = ${time_of_daystreams_percent.pk};;
+    #   relationship:  one_to_one
+    # }
+
 
     # sql_always_where: ${age_groups} IS NOT NULL;;
   }
