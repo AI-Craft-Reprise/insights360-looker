@@ -106,7 +106,7 @@ include: "/spotify/**/*.view"
     join: device  {
       from: device
       view_label: "Device"
-      sql_on: ${audience_segment_insights.request} = ${time_of_day.request} and ${audience_segment_insights.segment_id} = ${time_of_day.segment_id} and ${audience_segment_insights.country} = ${time_of_day.country};;
+      sql_on: ${audience_segment_insights.request} = ${device.request} and ${audience_segment_insights.segment_id} = ${device.segment_id} and ${audience_segment_insights.country} = ${device.country};;
       relationship: one_to_many
     }
 
@@ -131,6 +131,37 @@ include: "/spotify/**/*.view"
     join: device_streams_percent {
       view_label: "Device"
       sql_on: ${device.pk} = ${device_streams_percent.pk};;
+      relationship:  one_to_one
+    }
+
+    join: days_of_week  {
+      from: device
+      view_label: "Days of Week"
+      sql_on: ${audience_segment_insights.request} = ${days_of_week.request} and ${audience_segment_insights.segment_id} = ${days_of_week.segment_id} and ${audience_segment_insights.country} = ${days_of_week.country};;
+      relationship: one_to_many
+    }
+
+    join: days_of_week_minutes {
+      view_label: "Days of Week"
+      sql_on: ${days_of_week.pk} = ${days_of_week_minutes.pk};;
+      relationship:  one_to_one
+    }
+
+    join: days_of_week_minutes_percent {
+      view_label: "Days of Week"
+      sql_on: ${days_of_week.pk} = ${days_of_week_minutes_percent.pk};;
+      relationship:  one_to_one
+    }
+
+    join: days_of_week_streams {
+      view_label: "Days of Week"
+      sql_on: ${days_of_week.pk} = ${days_of_week_streams.pk};;
+      relationship:  one_to_one
+    }
+
+    join: days_of_week_streams_percent {
+      view_label: "Days of Week"
+      sql_on: ${days_of_week.pk} = ${days_of_week_streams_percent.pk};;
       relationship:  one_to_one
     }
 
