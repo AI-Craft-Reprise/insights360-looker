@@ -103,36 +103,36 @@ include: "/spotify/**/*.view"
       relationship:  one_to_one
     }
 
-    # join: device  {
-    #   from: device
-    #   view_label: "Device"
-    #   sql_on: ${audience_segment_insights.request} = ${time_of_day.request} and ${audience_segment_insights.segment_id} = ${time_of_day.segment_id} and ${audience_segment_insights.country} = ${time_of_day.country};;
-    #   relationship: one_to_many
-    # }
+    join: device  {
+      from: device
+      view_label: "Device"
+      sql_on: ${audience_segment_insights.request} = ${time_of_day.request} and ${audience_segment_insights.segment_id} = ${time_of_day.segment_id} and ${audience_segment_insights.country} = ${time_of_day.country};;
+      relationship: one_to_many
+    }
 
-    # join: device_minutes {
-    #   view_label: "Device"
-    #   sql_on: ${device.pk} = ${device.pk};;
-    #   relationship:  one_to_one
-    # }
+    join: device_minutes {
+      view_label: "Device"
+      sql_on: ${device.pk} = ${device_minutes.pk};;
+      relationship:  one_to_one
+    }
 
-    # join: device_minutes_percent {
-    #   view_label: "Device"
-    #   sql_on: ${device.pk} = ${device_percent.pk};;
-    #   relationship:  one_to_one
-    # }
+    join: device_minutes_percent {
+      view_label: "Device"
+      sql_on: ${device.pk} = ${device_minutes_percent.pk};;
+      relationship:  one_to_one
+    }
 
-    # join: device_streams {
-    #   view_label: "Device"
-    #   sql_on: ${device.pk} = ${device_streams.pk};;
-    #   relationship:  one_to_one
-    # }
+    join: device_streams {
+      view_label: "Device"
+      sql_on: ${device.pk} = ${device_streams.pk};;
+      relationship:  one_to_one
+    }
 
-    # join: device_streams_percent {
-    #   view_label: "Device"
-    #   sql_on: ${device.pk} = ${device_streams_percent.pk};;
-    #   relationship:  one_to_one
-    # }
+    join: device_streams_percent {
+      view_label: "Device"
+      sql_on: ${device.pk} = ${device_streams_percent.pk};;
+      relationship:  one_to_one
+    }
 
 
     # sql_always_where: ${age_groups} IS NOT NULL;;
