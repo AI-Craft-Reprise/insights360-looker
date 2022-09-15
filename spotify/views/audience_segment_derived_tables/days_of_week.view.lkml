@@ -109,4 +109,30 @@ view: days_of_week_streams_percent {
     type: average
     sql: ${TABLE}.insight_value ;;
   }
-}
+
+  parameter: field_to_select{
+    type: unquoted
+    allowed_value: {
+      value: "Days of Week Minutes"
+      label: "Minutes"
+    }
+    allowed_value: {
+      value: "Days of Week Minutes Percent"
+      label: "Minutes Percent"
+    }
+    allowed_value: {
+        value: "Days of Week Streams"
+        label: "Streams"
+    }
+    allowed_value: {
+          value: "Days of Week Streams Percent"
+          label: "Streams Percent"
+     }
+  }
+
+  dimension: metric {
+    type: string
+    sql: ${TABLE}.{% parameter field_to_select %};;
+    label_from_parameter: field_to_select
+  }
+  }
