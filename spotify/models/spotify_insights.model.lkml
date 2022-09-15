@@ -172,10 +172,10 @@ include: "/spotify/**/*.view"
 
   explore: content_insights {
 
-    # join: gender {
+    #   join: gender {
     #   from: gender
     #   view_label: "Gender"
-    #   sql_on: ${audience_segment_insights.request} = ${gender.request} and ${audience_segment_insights.segment_id} = ${gender.segment_id} and ${audience_segment_insights.country} = ${gender.country};;
+    #   sql_on: ${content_insights.request} = ${gender.request} and ${content_insights.segment_id} = ${gender.segment_id} and ${content_insights.country} = ${gender.country};;
     #   relationship: one_to_many
     # }
 

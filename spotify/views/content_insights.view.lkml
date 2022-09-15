@@ -43,6 +43,12 @@ view: content_insights {
     sql: ${filters}.age_group ;;
   }
 
+  dimension: country {
+    type: string
+    hidden: yes
+    sql: ${filters}.age_group ;;
+  }
+
   dimension: response {
     hidden: yes
     type: string
