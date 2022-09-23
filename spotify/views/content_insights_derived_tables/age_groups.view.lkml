@@ -2,8 +2,9 @@ view: age_groups {
   derived_table: {
     explore_source: content_insights {
       column: country {}
-      column: segment_id {}
-      column: segment_name {}
+      column: uri {}
+      column: content_type {}
+      column: name {}
       column: insight_key {}
       column: request {}
       filters: {
@@ -15,10 +16,10 @@ view: age_groups {
   dimension: pk {
     hidden:  yes
     primary_key: yes
-    sql: ${country} || ${segment_id} || ${age_groups};;
+    sql: ${country} || ${uri} || ${age_groups};;
   }
 
-  dimension: segment_id {
+  dimension: uri {
     type: string
     hidden: yes
   }

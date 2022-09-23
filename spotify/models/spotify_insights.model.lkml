@@ -135,7 +135,7 @@ include: "/spotify/**/*.view"
     }
 
     join: days_of_week  {
-      from: device
+      from: days_of_week
       view_label: "Days of Week"
       sql_on: ${audience_segment_insights.request} = ${days_of_week.request} and ${audience_segment_insights.segment_id} = ${days_of_week.segment_id} and ${audience_segment_insights.country} = ${days_of_week.country};;
       relationship: one_to_many
@@ -203,36 +203,36 @@ include: "/spotify/**/*.view"
     #   relationship:  one_to_one
     # }
 
-    # join: age_groups {
-    #   from: age_groups
-    #   view_label: "Age Group"
-    #   sql_on: ${content_insights.request} = ${age_groups.request} and ${content_insights.segment_id} = ${age_groups.segment_id} and ${content_insights.country} = ${age_groups.country};;
-    #   relationship: one_to_many
-    # }
+    join: age_groups {
+      from: age_groups
+      view_label: "Age Group"
+      sql_on: ${content_insights.request} = ${age_groups.request} and ${content_insights.uri} = ${age_groups.uri} and ${content_insights.country} = ${age_groups.country};;
+      relationship: one_to_many
+    }
 
-    # join: age_groups_minutes {
-    #   view_label: "Age Group"
-    #   sql_on: ${age_groups.pk} = ${age_groups_minutes.pk};;
-    #   relationship:  one_to_one
-    # }
+    join: age_groups_minutes {
+      view_label: "Age Group"
+      sql_on: ${age_groups.pk} = ${age_groups_minutes.pk};;
+      relationship:  one_to_one
+    }
 
-    # join: age_groups_minutes_percent {
-    #   view_label: "Age Group"
-    #   sql_on: ${age_groups.pk} = ${age_groups_minutes_percent.pk};;
-    #   relationship:  one_to_one
-    # }
+    join: age_groups_minutes_percent {
+      view_label: "Age Group"
+      sql_on: ${age_groups.pk} = ${age_groups_minutes_percent.pk};;
+      relationship:  one_to_one
+    }
 
-    # join: age_groups_streams {
-    #   view_label: "Age Group"
-    #   sql_on: ${age_groups.pk} = ${age_groups_streams.pk};;
-    #   relationship:  one_to_one
-    # }
+    join: age_groups_streams {
+      view_label: "Age Group"
+      sql_on: ${age_groups.pk} = ${age_groups_streams.pk};;
+      relationship:  one_to_one
+    }
 
-    # join: age_groups_streams_percent {
-    #   view_label: "Age Group"
-    #   sql_on: ${age_groups.pk} = ${age_groups_streams_percent.pk};;
-    #   relationship:  one_to_one
-    # }
+    join: age_groups_streams_percent {
+      view_label: "Age Group"
+      sql_on: ${age_groups.pk} = ${age_groups_streams_percent.pk};;
+      relationship:  one_to_one
+    }
 
     # join: time_of_day  {
     #   from: time_of_day

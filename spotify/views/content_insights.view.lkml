@@ -39,14 +39,21 @@ view: content_insights {
 
   dimension: age_group {
     type: string
-    hidden: yes
+    # hidden: yes
     sql: ${filters}.age_group ;;
   }
 
+  dimension: gender_req {
+    type: string
+    # hidden: yes
+    sql: ${filters}.gender ;;
+  }
+
+
   dimension: country {
     type: string
-    hidden: yes
-    sql: ${filters}.age_group ;;
+    # hidden: yes
+    sql: ${filters}.country ;;
   }
 
   dimension: response {
