@@ -35,18 +35,17 @@ view: content_insights {
     sql: ${body}.filters ;;
   }
 
-  dimension: age_group {
+  dimension: age_group_req {
     type: string
-    hidden: yes
+    # hidden: yes
     sql: ${filters}.age_group ;;
   }
 
   dimension: gender_req {
     type: string
-    hidden: yes
+    # hidden: yes
     sql: ${filters}.gender ;;
   }
-
 
   dimension: country {
     type: string
