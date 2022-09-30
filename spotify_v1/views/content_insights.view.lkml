@@ -1,21 +1,19 @@
 view: content_insights {
-  sql_table_name: spotify.content_insights ;;
+  sql_table_name: "airbyte-dev-spotify-ads-glue-ctg-db".content_insights
+    ;;
   suggestions: no
 
   dimension: _airbyte_ab_id {
-    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_ab_id ;;
   }
 
   dimension: _airbyte_data {
-    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_data ;;
   }
 
   dimension: _airbyte_emitted_at {
-    hidden: yes
     type: number
     sql: ${TABLE}._airbyte_emitted_at ;;
   }
@@ -113,7 +111,7 @@ view: content_insights {
     type: string
     sql: CASE WHEN ${dimension} = 'age_group' THEN ${insight_key}
 
-                          ELSE NULL END ;;
+                                ELSE NULL END ;;
     suggestions: ["18-24", "25-34", "35-44", "45-54", "55-64", "65+"]
   }
 
@@ -121,7 +119,7 @@ view: content_insights {
     type: string
     sql: CASE WHEN ${dimension} = 'gender' THEN ${insight_key}
 
-                          ELSE NULL END ;;
+                                ELSE NULL END ;;
     suggestions: ["UNKNOWN", "MALE", "FEMALE"]
   }
 
@@ -129,7 +127,7 @@ view: content_insights {
     type: string
     sql: CASE WHEN ${dimension} = 'time_of_day' THEN ${insight_key}
 
-                          ELSE NULL END ;;
+                                ELSE NULL END ;;
     suggestions: ["afternoon", "morning", "night"]
   }
 
@@ -137,7 +135,7 @@ view: content_insights {
     type: string
     sql: CASE WHEN ${dimension} = 'device' THEN ${insight_key}
 
-                          ELSE NULL END ;;
+                                ELSE NULL END ;;
     suggestions: ["desktop", "mobile", "tablet"]
   }
 
@@ -145,17 +143,17 @@ view: content_insights {
     type: string
     sql: CASE WHEN ${dimension} = 'days_of_week' THEN ${insight_key}
 
-                          ELSE NULL END ;;
+                                ELSE NULL END ;;
     suggestions: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-  }
-
-  measure: count {
-    type: count
-    drill_fields: []
   }
 
   measure: value {
     type: sum
     sql: ${insight_value} ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: []
   }
 }

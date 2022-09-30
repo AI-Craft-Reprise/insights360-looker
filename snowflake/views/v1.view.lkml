@@ -150,20 +150,26 @@ view: v1 {
   measure: target_percentage {
     type: number
     sql: ${target}/NULLIF(${total_target},0) ;;
-    value_format_name: percent_2
+    value_format_name: percent_1
   }
 
   measure: index  {
     type: sum
     sql: ${overall_index} ;;
-    value_format: "0.00"
+    value_format: "0"
+  }
+
+  measure: index_value  {
+    type: sum
+    sql: 100-${overall_index} ;;
+    value_format: "0"
   }
 
   measure: index_overall  {
     type: sum
     sql: ${overall_index} ;;
-    value_format: "0.00"
-    html: {{ rendered_value }} || {{ answer._rendered_value }};;
+    value_format: "0"
+    html: {{ answer._rendered_value }} || {{ rendered_value }} ;;
   }
 
   measure: count {
