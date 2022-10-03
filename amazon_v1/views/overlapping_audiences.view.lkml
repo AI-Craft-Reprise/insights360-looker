@@ -89,6 +89,7 @@ view: overlapping_audiences {
     sql: ${audiencemetadata}.name ;;
   }
 
+
   dimension: category {
     label: "Target Audience Category"
     suggestions: ["In-market", "Interest", "Life event", "Lifestyle"]
@@ -120,12 +121,13 @@ view: overlapping_audiences {
 
   dimension: affinity {
     type: number
-    sql: ${audiencemetadata}.upperbound ;;
+    sql: ${response}.affinity ;;
   }
 
   measure: affinity_total {
     type: sum
     sql: ${affinity} ;;
+    value_format: "0.00"
   }
 
   measure: lowerbound_m {
