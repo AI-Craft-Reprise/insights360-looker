@@ -6,16 +6,19 @@ view: audiences {
   dimension: _airbyte_ab_id {
     type: string
     sql: ${TABLE}._airbyte_ab_id ;;
+    hidden: yes
   }
 
   dimension: _airbyte_data {
     type: string
     sql: ${TABLE}._airbyte_data ;;
+    hidden: yes
   }
 
   dimension: _airbyte_emitted_at {
     type: number
     sql: ${TABLE}._airbyte_emitted_at ;;
+    hidden: yes
   }
 
   dimension: response {
@@ -27,6 +30,7 @@ view: audiences {
   dimension: audienceid {
     type: string
     sql: ${response}.audienceid ;;
+    primary_key: yes
   }
 
   dimension: audiencename {
@@ -43,6 +47,7 @@ view: audiences {
   dimension: category {
     type: string
     sql: ${response}.category ;;
+    suggestions: ["In-market", "Interest", "Life event", "Lifestyle"]
   }
 
   dimension: createdate {
@@ -80,13 +85,20 @@ view: audiences {
   }
 
   dimension: lowerboundinclusive {
+    label: "Daily Reach Lower Bound"
     type: number
     sql: ${dailyreach}.lowerboundinclusive ;;
   }
 
   dimension: upperboundexclusive {
+    label: "Daily Reach Upper Bound"
     type: number
     sql: ${dailyreach}.upperboundexclusive ;;
+  }
+
+  measure: avg_bound {
+    type: sum
+    sql: (${lowerboundinclusive}+${upperboundexclusive})/2 ;;
   }
 
   measure: count {

@@ -6,16 +6,19 @@ view: overlapping_audiences {
   dimension: _airbyte_ab_id {
     type: string
     sql: ${TABLE}._airbyte_ab_id ;;
+    hidden: yes
   }
 
   dimension: _airbyte_data {
     type: string
     sql: ${TABLE}._airbyte_data ;;
+    hidden: yes
   }
 
   dimension: _airbyte_emitted_at {
     type: number
     sql: ${TABLE}._airbyte_emitted_at ;;
+    hidden: yes
   }
 
   dimension: response {
@@ -81,6 +84,7 @@ view: overlapping_audiences {
   dimension: audienceid {
     type: string
     sql: ${audiencemetadata}.audienceid ;;
+    primary_key: yes
   }
 
   dimension: name {
