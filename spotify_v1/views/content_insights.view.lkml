@@ -35,21 +35,18 @@ view: content_insights {
     sql: ${body}.filters ;;
   }
 
-  dimension: age_group_req {
-    type: string
-    # hidden: yes
+  dimension: age_group_array_req {
+    hidden: yes
     sql: ${filters}.age_group ;;
   }
 
-  dimension: gender_req {
-    type: string
-    # hidden: yes
+  dimension: gender_array_req {
+    hidden: yes
     sql: ${filters}.gender ;;
   }
 
-  dimension: country {
-    type: string
-    # hidden: yes
+  dimension: country_array_req {
+    hidden: yes
     sql: ${filters}.country ;;
   }
 
@@ -146,6 +143,15 @@ view: content_insights {
     suggestions: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
   }
 
+  dimension: audience_key {
+    type:  string
+    sql: concat('Gender:(',array_join(${gender_array_req},','),') Country:(',array_join(${country_array_req},','),') Age Group:(',array_join(${age_group_array_req}, ','), ')') ;;
+    link: {
+      label: "Open dashboard for this audience"
+      url: "https://initiativeinternal1.cloud.looker.com/dashboards/x?audienc_key={{value}}"
+    }
+  }
+
   measure: value {
     type: sum
     sql: ${insight_value} ;;
@@ -154,5 +160,13 @@ view: content_insights {
   measure: count {
     type: count
     drill_fields: []
+  }
+}
+
+
+view: content_insights_gender {
+  dimension: gender {
+    type:  string
+    sql: ${TABLE} ;;
   }
 }
