@@ -88,14 +88,21 @@ view: overlapping_audiences {
   }
 
   dimension: name {
-    label: "Target Audience"
+    label: "Audience"
     type: string
     sql: ${audiencemetadata}.name ;;
   }
 
 
   dimension: category {
-    label: "Target Audience Category"
+    label: "Audience Category"
+    suggestions: ["In-market", "Interest", "Life event", "Lifestyle"]
+    type: string
+    sql: ${audiencemetadata}.category ;;
+  }
+
+  dimension: filter_category {
+    label: "Filter Audience Category"
     suggestions: ["In-market", "Interest", "Life event", "Lifestyle"]
     type: string
     sql: ${audiencemetadata}.category ;;
