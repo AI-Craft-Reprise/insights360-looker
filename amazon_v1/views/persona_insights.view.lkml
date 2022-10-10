@@ -21,31 +21,38 @@ view: persona_insights {
     hidden: yes
   }
 
-  dimension: category{
-    type: string
-    sql: ${_airbyte_data}.category ;;
-  }
+  # dimension: category{
+  #   type: string
+  #   sql: ${_airbyte_data}.category ;;
+  # }
 
-  dimension: category_type{
+  # dimension: category_type{
+  #   type: string
+  #   sql: ${_airbyte_data}.category_type ;;
+  # }
+
+  dimension: response {
     type: string
-    sql: ${_airbyte_data}.category_type ;;
+    hidden: yes
+    sql: ${_airbyte_data}.response ;;
   }
 
   dimension: advertiserid{
     type: string
-    sql: ${_airbyte_data}.advertiserid ;;
+    sql: ${response}.advertiserid ;;
   }
 
   dimension: profileid{
     type: string
-    sql: ${_airbyte_data}.profileid ;;
+    sql: ${response}.profileid ;;
   }
 
-  dimension: personaid{
+  dimension: personainsight{
+    hidden: yes
     type: string
-    sql: ${_airbyte_data}.personaid ;;
-    primary_key: yes
+    sql: ${response}.advertiserid ;;
   }
+
 
   dimension: lastupdatedat{
     type: date

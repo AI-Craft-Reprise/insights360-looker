@@ -42,11 +42,11 @@ explore: audiences {
     sql_on: ${persona_demographics.advertiserid}=${persona_insights.advertiserid} and ${persona_demographics.profileid}=${persona_insights.profileid} ;;
   }
 
-  join: personas {
-    relationship: one_to_one
-    sql_on: ${persona_insights.personaid}=${personas.personaid}  ;;
+  # join: personas {
+  #   relationship: one_to_one
+  #   sql_on: ${persona_insights.personaid}=${personas.personaid}  ;;
 
-  }
+  # }
 
   # join: demo_propertyownership_unnest {
   #   relationship: one_to_many
@@ -85,6 +85,8 @@ explore: persona_demographics {
       relationship: one_to_many
 
   }
+
+
 
 
   # join: demo_propertyownership_unnest {
