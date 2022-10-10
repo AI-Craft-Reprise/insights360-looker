@@ -47,66 +47,66 @@ view: persona_insights {
     sql: ${response}.profileid ;;
   }
 
-  dimension: personainsight{
-    hidden: yes
-    type: string
-    sql: ${response}.advertiserid ;;
-  }
+  # dimension: personainsight{
+  #   hidden: yes
+  #   type: string
+  #   sql: ${response}.advertiserid ;;
+  # }
 
 
-  dimension: lastupdatedat{
-    type: date
-    sql: ${_airbyte_data}.lastupdatedat ;;
-  }
+  # dimension: lastupdatedat{
+  #   type: date
+  #   sql: ${_airbyte_data}.lastupdatedat ;;
+  # }
 
-  dimension: estimatedsize{
-    type: string
-    sql: ${_airbyte_data}.estimatedsize ;;
-  }
+  # dimension: estimatedsize{
+  #   type: string
+  #   sql: ${_airbyte_data}.estimatedsize ;;
+  # }
 
-  dimension: min{
-    label: "Min Estimated Size "
-    type: number
-    sql: ${estimatedsize}.min ;;
-  }
+  # dimension: min{
+  #   label: "Min Estimated Size "
+  #   type: number
+  #   sql: ${estimatedsize}.min ;;
+  # }
 
-  dimension: max{
-    label: "Max Estimated Size"
-    type: number
-    sql: ${estimatedsize}.max ;;
-  }
+  # dimension: max{
+  #   label: "Max Estimated Size"
+  #   type: number
+  #   sql: ${estimatedsize}.max ;;
+  # }
 
-  dimension: percentage{
-    type: number
-    sql: ${_airbyte_data}.percentage ;;
-   value_format_name: percent_1
-  }
+  # dimension: percentage{
+  #   type: number
+  #   sql: ${_airbyte_data}.percentage ;;
+  # value_format_name: percent_1
+  # }
 
-  dimension: affinity{
-    type: number
-    sql: ${_airbyte_data}.affinity ;;
-    value_format: "0.00"
-  }
+  # dimension: affinity{
+  #   type: number
+  #   sql: ${_airbyte_data}.affinity ;;
+  #   value_format: "0.00"
+  # }
 
-  dimension: name{
-    type: string
-    sql: ${_airbyte_data}.name ;;
-  }
+  # dimension: name{
+  #   type: string
+  #   sql: ${_airbyte_data}.name ;;
+  # }
 
-  dimension: id{
-    type: string
-    sql: ${_airbyte_data}.id ;;
-  }
+  # dimension: id{
+  #   type: string
+  #   sql: ${_airbyte_data}.id ;;
+  # }
 
-  dimension: path{
-    type: string
-    sql: ${_airbyte_data}.path ;;
-  }
+  # dimension: path{
+  #   type: string
+  #   sql: ${_airbyte_data}.path ;;
+  # }
 
-  dimension: attribute{
-    type: string
-    sql: ${_airbyte_data}.attribute ;;
-  }
+  # dimension: attribute{
+  #   type: string
+  #   sql: ${_airbyte_data}.attribute ;;
+  # }
 
   measure: count {
     type: count

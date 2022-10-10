@@ -83,10 +83,24 @@ explore: persona_demographics {
   join: demo_propertyownership {
       sql: ,UNNEST(_airbyte_data.response.propertyownership) AS propertyownership ;;
       relationship: one_to_many
+  }}
 
+
+
+
+
+
+
+
+
+
+explore: persona_insights {
+
+  join: topaudiences_lookalike {
+      relationship: one_to_many
+      sql: ,UNNEST(_airbyte_data.response.personainsights.topaudiences.lookalike)
+        AS topaudiences_lookalike ;;
   }
-
-
 
 
   # join: demo_propertyownership_unnest {
