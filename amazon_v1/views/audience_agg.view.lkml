@@ -23,6 +23,16 @@ view: audience_agg {
     type: number
   }
   dimension: audience_definition {
-    sql: array_join(${gender_array}, ', ') || array_join(${age_group_array}, ', ') || array_join(${audienceid_array}, ', ');;
+    sql: 'Gender: ' || array_join(${gender_array}, ', ') || ' Age Group: ' || array_join(${age_group_array}, ', ') || ' Audience IDs: ' || array_join(${audienceid_array}, ', ');;
+    action: {
+      label: "Create persona"
+      url: "https://example.com"
+      form_param: {
+        name: "audience_name"
+        type: string
+        label: "Desired audience name"
+        required: yes
+      }
+    }
   }
 }

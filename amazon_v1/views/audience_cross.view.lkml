@@ -9,14 +9,12 @@ view: audience_cross {
       column: audienceid { field: audiences.audienceid }
     }
   }
-  filter: gender {
-    description: ""
+
+  dimension: gender {
   }
-  filter: age_group {
-    description: ""
+  dimension: age_group {
   }
-  filter: audienceid {
-    description: ""
+  dimension: audienceid {
   }
   measure: gender_array {
     sql: array_agg(distinct ${gender}) ;;
