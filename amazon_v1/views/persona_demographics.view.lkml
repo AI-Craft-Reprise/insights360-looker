@@ -40,7 +40,7 @@ view: persona_demographics {
 
   dimension: response {
     type: string
-    hidden: yes
+    # hidden: yes
     sql: ${_airbyte_data}.response ;;
   }
 
@@ -52,6 +52,7 @@ view: persona_demographics {
   dimension: profileid {
     type: string
     sql: ${response}.profileid ;;
+    primary_key: yes
   }
 
   dimension: propertyownership {

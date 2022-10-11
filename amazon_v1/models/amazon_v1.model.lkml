@@ -80,27 +80,60 @@ explore: audiences {
 
 explore: persona_demographics {
 
-  join: demo_propertyownership {
-      sql: ,UNNEST(_airbyte_data.response.propertyownership) AS propertyownership ;;
-      relationship: one_to_many
+  # join: demo_propertyownership {
+  #     sql: ,UNNEST(_airbyte_data.response.propertyownership) AS propertyownership ;;
+  #     relationship: one_to_many
+  # }
+
+  # join: relationship {
+  #   sql: ,UNNEST(_airbyte_data.response.relationship) AS relationship ;;
+  #   relationship: one_to_many
+  # }}
+
+  join: gender {
+  sql: , UNNEST(_airbyte_data.response.gender) as gender ;;
+  relationship: one_to_many
+
+  # join: gender {
+  #     sql: ,UNNEST(_airbyte_data.response.gender) AS gender ;;
+  #     relationship: one_to_many
   }}
-
-
-
-
-
-
-
-
-
 
 explore: persona_insights {
 
-  join: topaudiences_lookalike {
-      relationship: one_to_many
-      sql: ,UNNEST(_airbyte_data.response.personainsights.topaudiences.lookalike)
-        AS topaudiences_lookalike ;;
+  join: inmarket {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.topaudiences.inmarket)
+          AS t(inmarket) ;;
   }
+
+  join: lifestyle {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.topaudiences.lifestyle)
+      AS t(lifestyle) ;;
+  }
+
+  join: interests {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.topaudiences.interests)
+      AS t(interests) ;;
+  }
+
+  join: lifeevents {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.topaudiences.lifeevents)
+      AS t(lifeevents) ;;
+  }
+
+  join: topretailcategories {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.topaudiences.topretailcategories)
+      AS t(topretailcategories) ;;
+  }
+
+
+
+
 
 
   # join: demo_propertyownership_unnest {

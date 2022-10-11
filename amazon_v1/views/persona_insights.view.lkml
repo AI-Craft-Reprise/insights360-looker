@@ -47,11 +47,33 @@ view: persona_insights {
     sql: ${response}.profileid ;;
   }
 
-  # dimension: personainsight{
-  #   hidden: yes
-  #   type: string
-  #   sql: ${response}.advertiserid ;;
-  # }
+
+  dimension: personaid {
+    type: string
+    sql: ${personainsights}.personaid ;;
+  }
+
+  dimension: estimated_size {
+    type: number
+    sql: ${personainsights}.estimatedsize;;
+    hidden: yes
+  }
+
+  dimension: min_estimated_size {
+    type: number
+    sql: ${estimated_size}.min;;
+  }
+
+  dimension: max_estimated_size {
+    type: number
+    sql: ${estimated_size}.max;;
+  }
+
+  dimension: personainsights{
+    hidden: yes
+    type: string
+    sql: ${response}.personainsights ;;
+  }
 
 
   # dimension: lastupdatedat{

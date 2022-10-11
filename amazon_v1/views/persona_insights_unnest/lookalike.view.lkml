@@ -1,4 +1,4 @@
-view: topaudiences_lookalike {
+view: lookalike {
 
   dimension: id {
     type: string
@@ -19,7 +19,7 @@ view: topaudiences_lookalike {
 
   dimension: affinity {
   type: number
-  sql: ${TABLE}.percentage ;;
+  sql: ${TABLE}.affinity ;;
   }
 
 
