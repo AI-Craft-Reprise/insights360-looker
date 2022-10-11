@@ -1,4 +1,21 @@
 view: age {
+
+  view_label: "Persona Insights Demographics"
+
+  dimension: attribute {
+    type: string
+    sql: ${TABLE}.id ;;
+  }
+
+  dimension: percent {
+    type: number
+    sql: ${TABLE}.percentage ;;
+  }
+
+  dimension: affinity {
+    type: number
+    sql: ${TABLE}.affinity ;;
+  }
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #
