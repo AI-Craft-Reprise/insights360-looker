@@ -8,6 +8,29 @@ include: "/amazon_v1/**/*.view"                # include all views in the views/
 # # and define the joins that connect them together.
 #
 
+explore: audience_gender {
+  hidden: yes
+  join: audience_age_group {
+    type: cross
+    relationship: many_to_many
+  }
+  join: audiences {
+    type: cross
+    relationship: many_to_many
+  }
+}
+
+explore: audience_cross {
+  label: "Audience Creator"
+  view_label: "Audience Filters"
+  join: audience_agg {
+    view_label: "Audience Definition"
+    type: cross
+    relationship: many_to_one
+  }
+}
+
+
 explore: overlapping_audiences {}
 
 explore: audiences {
