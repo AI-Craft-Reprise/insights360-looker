@@ -90,14 +90,14 @@ explore: persona_demographics {
   #   relationship: one_to_many
   # }}
 
-  join: gender {
-  sql: , UNNEST(_airbyte_data.response.gender) as gender ;;
-  relationship: one_to_many
+  # join: demo_gender {
+  # sql: , UNNEST(_airbyte_data.response.gender) as gender ;;
+  # relationship: one_to_many
 
   # join: gender {
   #     sql: ,UNNEST(_airbyte_data.response.gender) AS gender ;;
   #     relationship: one_to_many
-  }}
+  }
 
 explore: persona_insights {
 
@@ -131,9 +131,35 @@ explore: persona_insights {
       AS t(topretailcategories) ;;
   }
 
+  join: age {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.age)
+      AS t(age) ;;
+  }
 
+  join: propertyownership {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.propertyownership)
+      AS t(propertyownership) ;;
+  }
 
+  join: gender {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.gender)
+      AS t(gender) ;;
+  }
 
+  join: relationship {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.relationship)
+      AS t(relationship) ;;
+  }
+
+  join: income {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.income)
+      AS t(income) ;;
+  }
 
 
   # join: demo_propertyownership_unnest {

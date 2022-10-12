@@ -1,18 +1,18 @@
-view: age {
+view: propertyownership {
 
   view_label: "Persona Insights Demographics"
 
-  dimension: age_attribute {
+  dimension: property_ownership_attribute {
     type: string
     sql: ${TABLE}.attribute ;;
   }
 
-  dimension: age_percent {
+  dimension: property_ownership_percent {
     type: number
     sql: ${TABLE}.percentage ;;
   }
 
-  dimension: age_affinity {
+  dimension: property_ownership_affinity {
     type: number
     sql: ${TABLE}.affinity ;;
   }
@@ -46,7 +46,7 @@ view: age {
   # }
 }
 
-# view: age {
+# view: propertyownership {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT

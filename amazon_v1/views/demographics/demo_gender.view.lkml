@@ -1,4 +1,4 @@
-view: gender {
+view: demo_gender {
 
   label: "Demography"
 

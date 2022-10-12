@@ -1,11 +1,21 @@
-view: relationship {
+view: gender {
 
-    label: "Demography"
+  view_label: "Persona Insights Demographics"
 
-    dimension: relationship {
-      type: string
-      sql: ${TABLE} ;;
-    }
+  dimension: gender_attribute {
+    type: string
+    sql: ${TABLE}.attribute ;;
+  }
+
+  dimension: gender_percent {
+    type: number
+    sql: ${TABLE}.percentage ;;
+  }
+
+  dimension: gender_affinity {
+    type: number
+    sql: ${TABLE}.affinity ;;
+  }
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #
@@ -36,7 +46,7 @@ view: relationship {
   # }
 }
 
-# view: relationship {
+# view: gender {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT
