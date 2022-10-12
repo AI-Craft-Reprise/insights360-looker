@@ -131,6 +131,12 @@ explore: persona_insights {
       AS t(topretailcategories) ;;
   }
 
+  join: lookalike {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.topaudiences.lookalike)
+      AS t(lookalike) ;;
+  }
+
   join: age {
     relationship: one_to_many
     sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.age)
