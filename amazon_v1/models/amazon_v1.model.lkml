@@ -190,6 +190,12 @@ explore: persona_insights {
       AS t(income) ;;
   }
 
+  join: personas {
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${persona_insights.personaid}=${personas.personaid} ;;
+  }
+
 
 
 

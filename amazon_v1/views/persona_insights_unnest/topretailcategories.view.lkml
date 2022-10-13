@@ -28,6 +28,16 @@ view: topretailcategories {
     sql: ${TABLE}.path ;;
   }
 
+  measure: total_percentage {
+    type: sum
+    sql: ${percent} ;;
+  }
+
+  measure: total_affinity {
+    type: sum
+    sql: ${affinity} ;;
+  }
+
 
 
   # there is also an array - Path that can be unnested if needed
