@@ -1,31 +1,8 @@
-view: gender {
+view: topretailcategories_path {
 
-  view_label: "Persona Insights Demographics"
-
-  dimension: gender_attribute {
+  dimension: path {
     type: string
-    sql: ${TABLE}.attribute ;;
-  }
-
-  dimension: gender_percent {
-    type: number
-    sql: ${TABLE}.percentage ;;
-  }
-
-  dimension: gender_affinity {
-    type: number
-    sql: ${TABLE}.affinity ;;
-  }
-
-  measure: total_gender_percentage {
-    type: sum
-    sql: ${gender_percent}/100 ;;
-    value_format: "0%"
-  }
-
-  measure: total_gender_affinity {
-    type: sum
-    sql: ${gender_affinity} ;;
+    sql: ${TABLE}.path ;;
   }
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
@@ -57,7 +34,7 @@ view: gender {
   # }
 }
 
-# view: gender {
+# view: topretailcategories_path {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT

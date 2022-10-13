@@ -150,7 +150,7 @@ explore: persona_insights {
 
   join: topretailcategories {
     relationship: one_to_many
-    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.topaudiences.topretailcategories)
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.topretailcategories)
       AS t(topretailcategories) ;;
   }
 
@@ -189,6 +189,10 @@ explore: persona_insights {
     sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.income)
       AS t(income) ;;
   }
+
+
+
+
 
 
   # join: demo_propertyownership_unnest {

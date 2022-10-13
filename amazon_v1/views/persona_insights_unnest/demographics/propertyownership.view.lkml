@@ -16,6 +16,17 @@ view: propertyownership {
     type: number
     sql: ${TABLE}.affinity ;;
   }
+
+  measure: total_property_ownership_percentage {
+    type: sum
+    sql: ${property_ownership_percent}/100 ;;
+    value_format: "0%"
+  }
+
+  measure: total_property_ownership_affinity {
+    type: sum
+    sql: ${property_ownership_affinity} ;;
+  }
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #

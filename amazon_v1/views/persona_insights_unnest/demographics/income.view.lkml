@@ -16,6 +16,17 @@ view: income {
     type: number
     sql: ${TABLE}.affinity ;;
   }
+
+  measure: total_income_percentage {
+    type: sum
+    sql: ${income_percent}/100 ;;
+    value_format: "0%"
+  }
+
+  measure: total_income_affinity {
+    type: sum
+    sql: ${income_affinity} ;;
+  }
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #

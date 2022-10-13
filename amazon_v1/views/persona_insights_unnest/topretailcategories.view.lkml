@@ -23,6 +23,13 @@ view: topretailcategories {
     sql: ${TABLE}.affinity ;;
   }
 
+  dimension: path {
+    type: string
+    sql: ${TABLE}.path ;;
+  }
+
+
+
   # there is also an array - Path that can be unnested if needed
   # (eg. path=[Books, Subjects, Health, Fitness & Dieting, Exercise & Fitness, Weight Training])
 
