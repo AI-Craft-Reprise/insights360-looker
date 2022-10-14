@@ -60,9 +60,19 @@ view: ad_targeting_entities {
   }
 
   dimension: facet {
+    hidden: yes
     type: string
     sql: ${params}.facet ;;
   }
+
+  dimension: facets {
+    type: string
+    sql: SUBSTRING (${facet}, 25) ;;
+    suggestions: ["ageRanges", "companyCategory", "degrees", "fieldsOfStudy", "genders", "growthRate",
+      "industries", "interfaceLocales", "jobFunctions", "locations", "memberBehaviors", "profileLocations",
+      "revenue", "seniorities", "skills", "staffCountRanges", "titles", "titlesAll", "titlesPast", "yearsOfExperienceRanges"]
+  }
+
 
   dimension: q {
     type: string

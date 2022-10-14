@@ -64,63 +64,10 @@ explore: audiences {
     relationship: one_to_one
     sql_on: ${persona_demographics.advertiserid}=${persona_insights.advertiserid} and ${persona_demographics.profileid}=${persona_insights.profileid} ;;
   }
-
-  # join: personas {
-  #   relationship: one_to_one
-  #   sql_on: ${persona_insights.personaid}=${personas.personaid}  ;;
-
-  # }
-
-  # join: demo_propertyownership_unnest {
-  #   relationship: one_to_many
-  #   sql: ,
-  #       unnest(
-  #         _airbyte_data.response
-  #       ) t(demo_propertyownership_unnest) ;;
-  # }
-
-  # join: demo_propertyownership {
-  #   required_joins: [demo_propertyownership_unnest]
-  #   relationship: one_to_many
-  #   sql: ,
-  #       unnest(
-  #         demo_propertyownership_unnest.propertyownership
-  #       ) t(demo_propertyownership) ;;
-  # }
-
-}
-
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-
-explore: persona_demographics {
-
-  # join: demo_propertyownership {
-  #     sql: ,UNNEST(_airbyte_data.response.propertyownership) AS propertyownership ;;
-  #     relationship: one_to_many
-  # }
-
-  # join: relationship {
-  #   sql: ,UNNEST(_airbyte_data.response.relationship) AS relationship ;;
-  #   relationship: one_to_many
-  # }}
-
-  # join: demo_gender {
-  # sql: , UNNEST(_airbyte_data.response.gender) as gender ;;
-  # relationship: one_to_many
-
-  # join: gender {
-  #     sql: ,UNNEST(_airbyte_data.response.gender) AS gender ;;
-  #     relationship: one_to_many
   }
+
+
+explore: persona_demographics {}
 
 explore: persona_insights {
 

@@ -6,7 +6,14 @@ include: "/linkedin_v1/**/*.view"                # include all views in the view
 
 explore: ad_targeting_entities {}
 
+explore: ad_targeting_facets {
 
+  # join: entitytypes {
+  #   relationship: one_to_many
+  #   sql: CROSS JOIN UNNEST(_airbyte_data.response.entitytypes)
+  #     AS t(entitytypes) ;;
+  # }
+}
 
 
 

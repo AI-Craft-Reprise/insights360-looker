@@ -37,9 +37,15 @@ view: ad_targeting_facets {
   sql: ${response}.urn ;;
   }
 
+  dimension: entitytypes {
+    type: string
+    sql: ${response}.entitytypes ;;
+  }
 
-      # {entitytypes=[COUNTRY_GROUP, COUNTRY, STATE, REGION],
-      # availableentityfinders=[AD_TARGETING_FACET, TYPEAHEAD],
+  dimension: availableentityfinders {
+    type: string
+    sql: ${response}.availableentityfinders ;;
+  }
 
   measure: count {
     type: count
