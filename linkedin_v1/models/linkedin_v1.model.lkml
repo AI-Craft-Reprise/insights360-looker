@@ -21,6 +21,8 @@ explore: audience_insights {
     sql: CROSS JOIN UNNEST(_airbyte_data.response.value.audienceinsight.segmentations)
       AS t(segmentations) ;;
   }
+
+
 }
 
 

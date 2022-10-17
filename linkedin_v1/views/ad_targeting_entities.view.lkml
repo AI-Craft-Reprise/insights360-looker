@@ -39,8 +39,20 @@ view: ad_targeting_entities {
   }
 
   dimension: urn {
+    hidden: yes
     type: string
     sql: ${response}.urn ;;
+  }
+
+  dimension: urn_sub {
+      hidden: yes
+      type: string
+      sql: substring (${urn}, 8) ;;
+    }
+
+  dimension: urn_key {
+    type: string
+    sql: substring(${urn_sub},strpos(${urn_sub},':')+1);;
   }
 
   dimension: value {

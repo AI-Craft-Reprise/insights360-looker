@@ -1,11 +1,13 @@
 view: segmentations {
 
   dimension: entitycount {
+    label: "Entity Count"
     type: number
     sql: ${TABLE}.entitycount ;;
   }
 
   dimension: entitypercentage {
+    label: "Entity Percentage"
     type: number
     sql: ${TABLE}.entitypercentage ;;
   }
