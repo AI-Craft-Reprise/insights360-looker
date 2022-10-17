@@ -15,7 +15,13 @@ explore: ad_targeting_facets {
   # }
 }
 
-
+explore: audience_insights {
+  join: segmentations {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.value.audienceinsight.segmentations)
+      AS t(segmentations) ;;
+  }
+}
 
 
 # # Select the views that should be a part of this model,
