@@ -110,6 +110,7 @@ view: snowflake_infobase {
   }
 
   dimension: demo_age {
+    hidden: yes
     type: string
     sql: CASE WHEN ${statement} IN ('DEMO_AGE_RANGE_HOH_18_24', 'DEMO_AGE_RANGE_HOH_25_29',
     'DEMO_AGE_RANGE_HOH_30_34', 'DEMO_AGE_RANGE_HOH_35_39', 'DEMO_AGE_RANGE_HOH_40_44',
@@ -137,15 +138,41 @@ view: snowflake_infobase {
   }
 
   dimension: demo_gender {
+    hidden: yes
     type: string
     sql: CASE WHEN ${statement} IN ('DEMO_GENDER_HOH_FEMALE', 'DEMO_GENDER_HOH_MALE') THEN  ${statement}
     ELSE NULL END;;
-
   }
 
   dimension: gender {
     type: string
     sql: substring (${demo_gender}, 17) ;;
+  }
+
+  dimension: demo_home_ownership {
+    hidden: yes
+    type: string
+    sql: CASE WHEN ${statement} IN ('DEMO_HOME_OWNER', 'DEMO_HOME_RENTER') THEN  ${statement}
+      ELSE NULL END;;
+  }
+
+  dimension: home_ownership {
+    type: string
+    sql: substring (${demo_home_ownership}, 6) ;;
+  }
+
+  dimension: demo_prefer_language {
+    hidden: yes
+    type: string
+    sql: CASE WHEN ${statement} IN ('DEMO_PREFER_LANGUAGE_INDIVIDUAL_BILINGUAL_SPANISH_ENGLISH',
+              'DEMO_PREFER_LANGUAGE_INDIVIDUAL_NON_HISPANIC', 'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPANISH',
+              'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPEAK_SPANISH') THEN  ${statement}
+      ELSE NULL END;;
+  }
+
+  dimension: prefer_language {
+    type: string
+    sql: substring (${demo_prefer_language}, 33) ;;
   }
 
   measure: target_percentage {
