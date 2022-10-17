@@ -118,12 +118,22 @@ view: snowflake_infobase {
     ELSE NULL END;;
   }
 
+  dimension: age {
+    type: string
+    sql: substring (${demo_age}, 20) ;;
+  }
+
   dimension: demo_ethnicity {
     type: string
     sql: CASE WHEN ${statement} IN ('DEMO_ETHNICITY_INDIVIDUAL_AFRICAN_AMERICAN',
     'DEMO_ETHNICITY_INDIVIDUAL_ASIAN', 'DEMO_ETHNICITY_INDIVIDUAL_HISPANIC',
     'DEMO_ETHNICITY_INDIVIDUAL_WHITE') THEN  ${statement}
     ELSE NULL END;;
+  }
+
+  dimension: ethnicity {
+    type: string
+    sql: substring (${demo_ethnicity}, 27) ;;
   }
 
   dimension: demo_gender {
@@ -133,10 +143,10 @@ view: snowflake_infobase {
 
   }
 
-  # dimension: age {
-  #   type: string
-  #   sql: RIGHT(${demo_age}, 6) ;;
-  # }
+  dimension: gender {
+    type: string
+    sql: substring (${demo_gender}, 17) ;;
+  }
 
   measure: target_percentage {
     type: sum
