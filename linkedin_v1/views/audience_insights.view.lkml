@@ -38,8 +38,13 @@ view: audience_insights {
 
    dimension: totalaudiencecount {
      type: number
-    sql: ${audienceinsight}.totalaudiencecount ;;
+    sql: ${value}.totalaudiencecount;;
    }
+
+  dimension: groupedby {
+    type: string
+    sql: ${audienceinsight}.groupedby ;;
+  }
 
   measure: count {
     type: count

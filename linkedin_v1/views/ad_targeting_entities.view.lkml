@@ -39,7 +39,6 @@ view: ad_targeting_entities {
   }
 
   dimension: urn {
-    hidden: yes
     type: string
     sql: ${response}.urn ;;
   }

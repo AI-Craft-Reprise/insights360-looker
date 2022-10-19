@@ -8,10 +8,14 @@ explore: ad_targeting_entities {}
 
 explore: ad_targeting_facets {
 
-  # join: entitytypes {
+  join: ad_targeting_entities {
+    relationship: many_to_many
+    sql_on: ${ad_targeting_facets.urn}=${ad_targeting_entities.faceturn} ;;
+  }
+
+  # join: audience_insights {
   #   relationship: one_to_many
-  #   sql: CROSS JOIN UNNEST(_airbyte_data.response.entitytypes)
-  #     AS t(entitytypes) ;;
+  #   sql_on: ${ad_targeting_facets.urn}=au ;;
   # }
 }
 
@@ -22,6 +26,10 @@ explore: audience_insights {
       AS t(segmentations) ;;
   }
 
+  join: ad_targeting_entities {
+    relationship: one_to_one
+    sql_on: ${segmentations.value}=${ad_targeting_entities.urn} ;;
+  }
 
 }
 
