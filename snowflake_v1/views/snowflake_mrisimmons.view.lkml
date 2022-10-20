@@ -236,6 +236,59 @@ view: snowflake_mrisimmons {
       "TECHNOLOGY ATTITUDES", "VACATION TRAVEL ATTITUDES", "WATCHING TV", "YOUR ATTITUDES", "YOUR INTENTIONS"]
   }
 
+  dimension: psychographics_aboutme{
+    label: "About Me"
+    type: string
+    sql: CASE WHEN ${question_level_2} IN ('GENERAL ATTITUDES','GENERAL ATTITUDES [HISPANIC/LATINO RESPONDENTS ONLY]',
+                    'SELF-CONCEPTS','YOUR ATTITUDES')
+                    THEN ${question_level_2}
+
+                          ELSE NULL END ;;
+    suggestions: ["GENERAL ATTITUDES", "GENERAL ATTITUDES [HISPANIC/LATINO RESPONDENTS ONLY]", "SELF-CONCEPTS", "YOUR ATTITUDES"]
+  }
+
+  dimension: psychographics_shoppingandstyle{
+    label: "Shopping & Style"
+    type: string
+    sql: CASE WHEN ${question_level_2} IN ('BUYING STYLES','FASHION & STYLE ATTITUDES','SHOPPING ATTITUDES')
+                    THEN ${question_level_2}
+
+                          ELSE NULL END ;;
+    suggestions: ["BUYING STYLES", "FASHION & STYLE ATTITUDES", "SHOPPING ATTITUDES"]
+  }
+
+  dimension: psychographics_foodandhealth{
+    label: "Food & Health"
+    type: string
+    sql: CASE WHEN ${question_level_2} IN ('FOOD ATTITUDES','HEALTH ATTITUDES')
+                    THEN ${question_level_2}
+
+                          ELSE NULL END ;;
+    suggestions: ["FOOD ATTITUDES", "HEALTH ATTITUDES"]
+  }
+
+  dimension: psychographics_travelandmoney{
+    label: "Travel & Money"
+    type: string
+    sql: CASE WHEN ${question_level_2} IN ('AUTOMOTIVE ATTITUDES','FINANCE ATTITUDES', 'VACATION TRAVEL ATTITUDES')
+                    THEN ${question_level_2}
+
+                          ELSE NULL END ;;
+    suggestions: ["AUTOMOTIVE ATTITUDES", "FINANCE ATTITUDES", "VACATION TRAVEL ATTITUDES"]
+  }
+
+  dimension: psychographics_media{
+    label: "Psychographics Media"
+    type: string
+    sql: CASE WHEN ${question_level_2} IN ('ATTITUDES TOWARD ADVERTISING','CELLULAR / MOBILE OPINIONS', 'MORE TV WATCHING',
+                      'SOCIAL MEDIA ATTITUDES', 'TECHNOLOGY ATTITUDES')
+                    THEN ${question_level_2}
+
+                          ELSE NULL END ;;
+    suggestions: ["ATTITUDES TOWARD ADVERTISING", "CELLULAR / MOBILE OPINIONS", "MORE TV WATCHING", "SOCIAL MEDIA ATTITUDES", "TECHNOLOGY ATTITUDES"]
+  }
+
+
   dimension: summaries_grouped {
     type: string
     sql: CASE WHEN ${answer} IN ('INTERNET I (HEAVY)', 'INTERNET II', 'INTERNET III', 'INTERNET IV', 'INTERNET V (LIGHT)',

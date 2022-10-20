@@ -13,6 +13,7 @@ view: segmentations {
   }
 
   dimension: value {
+    primary_key: yes
     type: string
     sql: ${TABLE}.value ;;
   }

@@ -9,14 +9,21 @@ explore: ad_targeting_entities {}
 explore: ad_targeting_facets {
 
   join: ad_targeting_entities {
-    relationship: many_to_many
+    relationship: one_to_one
     sql_on: ${ad_targeting_facets.urn}=${ad_targeting_entities.faceturn} ;;
   }
 
-  # join: audience_insights {
-  #   relationship: one_to_many
-  #   sql_on: ${ad_targeting_facets.urn}=au ;;
-  # }
+  join: audience_insights {
+    relationship: one_to_many
+    sql_on: ${ad_targeting_facets.urn}=${audience_insights.groupedby} ;;
+  }
+
+  join: segmentations {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.value.audienceinsight.segmentations)
+      AS t(segmentations) ;;
+  }
+
 }
 
 explore: audience_insights {

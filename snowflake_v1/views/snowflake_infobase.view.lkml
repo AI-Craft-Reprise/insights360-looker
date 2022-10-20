@@ -1,7 +1,7 @@
 view: snowflake_infobase {
   sql_table_name: "airbyte-dev-snowflake-glue-ctg-db".snowflake_infobase
     ;;
-  suggestions: no
+  # suggestions: no
 
   dimension: _airbyte_ab_id {
     type: string
@@ -66,6 +66,7 @@ view: snowflake_infobase {
   dimension: agency {
     type: string
     sql: ${_airbyte_data}.agency ;;
+    suggestions: ["INI"]
   }
 
   dimension: client {
@@ -173,6 +174,61 @@ view: snowflake_infobase {
   dimension: prefer_language {
     type: string
     sql: substring (${demo_prefer_language}, 33) ;;
+  }
+
+  dimension: demo_presence_of_children{
+    hidden: yes
+    type: string
+    sql: CASE WHEN ${statement} IN ('DEMO_PRESENCE_OF_CHILDREN_N', 'DEMO_PRESENCE_OF_CHILDREN_Y') THEN  ${statement}
+      ELSE NULL END;;
+  }
+
+  dimension: presence_of_children {
+    type: string
+    sql: substring (${demo_presence_of_children}, 27) ;;
+  }
+
+  dimension: demo_household_size {
+    hidden: yes
+    type: string
+    sql: CASE WHEN ${statement} IN ('DEMO_HH_SIZE_INDIVIDUAL_1',
+              'DEMO_HH_SIZE_INDIVIDUAL_2', 'DEMO_HH_SIZE_INDIVIDUAL_3',
+              'DEMO_HH_SIZE_INDIVIDUAL_4', 'DEMO_HH_SIZE_INDIVIDUAL_5', 'DEMO_HH_SIZE_INDIVIDUAL_6',
+              'DEMO_HH_SIZE_INDIVIDUAL_6PLUS', 'DEMO_HH_SIZE_INDIVIDUAL_7', 'DEMO_HH_SIZE_INDIVIDUAL_8',
+              'DEMO_HH_SIZE_INDIVIDUAL_9') THEN  ${statement}
+      ELSE NULL END;;
+  }
+
+  dimension: household_size {
+    type: string
+    sql: substring (${demo_household_size}, 25) ;;
+  }
+
+  dimension: demo_income {
+    hidden: yes
+    type: string
+    sql: CASE WHEN ${statement} IN ('DEMO_INCOME_LT_15K_1', 'DEMO_INCOME_15K_20K_1',
+              'DEMO_INCOME_20K_30K_1', 'DEMO_INCOME_30K_50K', 'DEMO_INCOME_50K_75K',
+              'DEMO_INCOME_75K_100K', 'DEMO_INCOME_100K_150K', 'DEMO_INCOME_150K_175K',
+              'DEMO_INCOME_175K_200K', 'DEMO_INCOME_200K_250K', 'DEMO_INCOME_250KPLUS') THEN  ${statement}
+      ELSE NULL END;;
+  }
+
+  dimension: income {
+    type: string
+    sql: substring (${demo_income}, 13) ;;
+  }
+
+  dimension: demo_marital_status {
+    hidden: yes
+    type: string
+    sql: CASE WHEN ${statement} IN ('DEMO_MARITAL_STATUS_MARRIED_1', 'DEMO_MARITAL_STATUS_SINGLE_1') THEN  ${statement}
+      ELSE NULL END;;
+  }
+
+  dimension: marital_status {
+    type: string
+    sql: substring (${demo_marital_status}, 21) ;;
   }
 
   measure: target_percentage {
