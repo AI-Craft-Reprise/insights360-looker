@@ -33,6 +33,11 @@ view: audiences {
     primary_key: yes
   }
 
+  dimension: audienceid_concat {
+    type: string
+    sql: '["' || ${audienceid} || '"]' ;;
+  }
+
   dimension: audiencename {
     label: "Audience Name"
     type: string
