@@ -71,7 +71,6 @@ view: ad_targeting_entities {
   }
 
   dimension: facet {
-    hidden: yes
     type: string
     sql: ${params}.facet ;;
   }

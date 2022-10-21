@@ -143,12 +143,6 @@ explore: persona_insights {
     sql_on: ${persona_insights.personaid}=${personas.personaid} ;;
   }
 
-  join: audiences {
-    relationship: one_to_many
-    sql_on: ${personas.audiences}=${audiences.audienceid} ;;
-  }
-
-
 
 
 

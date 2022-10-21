@@ -10,7 +10,7 @@ explore: ad_targeting_facets {
 
   join: ad_targeting_entities {
     relationship: one_to_one
-    sql_on: ${ad_targeting_facets.urn}=${ad_targeting_entities.faceturn} ;;
+    sql_on: ${ad_targeting_facets.urn}=${ad_targeting_entities.facet} ;;
   }
 
   join: audience_insights {
@@ -27,6 +27,7 @@ explore: ad_targeting_facets {
 }
 
 explore: audience_insights {
+
   join: segmentations {
     relationship: one_to_many
     sql: CROSS JOIN UNNEST(_airbyte_data.response.value.audienceinsight.segmentations)
@@ -37,6 +38,9 @@ explore: audience_insights {
     relationship: one_to_one
     sql_on: ${segmentations.value}=${ad_targeting_entities.urn} ;;
   }
+
+
+
 
 }
 

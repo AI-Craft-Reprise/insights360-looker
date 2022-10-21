@@ -24,7 +24,7 @@ view: audience_insights {
     sql: ${_airbyte_data}.response ;;
   }
 
-  dimension: value {
+  dimension: response_value {
     hidden: yes
     type: string
     sql: ${response}.value ;;
@@ -33,12 +33,12 @@ view: audience_insights {
   dimension: audienceinsight {
     hidden: yes
     type: string
-    sql: ${value}.audienceinsight ;;
+    sql: ${response_value}.audienceinsight ;;
   }
 
    dimension: totalaudiencecount {
      type: number
-    sql: ${value}.totalaudiencecount;;
+    sql: ${response_value}.totalaudiencecount;;
    }
 
   dimension: groupedby {
