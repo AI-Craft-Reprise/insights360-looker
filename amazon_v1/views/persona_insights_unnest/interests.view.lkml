@@ -23,7 +23,7 @@ view: interests {
 
   measure: total_percentage {
     type: sum
-    sql: ${percent} ;;
+    sql: ${percent}/100 ;;
   }
 
   measure: total_affinity {

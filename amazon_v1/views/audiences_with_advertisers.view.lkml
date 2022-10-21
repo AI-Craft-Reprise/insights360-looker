@@ -1,7 +1,7 @@
 view: audiences_with_advertisers {
   sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".audiences_with_advertisers
     ;;
-  suggestions: no
+  # suggestions: no
 
   dimension: _airbyte_ab_id {
     type: string

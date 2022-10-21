@@ -1,7 +1,7 @@
 view: personas {
   sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".personas
     ;;
-  suggestions: no
+  # suggestions: no
 
   dimension: _airbyte_ab_id {
     type: string
@@ -52,6 +52,22 @@ view: personas {
   dimension: expression {
     type: string
     sql: ${response}.expression ;;
+    hidden: yes
+  }
+
+  dimension: demo {
+    type: string
+    sql: ${expression}.demographics ;;
+  }
+
+  dimension: gender {
+    type: string
+    sql: ${demo}.gender ;;
+  }
+
+  dimension: age {
+    type: string
+    sql: ${demo}.age ;;
   }
 
   dimension: audiences {

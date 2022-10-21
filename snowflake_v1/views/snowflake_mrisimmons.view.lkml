@@ -1,7 +1,7 @@
 view: snowflake_mrisimmons {
   sql_table_name: "airbyte-dev-snowflake-glue-ctg-db".snowflake_mrisimmons
     ;;
-  suggestions: no
+  # suggestions: no
 
   dimension: _airbyte_ab_id {
     hidden: yes

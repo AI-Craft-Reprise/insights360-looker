@@ -219,6 +219,21 @@ view: snowflake_infobase {
     sql: substring (${demo_income}, 13) ;;
   }
 
+  dimension: demo_occupation {
+    hidden: yes
+    type: string
+    sql: CASE WHEN ${statement} IN ('DEMO_OCCUPATION_BLUE_COLLAR', 'DEMO_OCCUPATION_HOMEMAKER',
+              'DEMO_OCCUPATION_MANAGERIAL', 'DEMO_OCCUPATION_PROFESSIONAL_OR_TECHNICAL',
+              'DEMO_OCCUPATION_RETIRED','DEMO_OCCUPATION_SELF_EMPLOYED', 'DEMO_OCCUPATION_SERVICE',
+              'DEMO_OCCUPATION_WHITE_COLLAR') THEN  ${statement}
+      ELSE NULL END;;
+  }
+
+  dimension: occupation {
+    type: string
+    sql: substring (${demo_occupation}, 17) ;;
+  }
+
   dimension: demo_marital_status {
     hidden: yes
     type: string

@@ -1,7 +1,7 @@
 view: profiles {
   sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".profiles
     ;;
-  suggestions: no
+  # suggestions: no
 
   dimension: _airbyte_ab_id {
     type: string

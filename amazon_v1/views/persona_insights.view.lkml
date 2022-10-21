@@ -1,7 +1,7 @@
 view: persona_insights {
   sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".persona_insights
     ;;
-  suggestions: no
+  # suggestions: no
 
   dimension: _airbyte_ab_id {
     type: string
