@@ -109,6 +109,7 @@ explore: persona_insights{
             _airbyte_data.response.demographics.relationship
             ) t(demographics_relationship)            ;;
   }
+
 }
 
 
