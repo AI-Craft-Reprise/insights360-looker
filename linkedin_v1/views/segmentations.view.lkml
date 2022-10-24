@@ -18,11 +18,6 @@ view: segmentations {
     sql: ${TABLE}.value ;;
   }
 
-  dimension: key {
-    type: string
-    sql: substring (${value}, 1, 10) ;;
-  }
-
   dimension: entity_name_value {
     hidden: yes
     type: string
