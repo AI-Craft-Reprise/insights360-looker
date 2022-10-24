@@ -83,6 +83,12 @@ view: ad_targeting_entities {
       "revenue", "seniorities", "skills", "staffCountRanges", "titles", "titlesAll", "titlesPast", "yearsOfExperienceRanges"]
   }
 
+  dimension: key {
+    type: string
+    sql: concat (substring (${facet}, 1, 6), substring (${facet}, 27)) ;;
+  }
+
+
 
   dimension: q {
     type: string

@@ -36,10 +36,14 @@ explore: audience_insights {
 
   join: ad_targeting_entities {
     relationship: one_to_one
-    sql_on: ${segmentations.value}=${ad_targeting_entities.urn} ;;
+    sql_on: ${segmentations.key}=${ad_targeting_entities.key} ;;
   }
 
-
+# join: insights_req {
+#     relationship: one_to_many
+#     sql:  CROSS JOIN UNNEST(_airbyte_data.request.body)
+#       AS t(body) ;;
+# }
 
 
 }
