@@ -35,6 +35,11 @@ explore: audience_insights {
       AS t(segmentations) ;;
   }
 
+  join: ad_targeting_entities {
+    relationship: one_to_one
+    sql_on: ${segmentations.value}=${ad_targeting_entities.urn} ;;
+  }
+
   join: facets_urns_and_names {
     relationship: one_to_one
     sql_on: ${audience_insights.groupedby}=${facets_urns_and_names.facet_urn_key} ;;
