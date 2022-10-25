@@ -7,7 +7,7 @@ view: audience_cross {
       column: gender {}
       column: age_group { field: audience_age_group.age_group }
       column: audienceid { field: audiences.audienceid }
-      column: advertiserid { field: audiences_with_advertisers.advertiserid }
+      column: advertiserid { field: advertisers.advertiserid }
     }
   }
 
