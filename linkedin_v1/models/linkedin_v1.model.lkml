@@ -52,6 +52,8 @@ explore: audience_insights {
 
 
 
+
+
 # join: insights_req {
 #     relationship: one_to_many
 #     sql:  CROSS JOIN UNNEST(_airbyte_data.request.body)
