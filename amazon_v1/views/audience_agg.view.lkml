@@ -8,6 +8,7 @@ view: audience_agg {
       column: age_group_array {}
       column: audienceid_array {}
       column: advertiserid_array {}
+      column: profileid_array {}
       bind_all_filters: yes
     }
   }
@@ -27,6 +28,11 @@ view: audience_agg {
     description: ""
     type: number
   }
+  dimension: profileid_array {
+    description: ""
+    type: number
+  }
+
   dimension: audience_definition {
     sql: 'AdvertiserID: ' || array_join(${advertiserid_array}, ', ') || ' Gender: ' || array_join(${gender_array}, ', ') || ' Age Group: ' || array_join(${age_group_array}, ', ') || ' Audience IDs: ' || array_join(${audienceid_array}, ', ');;
     action: {

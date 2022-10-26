@@ -28,7 +28,7 @@ view: profiles {
   }
 
   dimension: profileid {
-    type: string
+    type: number
     sql: ${response}.profileid;;
     primary_key: yes
   }

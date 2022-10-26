@@ -24,10 +24,10 @@ explore: audience_gender {
     relationship: many_to_many
   }
 
-  # join: audiences_with_advertisers {
-  #   type: cross
-  #   relationship: many_to_many
-  # }
+  join: profiles {
+    type: cross
+    relationship: many_to_many
+  }
 }
 
 explore: audience_cross {
@@ -174,5 +174,6 @@ explore: persona_insights {
   #       ) t(demo_propertyownership) ;;
   # }
 }
+
 
 # }
