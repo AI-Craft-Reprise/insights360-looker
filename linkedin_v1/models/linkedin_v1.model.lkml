@@ -50,7 +50,11 @@ explore: audience_insights {
     sql_on: ${segmentations.value}=${entity_name_and_urn.entity_urn_key} ;;
   }
 
-
+  join: audience_request {
+      relationship: one_to_many
+      sql: CROSS JOIN UNNEST(_airbyte_data.request.body,'$.request.targetingCriteria.include')
+        AS t(request) ;;
+  }
 
 
 

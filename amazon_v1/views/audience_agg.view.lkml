@@ -4,22 +4,22 @@
 view: audience_agg {
   derived_table: {
     explore_source: audience_cross {
-      column: gender_array {}
-      column: age_group_array {}
+      # column: gender_array {}
+      # column: age_group_array {}
       column: audienceid_array {}
       # column: advertiserid_array {}
       # column: profileid_array {}
       bind_all_filters: yes
     }
   }
-  dimension: gender_array {
-    description: ""
-    type: number
-  }
-  dimension: age_group_array {
-    description: ""
-    type: number
-  }
+  # dimension: gender_array {
+  #   description: ""
+  #   type: number
+  # }
+  # dimension: age_group_array {
+  #   description: ""
+  #   type: number
+  # }
   dimension: audienceid_array {
     description: ""
     type: number
