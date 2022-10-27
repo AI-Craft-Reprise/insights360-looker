@@ -18,15 +18,14 @@ explore: audience_gender {
     type: cross
     relationship: many_to_many
   }
-  join: advertisers {
-    type: cross
-    relationship: many_to_many
-  }
-  join: profiles {
-    type: cross
-    relationship: many_to_many
-  }
-
+  # join: advertisers {
+  #   type: cross
+  #   relationship: many_to_many
+  # }
+  # join: profiles {
+  #   type: cross
+  #   relationship: many_to_many
+  # }
   # join: audiences_with_advertisers {
   #   type: cross
   #   relationship: many_to_many

@@ -7,8 +7,8 @@ view: audience_cross {
       column: gender {}
       column: age_group { field: audience_age_group.age_group }
       column: audienceid { field: audiences.audienceid }
-      column: advertiserid { field: advertisers.advertiserid }
-      column: profileid { field: profiles.profileid }
+      # column: advertiserid { field: advertisers.advertiserid }
+      # column: profileid { field: profiles.profileid }
     }
   }
 
@@ -18,10 +18,10 @@ view: audience_cross {
   }
   dimension: audienceid {
   }
-  dimension: advertiserid {
-  }
-  dimension: profileid {
-  }
+  # dimension: advertiserid {
+  # }
+  # dimension: profileid {
+  # }
   measure: gender_array {
     sql: array_agg(distinct ${gender}) ;;
   }
@@ -31,10 +31,10 @@ view: audience_cross {
   measure: audienceid_array {
     sql: array_agg(distinct ${audienceid}) ;;
   }
-  measure: advertiserid_array {
-    sql: array_agg(distinct ${advertiserid}) ;;
-  }
-  measure: profileid_array {
-    sql: array_agg(distinct ${profileid}) ;;
-  }
+  # measure: advertiserid_array {
+  #   sql: array_agg(distinct ${advertiserid}) ;;
+  # }
+  # measure: profileid_array {
+  #   sql: array_agg(distinct ${profileid}) ;;
+  # }
 }

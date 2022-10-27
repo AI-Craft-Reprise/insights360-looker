@@ -2,7 +2,7 @@
 view: audience_gender {
   # Or, you could make this view a derived table, like this:
   derived_table: {
-    sql: SELECT 'FEMALE' as gender UNION SELECT 'MALE' as gender
+    sql: SELECT 'Female' as gender UNION SELECT 'Male' as gender
       ;;
   }
 
