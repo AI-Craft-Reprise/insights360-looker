@@ -346,12 +346,12 @@ view: snowflake_infobase {
     type: string
     sql: CASE WHEN ${statement} IN ('DEMO_LIFE_EVENT_ENTERING_ADULTHOOD',
     'DEMO_LIFE_EVENT_HIGH_SCHOOL_GRADUATION', 'DEMO_LIFE_EVENT_NEW_MOVER_6M',
-    'DEMO_LIFE_EVENT_NEW_PARENT_10_1YR', 'DEMO_LIFE_EVENT_NEW_PARENT_7_9M', '
+    'DEMO_LIFE_EVENT_NEW_PARENT_10_1YR', 'DEMO_LIFE_EVENT_NEW_PARENT_7_9M',
     'DEMO_LIFE_EVENT_NEW_PARENT_LTE_6M') THEN  ${statement}
       ELSE NULL END;;
   }
 
-  dimension: demo_demo_life_event {
+  dimension: life_event {
     type: string
     sql: substring (${lifestyle_demo_life_event}, 17) ;;
   }
@@ -528,7 +528,7 @@ view: snowflake_infobase {
                                     ELSE NULL END;;
   }
 
-  dimension: lifestyle_egreen {
+  dimension: lifestyle_green {
     type: string
     sql: substring (${lifestyle_lifestyle_green}, 11) ;;
   }
@@ -575,7 +575,7 @@ view: snowflake_infobase {
     type: string
     sql: CASE WHEN ${statement} IN ('LIFESTYLE_PERSONICX_INSURANCE_ASPIRING_AFFLUENCE','LIFESTYLE_PERSONICX_INSURANCE_CAREFUL_PLANNERS','LIFESTYLE_PERSONICX_INSURANCE_COMFORTABLE_RENTERS',
       'LIFESTYLE_PERSONICX_INSURANCE_ESTABLISHING_PRIORITIES','LIFESTYLE_PERSONICX_INSURANCE_MODEST_COUNTRY','LIFESTYLE_PERSONICX_INSURANCE_MODEST_RESTRAINT','LIFESTYLE_PERSONICX_INSURANCE_PERSONAL_FOCUS',
-      'LIFESTYLE_PERSONICX_INSURANCE_PROSPEROUS_HOUSEHOLDS','LIFESTYLE_PERSONICX_INSURANCE_SECURED_PROSPERITY', ,'LIFESTYLE_PERSONICX_INSURANCE_STABLE_INDEPENDENCE', 'LIFESTYLE_PERSONICX_INSURANCE_THRIFTY_HOMEOWNERS',
+      'LIFESTYLE_PERSONICX_INSURANCE_PROSPEROUS_HOUSEHOLDS','LIFESTYLE_PERSONICX_INSURANCE_SECURED_PROSPERITY','LIFESTYLE_PERSONICX_INSURANCE_STABLE_INDEPENDENCE', 'LIFESTYLE_PERSONICX_INSURANCE_THRIFTY_HOMEOWNERS',
       'LIFESTYLE_PERSONICX_INSURANCE_THRIFTY_PRIORITIES','LIFESTYLE_PERSONICX_INSURANCE_THRIFTY_RENTERS') THEN  ${statement}
       ELSE NULL END;;
   }
@@ -627,7 +627,7 @@ view: snowflake_infobase {
 
   dimension: lifestyle_personicx_prime {
     type: string
-    sql: substring (${lifestyle_lifestyle_personicx_prime}, 25) ;;
+    sql: substring (${lifestyle_lifestyle_personicx_prime}, 30) ;;
   }
 
   dimension: lifestyle_lifestyle_personicx_prime_place {
@@ -644,7 +644,7 @@ view: snowflake_infobase {
 
   dimension: lifestyle_personicx_prime_place {
     type: string
-    sql: substring (${lifestyle_lifestyle_personicx_prime_place}, 32) ;;
+    sql: substring (${lifestyle_lifestyle_personicx_prime_place}, 33) ;;
   }
 
   dimension: retail_retail_attitude_behavior {
