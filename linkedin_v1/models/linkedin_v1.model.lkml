@@ -56,8 +56,6 @@ explore: audience_insights {
         AS t(request) ;;
   }
 
-
-
 # join: insights_req {
 #     relationship: one_to_many
 #     sql:  CROSS JOIN UNNEST(_airbyte_data.request.body)
@@ -65,4 +63,11 @@ explore: audience_insights {
 # }
 
 
+}
+
+explore: job_functions {
+  join: job_seniorities {
+    type: cross
+    relationship: many_to_many
+  }
 }
