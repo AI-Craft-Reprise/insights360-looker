@@ -4,7 +4,13 @@ include: "/linkedin_v1/**/*.view"                # include all views in the view
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-explore: ad_targeting_entities {}
+explore: ad_targeting_entities {
+  join: ad_targeting_entities_organizations {
+    type: full_outer
+    relationship: many_to_many
+    sql_on: ${ad_targeting_entities.faceturn}=${ad_targeting_entities_organizations.faceturn} ;;
+      }
+}
 
 explore: ad_targeting_facets {
 
