@@ -105,7 +105,7 @@ view: ad_targeting_entities {
               WHEN ${facets}='titles' THEN 'Title'
               WHEN ${facets}='titlesAll' THEN 'Titles All'
               WHEN ${facets}='titlesPast' THEN 'Titles Past'
-              WHEN ${facets}='yearsOfExperienceRanges' THEN 'Years of Experience Range'
+              WHEN ${facets}='yearsOfExperienceRanges' THEN 'Years of Experience'
               ELSE NULL END;;
   }
 
