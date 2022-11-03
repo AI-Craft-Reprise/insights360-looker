@@ -76,11 +76,37 @@ view: ad_targeting_entities {
   }
 
   dimension: facets {
+    hidden: yes
     type: string
     sql: SUBSTRING (${facet}, 25) ;;
     suggestions: ["ageRanges", "companyCategory", "degrees", "fieldsOfStudy", "genders", "growthRate",
       "industries", "interfaceLocales", "jobFunctions", "locations", "memberBehaviors", "profileLocations",
       "revenue", "seniorities", "skills", "staffCountRanges", "titles", "titlesAll", "titlesPast", "yearsOfExperienceRanges"]
+  }
+
+  dimension: facet_name {
+    type: string
+    sql: CASE WHEN ${facets}='ageRanges' THEN 'Age Range'
+              WHEN ${facets}='companyCategory' THEN 'Company Category'
+              WHEN ${facets}='degrees' THEN 'Degree'
+              WHEN ${facets}='fieldsOfStudy' THEN 'Field Of Study'
+              WHEN ${facets}='genders' THEN 'Gender'
+              WHEN ${facets}='growthRate' THEN 'Growth Rate'
+              WHEN ${facets}='industries' THEN 'Industry'
+              WHEN ${facets}='interfaceLocales' THEN 'Interface Locales'
+              WHEN ${facets}='jobFunctions' THEN 'Job Function'
+              WHEN ${facets}='locations' THEN 'Location'
+              WHEN ${facets}='memberBehaviors' THEN 'Member Behavior'
+              WHEN ${facets}='profileLocations' THEN 'Profile Location'
+              WHEN ${facets}='revenue' THEN 'Revenue'
+              WHEN ${facets}='seniorities' THEN 'Seniority'
+              WHEN ${facets}='skills' THEN 'Skill'
+              WHEN ${facets}='staffCountRanges' THEN 'Staff Count Range'
+              WHEN ${facets}='titles' THEN 'Title'
+              WHEN ${facets}='titlesAll' THEN 'Titles All'
+              WHEN ${facets}='titlesPast' THEN 'Titles Past'
+              WHEN ${facets}='yearsOfExperienceRanges' THEN 'Years of Experience Range'
+              ELSE NULL END;;
   }
 
   dimension: q {

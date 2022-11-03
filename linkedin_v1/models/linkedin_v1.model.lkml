@@ -24,6 +24,11 @@ explore: ad_targeting_facets {
       AS t(segmentations) ;;
   }
 
+  join: ad_targeting_entities_organizations {
+    relationship: one_to_many
+    sql_on: ${ad_targeting_facets.urn}=${ad_targeting_entities_organizations.urn} ;;
+  }
+
 }
 
 explore: audience_insights {
@@ -54,6 +59,11 @@ explore: audience_insights {
       relationship: one_to_many
       sql: CROSS JOIN UNNEST(_airbyte_data.request.body,'$.request.targetingCriteria.include')
         AS t(request) ;;
+  }
+
+  join: ad_targeting_entities_organizations {
+    relationship: one_to_one
+    sql_on: ${segmentations.value}=${ad_targeting_entities_organizations.urn} ;;
   }
 
 # join: insights_req {
