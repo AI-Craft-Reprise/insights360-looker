@@ -7,7 +7,9 @@ view: agency {
   }
 
   dimension: logo {
-    sql: CASE WHEN user_attribute = UM THEN logo_url WHEN user_attribute = Initiative then initiative_logo_url END ;;
+    # sql: CASE WHEN user_attribute = UM THEN logo_url WHEN user_attribute = Initiative then initiative_logo_url END ;;
+      sql: CASE WHEN user_attribute = UM THEN 'UM' WHEN user_attribute = Initiative then 'Initiative' END ;;
+
   }
   # # Define your dimensions and measures here, like this:
   # dimension: user_id {
