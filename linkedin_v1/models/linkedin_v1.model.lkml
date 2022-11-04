@@ -4,7 +4,13 @@ include: "/linkedin_v1/**/*.view"                # include all views in the view
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-explore: ad_targeting_entities {}
+explore: ad_targeting_entities {
+  join: ad_targeting_entities_organizations {
+    type: full_outer
+    relationship: many_to_many
+    sql_on: ${ad_targeting_entities.faceturn}=${ad_targeting_entities_organizations.faceturn} ;;
+      }
+}
 
 explore: ad_targeting_facets {
 
@@ -22,6 +28,11 @@ explore: ad_targeting_facets {
     relationship: one_to_many
     sql: CROSS JOIN UNNEST(_airbyte_data.response.value.audienceinsight.segmentations)
       AS t(segmentations) ;;
+  }
+
+  join: ad_targeting_entities_organizations {
+    relationship: one_to_many
+    sql_on: ${ad_targeting_facets.urn}=${ad_targeting_entities_organizations.urn} ;;
   }
 
 }
@@ -56,6 +67,11 @@ explore: audience_insights {
         AS t(request) ;;
   }
 
+  join: ad_targeting_entities_organizations {
+    relationship: one_to_one
+    sql_on: ${segmentations.value}=${ad_targeting_entities_organizations.urn} ;;
+  }
+
 # join: insights_req {
 #     relationship: one_to_many
 #     sql:  CROSS JOIN UNNEST(_airbyte_data.request.body)
@@ -67,6 +83,18 @@ explore: audience_insights {
 
 explore: job_functions {
   join: job_seniorities {
+    type: cross
+    relationship: many_to_many
+  }
+  join: industry {
+    type: cross
+    relationship: many_to_many
+  }
+  join: company_size {
+    type: cross
+    relationship: many_to_many
+  }
+  join: country {
     type: cross
     relationship: many_to_many
   }
