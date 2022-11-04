@@ -10,27 +10,51 @@ view: audience_filter {
         column: job_seniority { field: job_seniorities.job_seniority }
       }
     }
-    # dimension: company {
-    #   description: ""
-    # }
-    # dimension: company_size {
-    #   description: ""
-    # }
-    # dimension: country {
-    #   description: ""
-    # }
-    # dimension: industry {
-    #   description: ""
-    # }
+    dimension: company {
+      description: ""
+    }
+    dimension: company_size {
+      description: ""
+    }
+    dimension: country {
+      description: ""
+    }
+    dimension: industry {
+      description: ""
+    }
     dimension: job_function {
       description: ""
     }
-    # dimension: job_seniority {
-    #   description: ""
-    # }
+    dimension: job_seniority {
+      description: ""
+    }
 
-    measure: audience_array {
+    measure: job_function_array {
       sql: array_agg(distinct ${job_function}) ;;
     }
+
+    measure: company_array {
+    sql: array_agg(distinct ${company}) ;;
+  }
+
+    measure: company_size_array {
+    sql: array_agg(distinct ${company_size}) ;;
+  }
+
+    measure: country_array {
+    sql: array_agg(distinct ${country}) ;;
+  }
+
+  measure: job_seniority_array {
+    sql: array_agg(distinct ${job_seniority}) ;;
+  }
+
+  measure: industry_array {
+    sql: array_agg(distinct ${industry}) ;;
+  }
+
+
+
+
 
   }

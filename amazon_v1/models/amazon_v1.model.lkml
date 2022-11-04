@@ -32,10 +32,10 @@ explore: audience_gender {
   # }
 }
 
-explore: audience_cross {
+explore: audience_filter {
   label: "Audience Creator"
   view_label: "Audience Filters"
-  join: audience_agg {
+  join: audience_definition {
     view_label: "Audience Definition"
     type: cross
     relationship: many_to_one

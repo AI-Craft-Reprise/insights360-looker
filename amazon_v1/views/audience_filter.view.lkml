@@ -1,7 +1,7 @@
 # If necessary, uncomment the line below to include explore_source.
 # include: "amazon_v1.model.lkml"
 
-view: audience_cross {
+view: audience_filter {
   derived_table: {
     explore_source: audience_gender {
       # column: gender {}
