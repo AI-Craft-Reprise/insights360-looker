@@ -9,7 +9,8 @@ view: industry {
         }
       }
     }
-    dimension: name {
+    dimension: industry {
+      sql: ${TABLE}.name ;;
       description: ""
     }
     dimension: urn {

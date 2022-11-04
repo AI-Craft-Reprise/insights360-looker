@@ -3,7 +3,7 @@ view: audience_definition {
       explore_source: audience_filter {
         # column: gender_array {}
         # column: age_group_array {}
-        column: audienceid_array {}
+        column: audience_array {}
         # column: advertiserid_array {}
         # column: profileid_array {}
         bind_all_filters: yes
@@ -17,7 +17,7 @@ view: audience_definition {
     #   description: ""
     #   type: number
     # }
-    dimension: audienceid_array {
+    dimension: audience_array {
       description: ""
       type: number
     }
@@ -31,7 +31,7 @@ view: audience_definition {
     # }
     dimension: audience_definition {
       # sql: 'ProfileID: ' || array_join(${profileid_array}, ', ') || ' AdvertiserID: ' || array_join(${advertiserid_array}, ', ') || ' Gender: ' || array_join(${gender_array}, ', ') || ' Age Group: ' || array_join(${age_group_array}, ', ') || ' Audience IDs: ' || array_join(${audienceid_array}, ', ');;
-      sql: 'audiences=' || array_join(${audienceid_array}, ',');;
+      sql: 'audiences=' || array_join(${audience_array}, ',');;
       action: {
         label: "Create Amazon Ads Persona"
         url: "https://o4lmwhjjhcvcwvjafxox5vaoia0mihie.lambda-url.us-east-1.on.aws?action=personas.create&{{ value }}"

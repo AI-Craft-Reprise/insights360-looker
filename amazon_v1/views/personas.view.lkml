@@ -63,11 +63,13 @@ view: personas {
   dimension: gender {
     type: string
     sql: ${demo}.gender ;;
+    html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
   }
 
   dimension: age {
     type: string
     sql: ${demo}.age ;;
+    html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
   }
 
   dimension: audiences {

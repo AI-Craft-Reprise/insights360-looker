@@ -9,7 +9,8 @@ view: company_size  {
         }
       }
     }
-    dimension: name {
+    dimension: company_size {
+      sql: ${TABLE}.name ;;
       description: ""
     }
     dimension: urn {

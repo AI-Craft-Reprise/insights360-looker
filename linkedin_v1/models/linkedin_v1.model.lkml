@@ -98,4 +98,18 @@ explore: job_functions {
     type: cross
     relationship: many_to_many
   }
+  join: company {
+    type: cross
+    relationship: many_to_many
+  }
+}
+
+explore: audience_filter {
+  label: "Audience Creator"
+  view_label: "Audience Filters"
+  join: audience_definition {
+    view_label: "Audience Definition"
+    type: cross
+    relationship: many_to_one
+  }
 }

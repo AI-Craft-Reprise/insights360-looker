@@ -62,11 +62,15 @@ view: persona_insights {
   dimension: min_estimated_size {
     type: number
     sql: ${estimated_size}.min;;
+    html: <p style="color: black; font-size:80%; text-align:center">{{ rendered_value }}</p> ;;
+    value_format: "0.0,,\" M\""
   }
 
   dimension: max_estimated_size {
     type: number
     sql: ${estimated_size}.max;;
+    html: <p style="color: black; font-size:80%; text-align:center">{{ rendered_value }}</p> ;;
+    value_format: "0.0,,\" M\""
   }
 
   dimension: personainsights{
