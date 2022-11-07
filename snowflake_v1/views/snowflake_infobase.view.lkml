@@ -755,4 +755,25 @@ view: snowflake_infobase {
     type: count
     drill_fields: []
   }
-}
+
+  # dimension: name {
+  #   sql: _user_attributes['agency'] ;;
+  # }
+  # dimension: logos {
+  #   type: string
+  #   sql: ${name} ;;
+  #   html:
+  #         {% if name == "Initiative" %}
+  #         &lt;img src="https://d1jfzm9ywrnbsn.cloudfront.net/logo.png" height="170" width="255"&gt;
+  #         {% elsif name == "UM" %}
+  #         &lt;img src="https://th.bing.com/th/id/R.ad92044dcc2ab081e4f09e6a8411dfaa?rik=Q2%2brxYZHMP3YrQ&pid=ImgRaw&r=0" height="170" width="255"&gt;
+  #         {% else %}
+  #         &lt;img src="https://mediaserver.responsesource.com/press-release/84285/dev_logo_rgb_1200dpi.jpg" height="170" width="170"&gt;
+  #         {% endif %} ;;
+  # }
+
+  # dimension: logo {
+  # sql: _user_attributes['agency'] ;;
+  # html: <img src="https://d1jfzm9ywrnbsn.cloudfront.net/logo.{{ value }}.png" /> ;;
+# }
+  }

@@ -1,41 +1,50 @@
 view: audience_definition {
     derived_table: {
       explore_source: audience_filter {
-        # column: gender_array {}
-        # column: age_group_array {}
-        column: audience_array {}
-        # column: advertiserid_array {}
-        # column: profileid_array {}
+        column: job_function_array {}
+        # column: country_array {}
+        column: industry_array {}
+        # column: company_array {}
+        # column: company_size_array {}
+        column: job_seniority_array {}
         bind_all_filters: yes
       }
     }
-    # dimension: gender_array {
-    #   description: ""
-    #   type: number
-    # }
-    # dimension: age_group_array {
-    #   description: ""
-    #   type: number
-    # }
-    dimension: audience_array {
+
+    dimension: job_function_array {
       description: ""
       type: number
     }
-    # dimension: advertiserid_array {
+    # dimension: country_array {
     #   description: ""
     #   type: number
     # }
-    # dimension: profileid_array {
+    dimension: industry_array {
+      description: ""
+      type: number
+    }
+    # dimension: company_array {
     #   description: ""
     #   type: number
     # }
+    dimension: job_seniority_array {
+      description: ""
+      type: number
+    }
+  # dimension: company_size_array {
+  #   description: ""
+  #   type: number
+  # }
+
+
     dimension: audience_definition {
-      # sql: 'ProfileID: ' || array_join(${profileid_array}, ', ') || ' AdvertiserID: ' || array_join(${advertiserid_array}, ', ') || ' Gender: ' || array_join(${gender_array}, ', ') || ' Age Group: ' || array_join(${age_group_array}, ', ') || ' Audience IDs: ' || array_join(${audienceid_array}, ', ');;
-      sql: 'audiences=' || array_join(${audience_array}, ',');;
-      action: {
-        label: "Create Amazon Ads Persona"
-        url: "https://o4lmwhjjhcvcwvjafxox5vaoia0mihie.lambda-url.us-east-1.on.aws?action=personas.create&{{ value }}"
-        form_url: "https://o4lmwhjjhcvcwvjafxox5vaoia0mihie.lambda-url.us-east-1.on.aws?action=looker.form&{{ value }}"
+      sql: 'Job Function: ' || array_join(${job_function_array}, ', ') || ' Job Seniority: ' || array_join(${job_seniority_array}, ', ') || ' Company: ' || ' Industry: ' || array_join(${industry_array}, ', ');;
+      # 'Job Function: ' || array_join(${job_function_array}, ', ') || ' Job Seniority: ' || array_join(${job_seniority_array}, ', ') || ' Company: ' || array_join(${country_array}, ', ') || ' Industry: ' || array_join(${industry_array}, ', ') || ' Company Size: ' || array_join(${company_size_array}, ', '|| ' Country: ' || array_join(${country_array});;
+      # sql: 'audiences=' || array_join(${audience_array}, ',');;
+      # action: {
+      #   label: "Create Amazon Ads Persona"
+      #   url: "https://o4lmwhjjhcvcwvjafxox5vaoia0mihie.lambda-url.us-east-1.on.aws?action=personas.create&{{ value }}"
+      #   form_url: "https://o4lmwhjjhcvcwvjafxox5vaoia0mihie.lambda-url.us-east-1.on.aws?action=looker.form&{{ value }}"
         # form_param: {
         #   name: "persona_name"
         #   type: string
@@ -56,6 +65,6 @@ view: audience_definition {
         #   }
         #   required: yes
         # }
-      }
+    #   }
     }
   }
