@@ -13,9 +13,9 @@ dimension: subject_ordering {
   sql:
       CASE
         WHEN ${income_attribute} = '$150,000 +' THEN 1
-        WHEN ${income_attribute} = '$100,000 - $149,999' THEN 2
-        WHEN ${income_attribute} = '$75,000 - $99,999' THEN 3
-        WHEN ${income_attribute} = '$50,000 - $74,999'THEN 4
+        WHEN ${income_attribute} = '$149,999 - $100,000' THEN 2
+        WHEN ${income_attribute} = '$99,999 - $75,000' THEN 3
+        WHEN ${income_attribute} = '$74,999 - $50,000'THEN 4
       END ;;
     hidden: yes
     description: "This dimension is used to force sort the attribute dimension."
