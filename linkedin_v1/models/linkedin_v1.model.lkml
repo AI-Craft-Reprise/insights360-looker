@@ -90,14 +90,14 @@ explore: job_functions {
     type: cross
     relationship: many_to_many
   }
-  # join: company_size {
-  #   type: cross
-  #   relationship: many_to_many
-  # }
-  # join: country {
-  #   type: cross
-  #   relationship: many_to_many
-  # }
+  join: company_size {
+    type: cross
+    relationship: many_to_many
+  }
+  join: country {
+    type: cross
+    relationship: many_to_many
+  }
   # join: company {
   #   type: cross
   #   relationship: many_to_many

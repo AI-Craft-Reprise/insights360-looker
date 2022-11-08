@@ -109,7 +109,6 @@ view: snowflake_mrisimmons {
   dimension: audience_name {
     type: string
     sql: ${_airbyte_data}.audience_name ;;
-    suggestions: ["Guy.Fieri.Foodies.and.Indulgers", "Statement.Seekers.18.24", "Brand.Competitors"]
   }
 
   dimension: created {

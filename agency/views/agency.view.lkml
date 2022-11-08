@@ -16,6 +16,7 @@ view: agency {
 
   dimension: logo {
     sql: ${TABLE}.logo ;;
-    html: <img src={{value}}> ;;
+    html: <img src={{value}} width="100%" height="100%"> ;;
+    # html: <img src={{value}} style="width:102px;height:103px;"> ;;
   }
   }

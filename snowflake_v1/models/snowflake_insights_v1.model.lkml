@@ -6,15 +6,9 @@ include: "/snowflake_v1/**/*.view"                # include all views in the vie
 
 
 explore: snowflake_mrisimmons {
-  always_filter: {
-    filters: [snowflake_mrisimmons.audience_name: "Brand.Competitors"]
-    }
 }
 
 explore: snowflake_infobase {
-  always_filter: {
-    filters: [snowflake_infobase.audience_name: "Brand.Competitors"]
-  }
 }
 
 # # Select the views that should be a part of this model,
