@@ -134,8 +134,11 @@ explore: persona_insights {
   join: gender {
     relationship: one_to_many
     sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.gender)
-      AS t(gender) ;;
-  }
+      AS t(gender) ;
+
+
+    join: gender {
+    sql: CASE WHEN ${gender.gender_affinity}='[Female]' THEN 'Female'}
 
   join: relationship {
     relationship: one_to_many
