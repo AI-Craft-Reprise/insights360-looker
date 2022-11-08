@@ -220,18 +220,18 @@ view: snowflake_infobase {
 
   dimension: income_sort {
     hidden: yes
-    type: string
-    sql: case when ${income}= 'LT_15K_1' then '1'
-              when ${income}= '15K_20K_1' then '2'
-              when ${income}= '20K_30K_1' then '3'
-              when ${income}= '30K_50K' then '4'
-              when ${income}= '50K_75K' then '5'
-              when ${income}= '75K_100K' then '6'
-              when ${income}= '100K_150K' then '7'
-              when ${income}= '150K_175K' then '8'
-              when ${income}= '175K_200K' then '9'
-              when ${income}= '200K_250K' then '99'
-              when ${income}= '250KPLUS' then '999'
+    type: number
+    sql: case when ${income}= 'LT_15K_1' then 1
+              when ${income}= '15K_20K_1' then 2
+              when ${income}= '20K_30K_1' then 3
+              when ${income}= '30K_50K' then 4
+              when ${income}= '50K_75K' then 5
+              when ${income}= '75K_100K' then 6
+              when ${income}= '100K_150K' then 7
+              when ${income}= '150K_175K' then 8
+              when ${income}= '175K_200K' then 9
+              when ${income}= '200K_250K' then 10
+              when ${income}= '250KPLUS' then 11
             else null end;;
   }
 
