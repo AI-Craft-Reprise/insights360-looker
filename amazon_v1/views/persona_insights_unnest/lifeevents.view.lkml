@@ -8,9 +8,15 @@ view: lifeevents {
     primary_key: yes
   }
 
-  dimension: name {
+   dimension: name_full {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
+  }
+
+  dimension: name {
+    type: string
+    sql: substring (${name_full}, 6) ;;
   }
 
   dimension: percent {
