@@ -45,7 +45,7 @@ view: overlapping_audiences {
 
   dimension: req_name {
     type: string
-    sql: ${requestedaudiencemetadata}.name ;;
+    sql: SUBSTRING (${requestedaudiencemetadata}.name, 6) ;;
   }
 
   dimension: req_category {
@@ -87,10 +87,17 @@ view: overlapping_audiences {
     primary_key: yes
   }
 
+  dimension: name_full {
+    hidden: yes
+    type: string
+    sql: ${audiencemetadata}.name ;;
+  }
+
   dimension: name {
     label: "Audience"
     type: string
-    sql: ${audiencemetadata}.name ;;
+    sql: CASE WHEN SUBSTRING (${name_full}, 1, 2) IN ('LS', 'IM', 'IN', 'LE') then substring (${name_full}, 6)
+          ELSE ${name_full} end;;
   }
 
 
