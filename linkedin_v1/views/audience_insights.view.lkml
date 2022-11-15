@@ -4,16 +4,19 @@ view: audience_insights {
   # suggestions: no
 
   dimension: _airbyte_ab_id {
+    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_ab_id ;;
   }
 
   dimension: _airbyte_data {
+    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_data ;;
   }
 
   dimension: _airbyte_emitted_at {
+    hidden: yes
     type: number
     sql: ${TABLE}._airbyte_emitted_at ;;
   }

@@ -43,9 +43,12 @@ explore: audience_filter {
 }
 
 
-explore: overlapping_audiences {}
+explore: overlapping_audiences {
+  hidden: yes
+}
 
 explore: audiences {
+  hidden: yes
 
   join: overlapping_audiences {
     relationship: one_to_one
@@ -79,7 +82,9 @@ explore: audiences {
   }
 
 
-explore: persona_demographics {}
+explore: persona_demographics {
+  hidden: yes
+}
 
 explore: persona_insights {
 
