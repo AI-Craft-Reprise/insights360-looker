@@ -105,4 +105,7 @@ view: audiences {
     type: count
     drill_fields: []
   }
+  measure: audienceid_array {
+    sql: array_agg(distinct ${audienceid}) ;;
+  }
 }
