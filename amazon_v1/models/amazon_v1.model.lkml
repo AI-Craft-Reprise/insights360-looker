@@ -134,6 +134,16 @@ explore: persona_insights {
     sql_on: ${persona_insights.personaid}=${personas.personaid} ;;
   }
 
+  join: persona_gender {
+    relationship: one_to_many
+    sql: , UNNEST(_airbyte_data.response.expression.demographics.gender) t(persona_gender) ;;
+  }
+
+  join: persona_age {
+    relationship: one_to_many
+    sql: , UNNEST(_airbyte_data.response.expression.demographics.age) t(persona_age) ;;
+  }
+
 
   # join: demo_propertyownership_unnest {
   #   relationship: one_to_many
@@ -158,10 +168,16 @@ explore: persona_insights {
 
 
 explore: personas {
-  hidden: yes
+  # hidden: yes
+
   join: persona_gender {
     relationship: one_to_many
-    sql: CROSS JOIN UNNEST(_airbyte_data.response.expression.demographics.gender) t(gender) ;;
+    sql: , UNNEST(_airbyte_data.response.expression.demographics.gender) t(persona_gender) ;;
+  }
+
+  join: persona_age {
+    relationship: one_to_many
+    sql: , UNNEST(_airbyte_data.response.expression.demographics.age) t(persona_age) ;;
   }
 
 }

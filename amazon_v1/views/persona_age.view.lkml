@@ -1,7 +1,7 @@
-view: persona_gender {
+view: persona_age {
   label: "Persona Age and Gender"
 
-  dimension: gender {
+  dimension: age {
     type: string
     sql: ${TABLE} ;;
     html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
@@ -36,7 +36,7 @@ view: persona_gender {
   # }
 }
 
-# view: persona_gender {
+# view: persona_age {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT

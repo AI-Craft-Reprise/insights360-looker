@@ -157,13 +157,13 @@ view: snowflake_infobase {
   dimension: demo_gender {
     hidden: yes
     type: string
-    sql: CASE WHEN ${statement} IN ('DEMO_GENDER_HOH_FEMALE', 'DEMO_GENDER_HOH_MALE') THEN  ${statement}
+    sql: CASE WHEN ${statement} IN ('DEMO_GENDER_FEMALE', 'DEMO_GENDER_MALE') THEN  ${statement}
     ELSE NULL END;;
   }
 
   dimension: gender {
     type: string
-    sql: substring (${demo_gender}, 17) ;;
+    sql: substring (${demo_gender}, 13) ;;
   }
 
   dimension: demo_home_ownership {
