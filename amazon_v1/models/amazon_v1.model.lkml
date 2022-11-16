@@ -8,41 +8,6 @@ include: "/amazon_v1/**/*.view"                # include all views in the views/
 # # and define the joins that connect them together.
 #
 
-explore: audience_gender {
-  hidden: yes
-  join: audience_age_group {
-    type: cross
-    relationship: many_to_many
-  }
-  join: audiences {
-    type: cross
-    relationship: many_to_many
-  }
-  # join: advertisers {
-  #   type: cross
-  #   relationship: many_to_many
-  # }
-  # join: profiles {
-  #   type: cross
-  #   relationship: many_to_many
-  # }
-  # join: audiences_with_advertisers {
-  #   type: cross
-  #   relationship: many_to_many
-  # }
-}
-
-explore: audience_filter {
-  label: "Audience Creator"
-  view_label: "Audience Filters"
-  join: audience_definition {
-    view_label: "Audience Definition"
-    type: cross
-    relationship: many_to_one
-  }
-}
-
-
 explore: overlapping_audiences {
   hidden: yes
 }
@@ -78,6 +43,11 @@ explore: audiences {
   join: persona_insights {
     relationship: one_to_one
     sql_on: ${persona_demographics.advertiserid}=${persona_insights.advertiserid} and ${persona_demographics.profileid}=${persona_insights.profileid} ;;
+  }
+  join: audience_definition {
+    view_label: "Audience Definition"
+    type: cross
+    relationship: many_to_one
   }
   }
 
