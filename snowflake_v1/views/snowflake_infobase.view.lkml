@@ -833,6 +833,11 @@ view: snowflake_infobase {
     value_format: "0"
   }
 
+  measure: genpop_sum {
+    type: sum
+    sql: ${genpop_cnt} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
