@@ -139,11 +139,12 @@ explore: persona_insights {
   join: gender {
     relationship: one_to_many
     sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.gender)
-      AS t(gender) ;
+      AS t(gender) ;;
+  }
 
 
-    join: gender {
-    sql: CASE WHEN ${gender.gender_affinity}='[Female]' THEN 'Female'}
+    # join: gender {
+    # sql: CASE WHEN ${gender.gender_affinity}='[Female]' THEN 'Female'};;
 
   join: relationship {
     relationship: one_to_many
@@ -162,10 +163,6 @@ explore: persona_insights {
     type: left_outer
     sql_on: ${persona_insights.personaid}=${personas.personaid} ;;
   }
-
-
-
-
 
 
   # join: demo_propertyownership_unnest {
@@ -188,3 +185,13 @@ explore: persona_insights {
 
 
 # }
+
+
+explore: personas {
+  hidden: yes
+  join: persona_gender {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.expression.demographics.gender) t(gender) ;;
+  }
+
+}
