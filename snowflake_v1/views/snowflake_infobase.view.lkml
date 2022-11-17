@@ -4,16 +4,19 @@ view: snowflake_infobase {
   # suggestions: no
 
   dimension: _airbyte_ab_id {
+    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_ab_id ;;
   }
 
   dimension: _airbyte_data {
+    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_data ;;
   }
 
   dimension: _airbyte_emitted_at {
+    hidden: yes
     type: number
     sql: ${TABLE}._airbyte_emitted_at ;;
   }
@@ -66,7 +69,6 @@ view: snowflake_infobase {
   dimension: agency {
     type: string
     sql: ${_airbyte_data}.agency ;;
-    suggestions: ["INI"]
   }
 
   dimension: client {
@@ -77,7 +79,6 @@ view: snowflake_infobase {
   dimension: audience_name {
     type: string
     sql: ${_airbyte_data}.audience_name ;;
-    suggestions: ["Guy.Fieri.Foodies.and.Indulgers", "Statement.Seekers.18.24", "Brand.Competitors"]
   }
 
   dimension: created {
@@ -101,11 +102,13 @@ view: snowflake_infobase {
   }
 
   dimension: _ab_source_file_last_modified {
+    hidden: yes
     type: date
     sql: ${_airbyte_data}._ab_source_file_last_modified ;;
   }
 
   dimension: _ab_source_file_url {
+    hidden: yes
     type: string
     sql: ${_airbyte_data}._ab_source_file_url ;;
   }
@@ -120,12 +123,19 @@ view: snowflake_infobase {
     ELSE NULL END;;
   }
 
-  dimension: age {
+  dimension: age_source {
+    hidden: yes
     type: string
     sql: substring (${demo_age}, 20) ;;
   }
 
+  dimension: age {
+    type: string
+    sql: REPLACE(${age_source},'_','-') ;;
+  }
+
   dimension: demo_ethnicity {
+    hidden: yes
     type: string
     sql: CASE WHEN ${statement} IN ('DEMO_ETHNICITY_INDIVIDUAL_AFRICAN_AMERICAN',
     'DEMO_ETHNICITY_INDIVIDUAL_ASIAN', 'DEMO_ETHNICITY_INDIVIDUAL_HISPANIC',
@@ -133,21 +143,27 @@ view: snowflake_infobase {
     ELSE NULL END;;
   }
 
-  dimension: ethnicity {
+  dimension: ethnicity_source {
+    hidden: yes
     type: string
     sql: substring (${demo_ethnicity}, 27) ;;
+  }
+
+  dimension: ethnicity {
+    type: string
+    sql: REPLACE(${ethnicity_source},'_',' ') ;;
   }
 
   dimension: demo_gender {
     hidden: yes
     type: string
-    sql: CASE WHEN ${statement} IN ('DEMO_GENDER_HOH_FEMALE', 'DEMO_GENDER_HOH_MALE') THEN  ${statement}
+    sql: CASE WHEN ${statement} IN ('DEMO_GENDER_FEMALE', 'DEMO_GENDER_MALE') THEN  ${statement}
     ELSE NULL END;;
   }
 
   dimension: gender {
     type: string
-    sql: substring (${demo_gender}, 17) ;;
+    sql: substring (${demo_gender}, 13) ;;
   }
 
   dimension: demo_home_ownership {
@@ -157,9 +173,15 @@ view: snowflake_infobase {
       ELSE NULL END;;
   }
 
-  dimension: home_ownership {
+  dimension: home_ownership_source {
+    hidden: yes
     type: string
     sql: substring (${demo_home_ownership}, 6) ;;
+  }
+
+  dimension: home_ownership {
+    type: string
+    sql: REPLACE(${home_ownership_source},'_',' ') ;;
   }
 
   dimension: demo_prefer_language {
@@ -171,9 +193,15 @@ view: snowflake_infobase {
       ELSE NULL END;;
   }
 
-  dimension: prefer_language {
+  dimension: prefer_language_source{
+    hidden: yes
     type: string
     sql: substring (${demo_prefer_language}, 33) ;;
+  }
+
+  dimension: prefer_language {
+    type: string
+    sql: REPLACE(${prefer_language_source},'_',' ') ;;
   }
 
   dimension: demo_presence_of_children{
@@ -183,9 +211,17 @@ view: snowflake_infobase {
       ELSE NULL END;;
   }
 
-  dimension: presence_of_children {
+  dimension: presence_of_children_source {
+    hidden: yes
     type: string
     sql: substring (${demo_presence_of_children}, 27) ;;
+  }
+
+  dimension: presence_of_children {
+    type: string
+    sql:  case when ${presence_of_children_source} = 'N' then 'No'
+               when ${presence_of_children_source} = 'Y' then 'Yes'
+          end;;
   }
 
   dimension: demo_household_size {
@@ -214,9 +250,43 @@ view: snowflake_infobase {
       ELSE NULL END;;
   }
 
-  dimension: income {
+  dimension: income_source {
+    hidden: yes
     type: string
     sql: substring (${demo_income}, 13) ;;
+  }
+
+  dimension: income_clean {
+    hidden: yes
+    type: string
+    sql: case when ${income_source} = 'LT_15K_1'  then 'Less then 15K'
+              when ${income_source} = '15K_20K_1' then '15K-20K'
+              when ${income_source} = '20K_30K_1' then '20K-30K'
+              else ${income_source}
+              end;;
+  }
+
+  dimension: income {
+    type: string
+    order_by_field: income_sort
+    sql: REPLACE(${income_clean},'_','-') ;;
+  }
+
+  dimension: income_sort {
+    hidden: yes
+    type: number
+    sql: case when ${income}= 'Less than 15K' then 1
+              when ${income}= '15K-20K' then 2
+              when ${income}= '20K-30K' then 3
+              when ${income}= '30K-50K' then 4
+              when ${income}= '50K-75K' then 5
+              when ${income}= '75K-100K' then 6
+              when ${income}= '100K-150K' then 7
+              when ${income}= '150K-175K' then 8
+              when ${income}= '175K-200K' then 9
+              when ${income}= '200K-250K' then 10
+              when ${income}= '250KPLUS' then 11
+            else null end;;
   }
 
   dimension: demo_occupation {
@@ -229,9 +299,15 @@ view: snowflake_infobase {
       ELSE NULL END;;
   }
 
-  dimension: occupation {
+  dimension: occupation_source {
+    hidden: yes
     type: string
     sql: substring (${demo_occupation}, 17) ;;
+  }
+
+  dimension: occupation {
+    type: string
+    sql: REPLACE(${occupation_source},'_',' ') ;;
   }
 
   dimension: demo_marital_status {
@@ -241,9 +317,15 @@ view: snowflake_infobase {
       ELSE NULL END;;
   }
 
-  dimension: marital_status {
+  dimension: marital_status_source {
+    hidden: yes
     type: string
     sql: substring (${demo_marital_status}, 21) ;;
+  }
+
+  dimension: marital_status {
+    type: string
+    sql: REPLACE(${marital_status_source},'_1','') ;;
   }
 
   dimension: lifestyle_charity_causes_contribute {
@@ -753,8 +835,34 @@ view: snowflake_infobase {
     value_format: "0"
   }
 
+  measure: genpop_sum {
+    type: sum
+    sql: ${genpop_cnt} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
   }
-}
+
+  # dimension: name {
+  #   sql: _user_attributes['agency'] ;;
+  # }
+  # dimension: logos {
+  #   type: string
+  #   sql: ${name} ;;
+  #   html:
+  #         {% if name == "Initiative" %}
+  #         &lt;img src="https://d1jfzm9ywrnbsn.cloudfront.net/logo.png" height="170" width="255"&gt;
+  #         {% elsif name == "UM" %}
+  #         &lt;img src="https://th.bing.com/th/id/R.ad92044dcc2ab081e4f09e6a8411dfaa?rik=Q2%2brxYZHMP3YrQ&pid=ImgRaw&r=0" height="170" width="255"&gt;
+  #         {% else %}
+  #         &lt;img src="https://mediaserver.responsesource.com/press-release/84285/dev_logo_rgb_1200dpi.jpg" height="170" width="170"&gt;
+  #         {% endif %} ;;
+  # }
+
+  # dimension: logo {
+  # sql: _user_attributes['agency'] ;;
+  # html: <img src="https://d1jfzm9ywrnbsn.cloudfront.net/logo.{{ value }}.png" /> ;;
+# }
+  }

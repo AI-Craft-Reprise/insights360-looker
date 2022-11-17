@@ -1,15 +1,9 @@
 connection: "insights_athena"
 
-include: "/snowflake_v1/**/*.view"                # include all views in the views/ folder in this project
+include: "/snapchat/views/**/*.view"                # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-
-explore: snowflake_mrisimmons {
-}
-
-explore: snowflake_infobase {
-}
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.

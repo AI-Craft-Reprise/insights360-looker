@@ -2,21 +2,22 @@ view: country {
     derived_table: {
       explore_source: ad_targeting_entities {
         column: name {}
-        column: facets {}
-        filters: {
-          field: ad_targeting_entities.facet
-          value: "urn:li:adTargetingFacet:locations"
-        }
+        column: urn {}
         filters: {
           field: ad_targeting_entities.urn
-          value: "-%state%,-%region%,-%Group%"
+          value: "-%Group%,-%region%,-%state%"
+        }
+        filters: {
+          field: ad_targeting_entities.facet
+          value: "%location%"
         }
       }
     }
-    dimension: name {
+    dimension: country {
+      sql: ${TABLE}.name ;;
       description: ""
     }
-    dimension: facets {
+    dimension: urn {
       description: ""
     }
   }

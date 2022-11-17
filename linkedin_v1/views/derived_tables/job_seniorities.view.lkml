@@ -9,7 +9,8 @@ view: job_seniorities {
       }
     }
   }
-  dimension: name {
+  dimension: job_seniority {
+    sql: ${TABLE}.name ;;
     description: ""
   }
   dimension: urn {

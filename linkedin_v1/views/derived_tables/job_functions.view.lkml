@@ -9,7 +9,8 @@ view: job_functions {
       }
     }
   }
-  dimension: name {
+  dimension: job_function {
+    sql: ${TABLE}.name ;;
     description: ""
   }
   dimension: urn {

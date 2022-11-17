@@ -8,44 +8,12 @@ include: "/amazon_v1/**/*.view"                # include all views in the views/
 # # and define the joins that connect them together.
 #
 
-explore: audience_gender {
+explore: overlapping_audiences {
   hidden: yes
-  join: audience_age_group {
-    type: cross
-    relationship: many_to_many
-  }
-  join: audiences {
-    type: cross
-    relationship: many_to_many
-  }
-  # join: advertisers {
-  #   type: cross
-  #   relationship: many_to_many
-  # }
-  # join: profiles {
-  #   type: cross
-  #   relationship: many_to_many
-  # }
-  # join: audiences_with_advertisers {
-  #   type: cross
-  #   relationship: many_to_many
-  # }
 }
-
-explore: audience_cross {
-  label: "Audience Creator"
-  view_label: "Audience Filters"
-  join: audience_agg {
-    view_label: "Audience Definition"
-    type: cross
-    relationship: many_to_one
-  }
-}
-
-
-explore: overlapping_audiences {}
 
 explore: audiences {
+  hidden: yes
 
   join: overlapping_audiences {
     relationship: one_to_one
@@ -76,10 +44,17 @@ explore: audiences {
     relationship: one_to_one
     sql_on: ${persona_demographics.advertiserid}=${persona_insights.advertiserid} and ${persona_demographics.profileid}=${persona_insights.profileid} ;;
   }
+  join: audience_definition {
+    view_label: "Audience Definition"
+    type: cross
+    relationship: many_to_one
+  }
   }
 
 
-explore: persona_demographics {}
+explore: persona_demographics {
+  hidden: yes
+}
 
 explore: persona_insights {
 
@@ -134,11 +109,12 @@ explore: persona_insights {
   join: gender {
     relationship: one_to_many
     sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.gender)
-      AS t(gender) ;
+      AS t(gender) ;;
+  }
 
 
-    join: gender {
-    sql: CASE WHEN ${gender.gender_affinity}='[Female]' THEN 'Female'}
+    # join: gender {
+    # sql: CASE WHEN ${gender.gender_affinity}='[Female]' THEN 'Female'};;
 
   join: relationship {
     relationship: one_to_many
@@ -158,9 +134,15 @@ explore: persona_insights {
     sql_on: ${persona_insights.personaid}=${personas.personaid} ;;
   }
 
+  join: persona_gender {
+    relationship: one_to_many
+    sql: , UNNEST(_airbyte_data.response.expression.demographics.gender) t(persona_gender) ;;
+  }
 
-
-
+  join: persona_age {
+    relationship: one_to_many
+    sql: , UNNEST(_airbyte_data.response.expression.demographics.age) t(persona_age) ;;
+  }
 
 
   # join: demo_propertyownership_unnest {
@@ -183,3 +165,19 @@ explore: persona_insights {
 
 
 # }
+
+
+explore: personas {
+  # hidden: yes
+
+  join: persona_gender {
+    relationship: one_to_many
+    sql: , UNNEST(_airbyte_data.response.expression.demographics.gender) t(persona_gender) ;;
+  }
+
+  join: persona_age {
+    relationship: one_to_many
+    sql: , UNNEST(_airbyte_data.response.expression.demographics.age) t(persona_age) ;;
+  }
+
+}

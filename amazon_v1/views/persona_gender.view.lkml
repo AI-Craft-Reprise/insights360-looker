@@ -1,42 +1,10 @@
-view: lifeevents {
+view: persona_gender {
+  label: "Persona Age and Gender"
 
-  label: "Life Events"
-
-  dimension: id {
+  dimension: gender {
     type: string
-    sql: ${TABLE}.id ;;
-    primary_key: yes
-  }
-
-   dimension: name_full {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.name ;;
-  }
-
-  dimension: name {
-    type: string
-    sql: substring (${name_full}, 6) ;;
-  }
-
-  dimension: percent {
-    type: number
-    sql: ${TABLE}.percentage ;;
-  }
-
-  dimension: affinity {
-    type: number
-    sql: ${TABLE}.affinity ;;
-  }
-
-  measure: total_percentage {
-    type: sum
-    sql: ${percent}/100 ;;
-  }
-
-  measure: total_affinity {
-    type: sum
-    sql: ${affinity} ;;
+    sql: ${TABLE} ;;
+    html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
   }
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
@@ -68,7 +36,7 @@ view: lifeevents {
   # }
 }
 
-# view: lifeevents {
+# view: persona_gender {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT
