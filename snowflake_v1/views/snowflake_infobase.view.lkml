@@ -275,7 +275,7 @@ view: snowflake_infobase {
   dimension: income_sort {
     hidden: yes
     type: number
-    sql: case when ${income}= 'Less than 15K' then 1
+    sql: case when ${income}= 'Less then 15K' then 1
               when ${income}= '15K-20K' then 2
               when ${income}= '20K-30K' then 3
               when ${income}= '30K-50K' then 4
