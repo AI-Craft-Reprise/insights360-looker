@@ -715,6 +715,8 @@ view: snowflake_infobase {
       ELSE NULL END;;
   }
 
+
+
   dimension: travel_activity {
     type: string
     sql: substring (${travel_travel_activity}, 17) ;;
