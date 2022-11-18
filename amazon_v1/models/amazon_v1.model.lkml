@@ -8,6 +8,14 @@ include: "/amazon_v1/**/*.view"                # include all views in the views/
 # # and define the joins that connect them together.
 #
 
+# datagroup: persona_refresh {
+#   max_cache_age: "24 hours"
+#   sql_trigger: SELECT max(_airbyte_emitted_at) FROM personas ;;
+#   interval_trigger: "15 minutes"
+  # label: "desired label"
+  # description: "description string"
+# }
+
 explore: overlapping_audiences {
   hidden: yes
 }
@@ -57,6 +65,8 @@ explore: persona_demographics {
 }
 
 explore: persona_insights {
+
+  # persist_with: persona_refresh
 
   join: inmarket {
     relationship: one_to_many
@@ -169,6 +179,9 @@ explore: persona_insights {
 
 explore: personas {
   # hidden: yes
+
+  # persist_with: persona_refresh
+
 
   join: persona_gender {
     relationship: one_to_many

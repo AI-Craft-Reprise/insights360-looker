@@ -45,6 +45,7 @@ view: personas {
   }
 
   dimension: lastmodified {
+    hidden: yes
     type: date
     sql: ${response}.lastmodified ;;
   }

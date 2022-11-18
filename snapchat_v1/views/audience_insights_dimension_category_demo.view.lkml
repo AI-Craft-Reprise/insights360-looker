@@ -1,7 +1,6 @@
 view: audience_insights_dimension_category_demo {
   sql_table_name: "airbyte-dev-snapchat-marketing-glue-ctg-db".audience_insights_dimension_category_demo
     ;;
-  suggestions: no
 
   dimension: _airbyte_ab_id {
     hidden: yes
@@ -46,6 +45,118 @@ view: audience_insights_dimension_category_demo {
     sql: ${base_spec}.geos ;;
   }
 
+  dimension: response {
+    type: string
+    hidden: yes
+    sql: ${_airbyte_data}.response ;;
+  }
+
+  dimension: category_name {
+    type: string
+    sql: ${response}.category_name ;;
+  }
+
+  dimension: distribution_name {
+    type: string
+    sql: ${response}.distribution_name ;;
+  }
+
+  dimension:  insight_id {
+    type: string
+    sql: ${response}.insight_id ;;
+  }
+
+  dimension: insight_name {
+    type: string
+    sql: ${response}.insight_name ;;
+  }
+
+  dimension: insight_target_audience_percent {
+    type: number
+    sql: ${response}.insight_target_audience_percent ;;
+  }
+
+  dimension:  insight_reference_audience_percent {
+    type: number
+    sql: ${response}.insight_reference_audience_percent ;;
+  }
+
+  dimension: insight_target_index_to_reference {
+    type: number
+
+    sql: ${response}.insight_target_index_to_reference ;;
+  }
+
+  dimension: insight_metadata {
+    hidden: yes
+    type: string
+    sql: ${response}.insight_metadata ;;
+  }
+
+  dimension: gender {
+    type: string
+    sql: ${insight_metadata}.gender ;;
+  }
+
+  dimension: age_groups {
+    type: string
+    sql: ${insight_metadata}.age_groups ;;
+  }
+
+  dimension: targeting_audience_size_minimum {
+    type: number
+    sql: ${response}.targeting_audience_size_minimum ;;
+  }
+
+  dimension: targeting_audience_size_maximum {
+    type: number
+    sql: ${response}.targeting_audience_size_maximum ;;
+  }
+
+  dimension: reference_audience_size_minimum {
+    type: number
+    sql: ${response}.reference_audience_size_minimum ;;
+  }
+
+  dimension: reference_audience_size_maximum {
+    type: number
+    sql: ${response}.reference_audience_size_maximum ;;
+  }
+
+  measure: reference_audience_size_max {
+    type: sum
+    sql: ${reference_audience_size_maximum} ;;
+  }
+
+  measure: reference_audience_size_min {
+    type: sum
+    sql: ${reference_audience_size_minimum} ;;
+  }
+
+  measure: targeting_audience_size_max {
+    type: sum
+    sql: ${targeting_audience_size_maximum} ;;
+  }
+
+  measure: targeting_audience_size_min {
+    type: sum
+    sql: ${targeting_audience_size_minimum} ;;
+  }
+
+  measure: insight_target_audience_percentage {
+    type: sum
+    sql: ${insight_target_audience_percent} ;;
+  }
+
+  measure: insight_reference_audience_percentage {
+    type: sum
+    sql: ${insight_reference_audience_percent} ;;
+  }
+
+  measure:  insight_target_to_reference_index{
+    type: sum
+    sql: ${insight_target_index_to_reference} ;;
+  }
 
 
   measure: count {

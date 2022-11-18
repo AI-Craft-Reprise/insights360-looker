@@ -18,6 +18,8 @@ include: "/spotify_v1/views/content_insights.view.lkml"                # include
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
+
+
 explore: content_insights {
   join: content_insights_gender {
     sql: ,
