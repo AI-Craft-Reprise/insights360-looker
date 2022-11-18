@@ -72,17 +72,18 @@ view: audience_insights_dimension_category_demo {
   }
 
   dimension: insight_target_audience_percent {
-    type: string
+    type: number
     sql: ${response}.insight_target_audience_percent ;;
   }
 
   dimension:  insight_reference_audience_percent {
-    type: string
+    type: number
     sql: ${response}.insight_reference_audience_percent ;;
   }
 
   dimension: insight_target_index_to_reference {
-    type: string
+    type: number
+
     sql: ${response}.insight_target_index_to_reference ;;
   }
 
@@ -103,25 +104,59 @@ view: audience_insights_dimension_category_demo {
   }
 
   dimension: targeting_audience_size_minimum {
-    type: string
+    type: number
     sql: ${response}.targeting_audience_size_minimum ;;
   }
 
   dimension: targeting_audience_size_maximum {
-    type: string
+    type: number
     sql: ${response}.targeting_audience_size_maximum ;;
   }
 
   dimension: reference_audience_size_minimum {
-    type: string
+    type: number
     sql: ${response}.reference_audience_size_minimum ;;
   }
 
   dimension: reference_audience_size_maximum {
-    type: string
+    type: number
     sql: ${response}.reference_audience_size_maximum ;;
   }
 
+  measure: reference_audience_size_max {
+    type: sum
+    sql: ${reference_audience_size_maximum} ;;
+  }
+
+  measure: reference_audience_size_min {
+    type: sum
+    sql: ${reference_audience_size_minimum} ;;
+  }
+
+  measure: targeting_audience_size_max {
+    type: sum
+    sql: ${targeting_audience_size_maximum} ;;
+  }
+
+  measure: targeting_audience_size_min {
+    type: sum
+    sql: ${targeting_audience_size_minimum} ;;
+  }
+
+  measure: insight_target_audience_percentage {
+    type: sum
+    sql: ${insight_target_audience_percent} ;;
+  }
+
+  measure: insight_reference_audience_percentage {
+    type: sum
+    sql: ${insight_reference_audience_percent} ;;
+  }
+
+  measure:  insight_target_to_reference_index{
+    type: sum
+    sql: ${insight_target_index_to_reference} ;;
+  }
 
 
   measure: count {

@@ -6,4 +6,5 @@ view: persona_age {
     sql: ${TABLE} ;;
     html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
   }
+
 }

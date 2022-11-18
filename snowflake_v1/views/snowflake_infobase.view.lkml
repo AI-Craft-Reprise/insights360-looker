@@ -117,21 +117,24 @@ view: snowflake_infobase {
     hidden: yes
     type: string
     sql: CASE WHEN ${statement} IN ('DEMO_AGE_RANGE_HOH_18_24', 'DEMO_AGE_RANGE_HOH_25_29',
-    'DEMO_AGE_RANGE_HOH_30_34', 'DEMO_AGE_RANGE_HOH_35_39', 'DEMO_AGE_RANGE_HOH_40_44',
-    'DEMO_AGE_RANGE_HOH_45_49', 'DEMO_AGE_RANGE_HOH_50_54', 'DEMO_AGE_RANGE_HOH_55_59',
-    'DEMO_AGE_RANGE_HOH_60_64', 'DEMO_AGE_RANGE_HOH_65PLUS') THEN  ${statement}
-    ELSE NULL END;;
+          'DEMO_AGE_RANGE_HOH_30_34', 'DEMO_AGE_RANGE_HOH_35_39', 'DEMO_AGE_RANGE_HOH_40_44',
+          'DEMO_AGE_RANGE_HOH_45_49', 'DEMO_AGE_RANGE_HOH_50_54', 'DEMO_AGE_RANGE_HOH_55_59',
+          'DEMO_AGE_RANGE_HOH_60_64', 'DEMO_AGE_RANGE_HOH_65PLUS') THEN  ${statement}
+         ELSE NULL END;;
+    description: "Filtering the Statement column to get only the rows with age range"
   }
 
   dimension: age_source {
     hidden: yes
     type: string
     sql: substring (${demo_age}, 20) ;;
+    description: "Removing first 19 characters from demo_age (DEMO_AGE_RANGE)"
   }
 
   dimension: age {
     type: string
     sql: REPLACE(${age_source},'_','-') ;;
+    description: "Replacing all underscores with dashes (30_34 is going to be 30-34)"
   }
 
   dimension: demo_ethnicity {
@@ -222,6 +225,7 @@ view: snowflake_infobase {
     sql:  case when ${presence_of_children_source} = 'N' then 'No'
                when ${presence_of_children_source} = 'Y' then 'Yes'
           end;;
+    description: "Renaming N and Y to be No and Yes"
   }
 
   dimension: demo_household_size {
@@ -264,12 +268,15 @@ view: snowflake_infobase {
               when ${income_source} = '20K_30K_1' then '20K-30K'
               else ${income_source}
               end;;
+    description: "Removing _1 at the end of the string"
   }
 
   dimension: income {
     type: string
     order_by_field: income_sort
     sql: REPLACE(${income_clean},'_','-') ;;
+    description: "NOTE: order_by_field indicates that we want to sort income dimension
+                        based on the values of income_sort"
   }
 
   dimension: income_sort {
@@ -287,6 +294,8 @@ view: snowflake_infobase {
               when ${income}= '200K-250K' then 10
               when ${income}= '250KPLUS' then 11
             else null end;;
+    description: "Creating income_sort dimension that will help us sort the string dimension income
+                  in numerical order, from lowest to highest"
   }
 
   dimension: demo_occupation {
