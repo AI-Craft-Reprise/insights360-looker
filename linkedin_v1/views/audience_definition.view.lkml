@@ -39,31 +39,10 @@ view: audience_definition {
 
     dimension: audience_definition {
       sql: 'Job Function: ' || array_join(${job_function_array}, ', ') || ' Job Seniority: ' || array_join(${job_seniority_array}, ', ') || ' Industry: ' || array_join(${industry_array}, ', ') || ' Company Size: ' || array_join(${company_size_array}, ', ');;
-      # sql: 'audiences=' || array_join(${audience_array}, ',');;
-      # action: {
-      #   label: "Create Amazon Ads Persona"
-      #   url: "https://o4lmwhjjhcvcwvjafxox5vaoia0mihie.lambda-url.us-east-1.on.aws?action=personas.create&{{ value }}"
-      #   form_url: "https://o4lmwhjjhcvcwvjafxox5vaoia0mihie.lambda-url.us-east-1.on.aws?action=looker.form&{{ value }}"
-        # form_param: {
-        #   name: "persona_name"
-        #   type: string
-        #   label: "Desired name for your Persona"
-        #   required: yes
-        # }
-        # form_param: {
-        #   name: "gender"
-        #   type: select
-        #   label: "Desired Gender"
-        #   option: {
-        #     name: "FEMALE"
-        #     label: "FEMALE"
-        #   }
-        #   option: {
-        #     name: "MALE"
-        #     label: "MALE"
-        #   }
-        #   required: yes
-        # }
-    #   }
+      action: {
+        label: "Create LinkedIn Persona"
+        url: "https://y2p26beftohu34h2uck7ictspq0yteia.lambda-url.us-east-1.on.aws?action=personas.create&{{ value }}"
+        form_url: "https://y2p26beftohu34h2uck7ictspq0yteia.lambda-url.us-east-1.on.aws?action=looker.form&{{ value }}"
+      }
     }
   }
