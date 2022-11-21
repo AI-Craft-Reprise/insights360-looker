@@ -1,7 +1,6 @@
 view: audience_segment_insights {
   sql_table_name: "airbyte-dev-spotify-ads-glue-ctg-db".audience_segment_insights
     ;;
-  suggestions: no
 
   dimension: _airbyte_ab_id {
     hidden: yes
@@ -57,21 +56,25 @@ view: audience_segment_insights {
   }
 
   dimension: name {
+    label: "Audience Segment Name"
     type: string
     sql: ${segment_info}.name ;;
   }
 
   dimension: id {
+    hidden: yes
     type: string
     sql: ${segment_info}.id ;;
   }
 
   dimension: field {
+    html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
     type: string
     sql: ${response}.field ;;
   }
 
   dimension: aggregation {
+    html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
     type: string
     sql: ${response}.aggregation ;;
   }
@@ -87,15 +90,61 @@ view: audience_segment_insights {
   }
 
   dimension: insight_value {
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${response}.insight_value ;;
   }
 
   measure: insights_value {
-    type: sum
+    type: number
     sql: ${insight_value} ;;
   }
+
+  dimension: age_group {
+    type: string
+    sql: case when ${dimension} = 'age_group' then ${insight_key}
+          else null end;;
+  }
+
+  dimension: gender {
+    type: string
+    sql: case when ${dimension} = 'gender' then ${insight_key}
+      else null end;;
+  }
+
+  dimension: device {
+    type: string
+    sql: case when ${dimension} = 'device' then ${insight_key}
+      else null end;;
+  }
+
+  dimension: days_of_week {
+    type: string
+    sql: case when ${dimension} = 'days_of_week' then ${insight_key}
+      else null end;;
+      order_by_field: days_of_week_sort
+  }
+
+  dimension: days_of_week_sort {
+    hidden: yes
+    type: number
+    sql: case when ${days_of_week}='Mon' then 1
+              when ${days_of_week}='Tue' then 2
+              when ${days_of_week}='Wed' then 3
+              when ${days_of_week}='Thu' then 4
+              when ${days_of_week}='Fri' then 5
+              when ${days_of_week}='Sat' then 6
+              when ${days_of_week}='Sun' then 7
+              end
+              ;;
+  }
+
+  dimension: time_of_day {
+    type: string
+    sql: case when ${dimension} = 'time_of_day' then ${insight_key}
+      else null end;;
+  }
+
 
   measure: count {
     type: count
