@@ -26,6 +26,7 @@ view: age {
   measure: total_age_affinity {
     type: sum
     sql: ${age_affinity} ;;
+    value_format: "0.0"
   }
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;

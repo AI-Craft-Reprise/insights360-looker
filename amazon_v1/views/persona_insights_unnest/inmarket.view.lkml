@@ -35,6 +35,7 @@ view: inmarket {
   measure: total_affinity {
     type: sum
     sql: ${affinity} ;;
+    value_format: "0.0"
   }
 
 

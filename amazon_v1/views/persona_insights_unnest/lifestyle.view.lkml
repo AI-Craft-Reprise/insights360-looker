@@ -38,6 +38,7 @@ view: lifestyle {
   measure: total_affinity {
     type: sum
     sql: ${affinity} ;;
+    value_format: "0.0"
   }
 
   # # You can specify the table name if it's different from the view name:

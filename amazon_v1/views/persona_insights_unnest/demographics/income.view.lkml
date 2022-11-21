@@ -41,6 +41,7 @@ dimension: subject_ordering {
   measure: total_income_affinity {
     type: sum
     sql: ${income_affinity} ;;
+    value_format: "0.0"
   }
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;

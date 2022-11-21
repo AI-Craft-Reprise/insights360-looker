@@ -64,7 +64,7 @@ view: personas {
   dimension: gender {
     type: string
     sql: ${demo}.gender ;;
-    html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
+    html: <p style="color: black; font-size:80%; text-align:center">{{ rendered_value }}</p> ;;
   }
 
   dimension: age {
