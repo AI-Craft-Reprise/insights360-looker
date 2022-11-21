@@ -263,7 +263,7 @@ view: snowflake_infobase {
   dimension: income_clean {
     hidden: yes
     type: string
-    sql: case when ${income_source} = 'LT_15K_1'  then 'Less then 15K'
+    sql: case when ${income_source} = 'LT_15K_1'  then 'Less than 15K'
               when ${income_source} = '15K_20K_1' then '15K-20K'
               when ${income_source} = '20K_30K_1' then '20K-30K'
               else ${income_source}
@@ -282,7 +282,7 @@ view: snowflake_infobase {
   dimension: income_sort {
     hidden: yes
     type: number
-    sql: case when ${income}= 'Less then 15K' then 1
+    sql: case when ${income}= 'Less than 15K' then 1
               when ${income}= '15K-20K' then 2
               when ${income}= '20K-30K' then 3
               when ${income}= '30K-50K' then 4
