@@ -4,10 +4,14 @@ view: audience_filter {
       explore_source: job_functions {
         # column: company { field: company.company }
         column: company_size { field: company_size.company_size }
+        column: company_size_urn {field:company_size.company_size_urn}
         # column: country { field: country.country }
         column: industry { field: industry.industry }
+        column: industry_urn {field: industry.industry_urn}
         column: job_function {}
+        column: job_function_urn {field:job_functions.job_function_urn}
         column: job_seniority { field: job_seniorities.job_seniority }
+        column: job_seniority_urn {field: job_seniorities.job_seniority_urn}
       }
     }
     # dimension: company {
@@ -28,6 +32,11 @@ view: audience_filter {
     dimension: job_seniority {
       description: ""
     }
+
+    dimension: company_size_urn {}
+    dimension: industry_urn {}
+    dimension: job_seniority_urn {}
+    dimension: job_function_urn {}
 
     measure: job_function_array {
       sql: array_agg(distinct ${job_function}) ;;
@@ -52,6 +61,23 @@ view: audience_filter {
   measure: industry_array {
     sql: array_agg(distinct ${industry}) ;;
   }
+
+  measure: job_function_urn_array {
+    sql: array_agg(distinct ${job_function_urn}) ;;
+  }
+
+  measure: company_size_urn_array {
+    sql: array_agg(distinct ${company_size_urn}) ;;
+  }
+
+  measure: job_seniority_urn_array {
+    sql: array_agg(distinct ${job_seniority_urn}) ;;
+  }
+
+  measure: industry_urn_array {
+    sql: array_agg(distinct ${industry_urn}) ;;
+  }
+
 
 
 

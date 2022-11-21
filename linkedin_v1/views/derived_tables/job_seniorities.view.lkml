@@ -13,7 +13,8 @@ view: job_seniorities {
     sql: ${TABLE}.name ;;
     description: ""
   }
-  dimension: urn {
+  dimension: job_seniority_urn {
+    sql: ${TABLE}.urn ;;
     description: ""
   }
 }

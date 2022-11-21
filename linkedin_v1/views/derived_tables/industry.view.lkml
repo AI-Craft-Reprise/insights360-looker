@@ -13,7 +13,8 @@ view: industry {
       sql: ${TABLE}.name ;;
       description: ""
     }
-    dimension: urn {
+    dimension: industry_urn {
+      sql: ${TABLE}.urn ;;
       description: ""
     }
   }

@@ -13,7 +13,8 @@ view: job_functions {
     sql: ${TABLE}.name ;;
     description: ""
   }
-  dimension: urn {
+  dimension: job_function_urn {
+    sql: ${TABLE}.urn ;;
     description: ""
   }
 }

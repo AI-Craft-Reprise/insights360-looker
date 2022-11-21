@@ -2,11 +2,15 @@ view: audience_definition {
     derived_table: {
       explore_source: audience_filter {
         column: job_function_array {}
+        column: job_function_urn_array {}
         # column: country_array {}
         column: industry_array {}
+        column: industry_urn_array {}
         # column: company_array {}
         column: company_size_array {}
+        column: company_size_urn_array {}
         column: job_seniority_array {}
+        column: job_seniority_urn_array {}
         bind_all_filters: yes
       }
     }
@@ -15,6 +19,11 @@ view: audience_definition {
       description: ""
       type: string
     }
+
+  dimension: job_function_urn_array {
+    description: ""
+    type: string
+  }
     # dimension: country_array {
     #   description: ""
     #   type: number
@@ -23,6 +32,11 @@ view: audience_definition {
       description: ""
       type: string
     }
+
+  dimension: industry_urn_array {
+    description: ""
+    type: string
+  }
     # dimension: company_array {
     #   description: ""
     #   type: number
@@ -31,14 +45,25 @@ view: audience_definition {
       description: ""
       type: string
     }
+
+  dimension: job_seniority_urn_array {
+    description: ""
+    type: string
+  }
   dimension: company_size_array {
     description: ""
     type: string
   }
 
+  dimension: company_size_urn_array {
+    description: ""
+    type: string
+  }
+
+
 
     dimension: audience_definition {
-      sql: 'Job Function: ' || array_join(${job_function_array}, ', ') || ' Job Seniority: ' || array_join(${job_seniority_array}, ', ') || ' Industry: ' || array_join(${industry_array}, ', ') || ' Company Size: ' || array_join(${company_size_array}, ', ');;
+      sql: 'Job Function: ' || array_join(${job_function_urn_array}, ', ') || ' Job Seniority: ' || array_join(${job_seniority_urn_array}, ', ') || ' Industry: ' || array_join(${industry_urn_array}, ', ') || ' Company Size: ' || array_join(${company_size_urn_array}, ', ');;
       action: {
         label: "Create LinkedIn Persona"
         url: "https://y2p26beftohu34h2uck7ictspq0yteia.lambda-url.us-east-1.on.aws?action=personas.create&{{ value }}"
