@@ -21,11 +21,16 @@ explore: content_insights {
     relationship: one_to_many
     sql: , UNNEST(_airbyte_data.request.body.filters.gender) t (gender) ;;
   }
-  join: country {
+  join: content_country {
     relationship: one_to_many
-    sql: , UNNEST(_airbyte_data.request.body.filters.country) t (country) ;;
+    sql: , UNNEST(_airbyte_data.request.body.filters.country) t (content_country) ;;
   }
 }
 
 
-explore: listener_insights {}
+explore: listener_insights {
+  # join:  {
+  #   relationship: one_to_many
+  #   sql: , UNNEST(_airbyte_data.request.body.filters.country) t (country) ;;
+  # }
+}

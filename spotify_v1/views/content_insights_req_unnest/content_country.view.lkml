@@ -1,7 +1,8 @@
-view: country {
+view: content_country {
   label: "Request Filters"
 
-  dimension: country {
+  dimension: content_country {
+    label: "Country"
     type: string
     sql: ${TABLE} ;;
     suggestions: ["CA", "GB", "US"]
