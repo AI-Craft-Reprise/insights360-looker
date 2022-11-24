@@ -1,7 +1,6 @@
 view: snowflake_infobase {
   sql_table_name: "airbyte-dev-snowflake-glue-ctg-db".snowflake_infobase
     ;;
-  # suggestions: no
 
   dimension: _airbyte_ab_id {
     hidden: yes
@@ -161,7 +160,7 @@ view: snowflake_infobase {
     hidden: yes
     type: string
     sql: CASE WHEN ${statement} IN ('DEMO_GENDER_FEMALE', 'DEMO_GENDER_MALE') THEN  ${statement}
-    ELSE NULL END;;
+         END;;
   }
 
   dimension: gender {

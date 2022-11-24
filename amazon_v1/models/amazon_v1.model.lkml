@@ -21,43 +21,43 @@ explore: overlapping_audiences {
 }
 
 explore: audiences {
-  hidden: yes
+  # hidden: yes
 
   join: overlapping_audiences {
     relationship: one_to_one
     sql_on: ${audiences.audienceid}=${overlapping_audiences.audienceid} ;;
   }
 
-  join: audiences_with_advertisers {
-    relationship: one_to_one
-    sql_on: ${audiences.audienceid}=${audiences_with_advertisers.audienceid} ;;
-  }
+  # join: audiences_with_advertisers {
+  #   relationship: one_to_one
+  #   sql_on: ${audiences.audienceid}=${audiences_with_advertisers.audienceid} ;;
+  # }
 
-  join: advertisers {
-    relationship: one_to_many
-    sql_on: ${audiences_with_advertisers.advertiserid}=${advertisers.advertiserid} ;;
-  }
+  # join: advertisers {
+  #   relationship: one_to_many
+  #   sql_on: ${audiences_with_advertisers.advertiserid}=${advertisers.advertiserid} ;;
+  # }
 
-  join: overlapping_audiences_with_advertisers {
-    relationship: one_to_many
-    sql_on: ${audiences.audienceid}=${overlapping_audiences_with_advertisers.audienceid} ;;
-  }
+  # join: overlapping_audiences_with_advertisers {
+  #   relationship: one_to_many
+  #   sql_on: ${audiences.audienceid}=${overlapping_audiences_with_advertisers.audienceid} ;;
+  # }
 
-  join: persona_demographics {
-    relationship: one_to_many
-    sql_on: ${advertisers.advertiserid}=${persona_demographics.advertiserid} and ${advertisers.profileid}=${persona_demographics.profileid} ;;
-  }
+  # join: persona_demographics {
+  #   relationship: one_to_many
+  #   sql_on: ${advertisers.advertiserid}=${persona_demographics.advertiserid} and ${advertisers.profileid}=${persona_demographics.profileid} ;;
+  # }
 
-  join: persona_insights {
-    relationship: one_to_one
-    sql_on: ${persona_demographics.advertiserid}=${persona_insights.advertiserid} and ${persona_demographics.profileid}=${persona_insights.profileid} ;;
-  }
+  # join: persona_insights {
+  #   relationship: one_to_one
+  #   sql_on: ${persona_demographics.advertiserid}=${persona_insights.advertiserid} and ${persona_demographics.profileid}=${persona_insights.profileid} ;;
+  # }
   join: audience_definition {
     view_label: "Audience Definition"
     type: cross
     relationship: many_to_one
   }
-  }
+}
 
 
 explore: persona_demographics {
@@ -153,6 +153,8 @@ explore: persona_insights {
     relationship: one_to_many
     sql: , UNNEST(_airbyte_data.response.expression.demographics.age) t(persona_age) ;;
   }
+
+
 
 
   # join: demo_propertyownership_unnest {

@@ -20,6 +20,13 @@ view: listener_insights {
     sql: ${TABLE}._airbyte_emitted_at ;;
   }
 
+  dimension: request {
+    # hidden: yes
+    type: string
+    sql: ${_airbyte_data}.request ;;
+  }
+
+
   dimension: response {
     hidden: yes
     type: string
@@ -91,6 +98,45 @@ view: listener_insights {
 
               end
               ;;
+  }
+
+  dimension: hour_of_day {
+    type: string
+    sql: case when ${dimension} = 'time_of_day' then ${insight_key}
+      else null end;;
+    order_by_field: hour_sort
+  }
+
+  dimension: hour_sort {
+    hidden: yes
+    type: number
+    sql: case when ${hour_of_day}= '0' then 1
+              when ${hour_of_day}= '1' then 2
+              when ${hour_of_day}= '2' then 3
+              when ${hour_of_day}= '3' then 4
+              when ${hour_of_day}= '4' then 5
+              when ${hour_of_day}= '5' then 6
+              when ${hour_of_day}= '6' then 7
+              when ${hour_of_day}= '7' then 8
+              when ${hour_of_day}= '8' then 9
+              when ${hour_of_day}= '9' then 10
+              when ${hour_of_day}= '10' then 11
+              when ${hour_of_day}= '11' then 12
+              when ${hour_of_day}= '12' then 13
+              when ${hour_of_day}= '13' then 14
+              when ${hour_of_day}= '14' then 15
+              when ${hour_of_day}= '15' then 16
+              when ${hour_of_day}= '16' then 17
+              when ${hour_of_day}= '17' then 18
+              when ${hour_of_day}= '18' then 19
+              when ${hour_of_day}= '19' then 20
+              when ${hour_of_day}= '20' then 21
+              when ${hour_of_day}= '21' then 22
+              when ${hour_of_day}= '22' then 23
+              when ${hour_of_day}= '23' then 24
+            else null end;;
+    description: "Creating hour_sort dimension that will help us sort the string dimension hour_of_day
+    in numerical order, from lowest to highest"
   }
 
   measure: value {
