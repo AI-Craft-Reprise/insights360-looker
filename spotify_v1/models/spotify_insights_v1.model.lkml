@@ -29,8 +29,8 @@ explore: content_insights {
 
 
 explore: listener_insights {
-  # join:  {
-  #   relationship: one_to_many
-  #   sql: , UNNEST(_airbyte_data.request.body.filters.country) t (country) ;;
-  # }
+  join: listener_country {
+    relationship: one_to_many
+    sql: , UNNEST(_airbyte_data.request.body.filters.country) t (content_country) ;;
+  }
 }
