@@ -46,9 +46,19 @@ view: personas {
 
   dimension: lastmodified {
     hidden: yes
-    type: date
+    type: string
     sql: ${response}.lastmodified ;;
   }
+
+  dimension: lastmodifieddate {
+    sql: ${lastmodified} ;;
+    type: date_time
+  }
+
+  # dimension: date_utc {
+  #   type: string
+  #   sql: cast(${lastmodified} as varchar) ;;
+  # }
 
   dimension: expression {
     type: string
@@ -83,6 +93,16 @@ view: personas {
   dimension: name {
     type: string
     sql: ${response}.name ;;
+  }
+
+  dimension: last_modified {
+    type: string
+    sql: substr(${lastmodified}, 1, 21) ;;
+  }
+
+  dimension: audience_name_date{
+    type: string
+    sql: concat(${name},', ', ${last_modified}, ' UTC') ;;
   }
 
   dimension: personaid {

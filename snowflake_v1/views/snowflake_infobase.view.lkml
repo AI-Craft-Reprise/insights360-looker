@@ -829,18 +829,21 @@ view: snowflake_infobase {
     type: sum
     sql: ${target_percent} ;;
     value_format_name: percent_1
+    html: <p></p> ;;
   }
 
   measure: genpop_percentage {
     type: sum
     sql: ${genpop_percent} ;;
     value_format_name: percent_1
+    html: <p></p> ;;
   }
 
   measure: index {
     type: sum
     sql: ${target_index} ;;
     value_format: "0"
+    html: <p></p> ;;
   }
 
   measure: genpop_cnt_calc {
