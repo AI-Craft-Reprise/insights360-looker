@@ -191,7 +191,7 @@ view: snowflake_infobase {
     type: string
     sql: CASE WHEN ${statement} IN ('DEMO_PREFER_LANGUAGE_INDIVIDUAL_BILINGUAL_SPANISH_ENGLISH',
               'DEMO_PREFER_LANGUAGE_INDIVIDUAL_NON_HISPANIC', 'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPANISH',
-              'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPEAK_SPANISH') THEN  ${statement}
+              'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPEAK_SPANISH') THEN  lower(${statement})
       ELSE NULL END;;
   }
 
@@ -204,6 +204,11 @@ view: snowflake_infobase {
   dimension: prefer_language {
     type: string
     sql: REPLACE(${prefer_language_source},'_',' ') ;;
+  }
+
+  dimension: prefer_language_capital {
+    type: string
+    sql: concat(UPPER(SUBSTRING(${prefer_language},1,1)),LOWER(SUBSTRING(${prefer_language},2)))  ;;
   }
 
   dimension: demo_presence_of_children{
@@ -829,21 +834,21 @@ view: snowflake_infobase {
     type: sum
     sql: ${target_percent} ;;
     value_format_name: percent_1
-    html: <p></p> ;;
+    # html: <p></p> ;;
   }
 
   measure: genpop_percentage {
     type: sum
     sql: ${genpop_percent} ;;
     value_format_name: percent_1
-    html: <p></p> ;;
+    # html: <p></p> ;;
   }
 
   measure: index {
     type: sum
     sql: ${target_index} ;;
     value_format: "0"
-    html: <p></p> ;;
+    # html: <p></p> ;;
   }
 
   measure: genpop_cnt_calc {

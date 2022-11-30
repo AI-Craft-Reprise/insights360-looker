@@ -16,6 +16,8 @@ datagroup: persona_refresh {
   # description: "description string"
 }
 
+explore: overlapping_audiences {}
+
 
 explore: audiences {
   # hidden: yes
