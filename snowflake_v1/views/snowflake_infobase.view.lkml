@@ -482,6 +482,7 @@ view: snowflake_infobase {
     sql: substring (${lifestyle_demo_prefer_language}, 22) ;;
   }
 
+
   dimension: finance_finance_affluence {
     hidden: yes
     type: string
