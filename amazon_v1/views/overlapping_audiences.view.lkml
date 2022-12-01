@@ -95,7 +95,7 @@ view: overlapping_audiences {
   dimension: audienceid {
     type: string
     sql: ${audiencemetadata}.audienceid ;;
-    primary_key: yes
+    # primary_key: yes
   }
 
   dimension: name_full {
