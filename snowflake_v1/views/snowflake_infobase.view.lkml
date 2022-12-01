@@ -144,7 +144,11 @@ view: snowflake_infobase {
     'DEMO_ETHNICITY_INDIVIDUAL_WHITE') THEN  ${statement}
     ELSE NULL END;;
   }
+dimension: geo_step1 {
+  type: string
+  sql: CASE WHEN ${category} = 'geo' THEN ${statement} else null end  ;;
 
+}
   dimension: ethnicity_source {
     hidden: yes
     type: string
