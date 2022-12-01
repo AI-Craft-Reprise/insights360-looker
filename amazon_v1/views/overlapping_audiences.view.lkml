@@ -45,7 +45,18 @@ view: overlapping_audiences {
 
   dimension: req_name {
     type: string
-    sql: SUBSTRING (${requestedaudiencemetadata}.name, 6) ;;
+    sql: ${requestedaudiencemetadata}.name ;;
+  }
+
+  dimension: req_audience_name {
+    type: string
+    sql: CASE WHEN ${req_category}='IN-Market' then SUBSTRING (${req_name}, 6)
+              WHEN (${req_category}='Lookalike' and ${req_name} LIKE 'AL%') THEN SUBSTRING (${req_name}, 6)
+              WHEN (${req_category}='Lookalike' and ${req_name} LIKE 'Lookalike%') THEN SUBSTRING (${req_name}, 13)
+              WHEN (${req_category}='Lifestyle' and ${req_name} LIKE 'LS - %') THEN SUBSTRING (${req_name}, 6)
+              WHEN (${req_category}='Lifestyle' and ${req_name} LIKE 'LS -%') THEN SUBSTRING (${req_name}, 5)
+              WHEN (${req_category}='Life event' and ${req_name} LIKE 'LS - %') THEN SUBSTRING (${req_name}, 6)
+              ELSE ${req_name} END;;
   }
 
   dimension: req_category {
@@ -84,7 +95,7 @@ view: overlapping_audiences {
   dimension: audienceid {
     type: string
     sql: ${audiencemetadata}.audienceid ;;
-    primary_key: yes
+    # primary_key: yes
   }
 
   dimension: name_full {
