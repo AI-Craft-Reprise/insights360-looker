@@ -323,6 +323,12 @@ view: snowflake_infobase {
     sql: REPLACE(${occupation_source},'_',' ') ;;
   }
 
+  # dimension: occupation_final {
+  #   type: string
+  #   sql: concat(upper(substr(${occupation},1,1)),substr(${occupation_step1},2,length(${occupation_step1})),' ','');;
+  # }
+
+
   dimension: demo_marital_status {
     hidden: yes
     type: string
@@ -862,6 +868,12 @@ view: snowflake_infobase {
     type: count
     drill_fields: []
   }
+
+  dimension: link_info {
+      type: string
+      sql: ${audience_name};;
+      html: <a href="url/{{value}}"> Click here to see the info on the Audience </a>;;
+    }
 
   # dimension: name {
   #   sql: _user_attributes['agency'] ;;
