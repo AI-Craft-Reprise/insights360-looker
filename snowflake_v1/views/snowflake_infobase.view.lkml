@@ -132,7 +132,7 @@ view: snowflake_infobase {
 
   dimension: age {
     type: string
-    sql: REPLACE(${age_source},'_','-') ;;
+    sql: REPLACE(${age_source},'_','-');;
     description: "Replacing all underscores with dashes (30_34 is going to be 30-34)"
   }
 
@@ -146,20 +146,29 @@ view: snowflake_infobase {
   }
 dimension: geo_step1 {
   type: string
-  sql: CASE WHEN ${category} = 'geo' THEN ${statement} else null end  ;;
-
+  sql: CASE WHEN ${category} = 'geo' THEN ${statement} else null end
+;; hidden: yes
 }
+dimension: geo {
+  type: string
+  sql:substring (${geo_step1}, 9) ;;
+}
+
   dimension: ethnicity_source {
     hidden: yes
     type: string
     sql: substring (${demo_ethnicity}, 27) ;;
   }
 
-  dimension: ethnicity {
+  dimension: ethnicity_step2{
     type: string
-    sql: REPLACE(${ethnicity_source},'_',' ') ;;
+    sql: REPLACE(${ethnicity_source},'_',' ')
+  ;;
   }
-
+dimension: ethnicity{
+  type: string
+  sql: concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)));;
+}
   dimension: demo_gender {
     hidden: yes
     type: string
@@ -167,11 +176,14 @@ dimension: geo_step1 {
          END;;
   }
 
-  dimension: gender {
+  dimension: gender_step1 {
     type: string
     sql: substring (${demo_gender}, 13) ;;
   }
-
+dimension: gender {
+  type: string
+  sql: concat(UPPER(SUBSTRING(${gender_step1},1,1)),LOWER(SUBSTRING(${gender_step1},2))) ;;
+}
   dimension: demo_home_ownership {
     hidden: yes
     type: string
@@ -874,11 +886,23 @@ dimension: geo_step1 {
     drill_fields: []
   }
 
+  dimension: link_filter_workaround {
+    hidden: yes
+    sql: case when ${client}='JBL' then 'JBL%20Info.docx?d=w2c8f35348664439990e8cc547497abbc&csf=1&web=1&e=EZG2Rg'
+              when ${client}='CCL' then 'CCL%20Info.docx?d=w84014161a74f4fe890ed77eb180f944f&csf=1&web=1&e=3fMK1l'
+              when ${client}='Nike' then 'Nike%20Info.docx?d=w1f18d33179134114a75bba0c808fd001&csf=1&web=1&e=dkPrUM'
+              end;;
+    description: "dimension created to define the links depending on the client/audience"
+  }
+
   dimension: link_info {
       type: string
-      sql: ${audience_name};;
-      html: <a href="url/{{value}}"> Click here to see the info on the Audience </a>;;
+      sql: ${link_filter_workaround};;
+      html: <a href="https://interpublic.sharepoint.com/:w:/r/sites/TestLooker/Infobase%20Documents/{{value}}"><font size="5"> Click here to see the info on the Audience </font></a>;;
+      description: "dimension that is shown on the dashboard, its value changes with the change of Client (it can also be set to change based on the audience, if one client has several audiences)"
     }
+
+
 
   # dimension: name {
   #   sql: _user_attributes['agency'] ;;
