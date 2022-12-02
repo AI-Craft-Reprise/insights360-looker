@@ -869,11 +869,23 @@ view: snowflake_infobase {
     drill_fields: []
   }
 
+  dimension: link_filter_workaround {
+    hidden: yes
+    sql: case when ${client}='JBL' then 'JBL%20Info.docx?d=w2c8f35348664439990e8cc547497abbc&csf=1&web=1&e=EZG2Rg'
+              when ${client}='CCL' then 'CCL%20Info.docx?d=w84014161a74f4fe890ed77eb180f944f&csf=1&web=1&e=3fMK1l'
+              when ${client}='Nike' then 'Nike%20Info.docx?d=w1f18d33179134114a75bba0c808fd001&csf=1&web=1&e=dkPrUM'
+              end;;
+    description: "dimension created to define the links depending on the client/audience"
+  }
+
   dimension: link_info {
       type: string
-      sql: ${audience_name};;
-      html: <a href="url/{{value}}"> Click here to see the info on the Audience </a>;;
+      sql: ${link_filter_workaround};;
+      html: <a href="https://interpublic.sharepoint.com/:w:/r/sites/TestLooker/Infobase%20Documents/{{value}}"><font size="5"> Click here to see the info on the Audience </font></a>;;
+      description: "dimension that is shown on the dashboard, its value changes with the change of Client (it can also be set to change based on the audience, if one client has several audiences)"
     }
+
+
 
   # dimension: name {
   #   sql: _user_attributes['agency'] ;;
