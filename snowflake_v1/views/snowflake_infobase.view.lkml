@@ -244,25 +244,18 @@ dimension: gender {
     sql: concat(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)),LOWER(SUBSTRING(${prefer_language_capitalletters},2)))  ;;
   }
 
-  dimension: test1 {
-    sql: case when length(ltrim(rtrim(${prefer_language}))) = 2 then (${prefer_language})
-              when length(ltrim(rtrim(${prefer_language}))) > 2 and strpos(ltrim(rtrim(${prefer_language})), ' ') = 0
-              then CONCAT(UPPER(SUBSTRING(${prefer_language},1,1)), '',lower(SUBSTRING(${prefer_language},2,length(${prefer_language}))))
-              when strpos(ltrim(rtrim(${prefer_language})), ' ') <> 0 then
-   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language})),1,1)),
-    lower(substring(${prefer_language},2,strpos(${prefer_language}, ' ')-1)),
-    upper(substring(${prefer_language},strpos(${prefer_language}, ' ')+1,1)),
-    lower(substring(${prefer_language},strpos(${prefer_language}, ' ')+2,length(${prefer_language}) - strpos(${prefer_language}, ' '))))
+  # dimension: test1 {
+  #   sql: case when length(ltrim(rtrim(${prefer_language}))) = 2 then (${prefer_language})
+  #             when length(ltrim(rtrim(${prefer_language}))) > 2 and strpos(ltrim(rtrim(${prefer_language})), ' ') = 0
+  #             then CONCAT(UPPER(SUBSTRING(${prefer_language},1,1)), '',lower(SUBSTRING(${prefer_language},2,length(${prefer_language}))))
+  #             when strpos(ltrim(rtrim(${prefer_language})), ' ') <> 0 then
+  # CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language})),1,1)),
+  #   lower(substring(${prefer_language},2,strpos(${prefer_language}, ' ')-1)),
+  #   upper(substring(${prefer_language},strpos(${prefer_language}, ' ')+1,1)),
+  #   lower(substring(${prefer_language},strpos(${prefer_language}, ' ')+2,length(${prefer_language}) - strpos(${prefer_language}, ' '))))
 
-    when strpos(ltrim(rtrim(${prefer_language})), ' ') <> 0  and length(ltrim(rtrim(${prefer_language}))) > 3 then
-   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language})),1,1)),
-    lower(substring(${prefer_language},2,strpos(${prefer_language}, ' ')-1)),
-    upper(substring(${prefer_language},strpos(${prefer_language}, ' ')+1,1)),
-    lower(substring(${prefer_language},strpos(${prefer_language}, ' ')+2,length(${prefer_language}) - strpos(${prefer_language}, ' '))))
-
-
-      else ${prefer_language} end ;;
-  }
+  #     else ${prefer_language} end ;;
+  # }
 
   dimension: demo_presence_of_children{
     hidden: yes
@@ -925,9 +918,9 @@ dimension: gender {
 
   dimension: link_filter_workaround {
     hidden: yes
-    sql: case when ${client}='JBL' then 'JBL%20Info.docx?d=w2c8f35348664439990e8cc547497abbc&csf=1&web=1&e=EZG2Rg'
-              when ${client}='CCL' then 'CCL%20Info.docx?d=w84014161a74f4fe890ed77eb180f944f&csf=1&web=1&e=3fMK1l'
-              when ${client}='Nike' then 'Nike%20Info.docx?d=w1f18d33179134114a75bba0c808fd001&csf=1&web=1&e=dkPrUM'
+    sql: case when ${client}='JBL' then 'doc.aspx?sourcedoc={2c8f3534-8664-4399-90e8-cc547497abbc}&action=edit'
+              when ${client}='CCL' then 'doc.aspx?sourcedoc={84014161-a74f-4fe8-90ed-77eb180f944f}&action=edit'
+              when ${client}='Nike' then 'Doc.aspx?sourcedoc=%[…]ile=Nike%20Info.docx&action=default&mobileredirect=true'
               end;;
     description: "dimension created to define the links depending on the client/audience"
   }
@@ -935,11 +928,9 @@ dimension: gender {
   dimension: link_info {
       type: string
       sql: ${link_filter_workaround};;
-      html: <a href="https://interpublic.sharepoint.com/:w:/r/sites/TestLooker/Infobase%20Documents/{{value}}"><font size="5"> Click here to see the info on the Audience </font></a>;;
+      html: <a href="https://interpublic.sharepoint.com/sites/TestLooker/_layouts/15/{{value}}"><font size="5"> Click here to see the info on the Audience </font></a>;;
       description: "dimension that is shown on the dashboard, its value changes with the change of Client (it can also be set to change based on the audience, if one client has several audiences)"
     }
-
-
 
   # dimension: name {
   #   sql: _user_attributes['agency'] ;;
