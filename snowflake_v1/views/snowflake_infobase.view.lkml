@@ -165,22 +165,22 @@ dimension: geo {
     sql: REPLACE(${ethnicity_source},'_',' ')
   ;;
   }
-  dimension: ethnicity{
-   type: string
-   sql: concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)));;
-  }
+  # dimension: ethnicity_v1{
+  # type: string
+  # sql: concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)));;
+  # }
 
-  dimension: test {
-    sql: case when length(ltrim(rtrim(${ethnicity}))) = 2 then (${ethnicity})
-              when length(ltrim(rtrim(${ethnicity}))) > 2 and strpos(ltrim(rtrim(${ethnicity})), ' ') = 0
-              then CONCAT(UPPER(SUBSTRING(${ethnicity},1,1)), '',lower(SUBSTRING(${ethnicity},2,length(${ethnicity}))))
-              when strpos(ltrim(rtrim(${ethnicity})), ' ') <> 0 then
-   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${ethnicity})),1,1)),
-    lower(substring(${ethnicity},2,strpos(${ethnicity}, ' ')-1)),
-    upper(substring(${ethnicity},strpos(${ethnicity}, ' ')+1,1)),
-    lower(substring(${ethnicity},strpos(${ethnicity}, ' ')+2,length(${ethnicity}) - strpos(${ethnicity}, ' '))))
+  dimension: ethnicity {
+    sql: case when length(ltrim(rtrim(${ethnicity_step2}))) = 2 then (${ethnicity_step2})
+              when length(ltrim(rtrim(${ethnicity_step2}))) > 2 and strpos(ltrim(rtrim(${ethnicity_step2})), ' ') = 0
+              then CONCAT(UPPER(SUBSTRING(${ethnicity_step2},1,1)), '',lower(SUBSTRING(${ethnicity_step2},2,length(${ethnicity_step2}))))
+              when strpos(ltrim(rtrim(${ethnicity_step2})), ' ') <> 0 then
+   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${ethnicity_step2})),1,1)),
+    lower(substring(${ethnicity_step2},2,strpos(${ethnicity_step2}, ' ')-1)),
+    upper(substring(${ethnicity_step2},strpos(${ethnicity_step2}, ' ')+1,1)),
+    lower(substring(${ethnicity_step2},strpos(${ethnicity_step2}, ' ')+2,length(${ethnicity_step2}) - strpos(${ethnicity_step2}, ' '))))
 
-else ${ethnicity} end ;;
+else ${ethnicity_step2} end ;;
   }
 
 
