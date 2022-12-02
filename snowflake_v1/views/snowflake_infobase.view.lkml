@@ -165,10 +165,26 @@ dimension: geo {
     sql: REPLACE(${ethnicity_source},'_',' ')
   ;;
   }
-dimension: ethnicity{
-  type: string
-  sql: concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)));;
-}
+  dimension: ethnicity{
+   type: string
+   sql: concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)));;
+  }
+
+  dimension: test {
+    sql: case when length(ltrim(rtrim(${ethnicity}))) = 2 then (${ethnicity})
+              when length(ltrim(rtrim(${ethnicity}))) > 2 and strpos(ltrim(rtrim(${ethnicity})), ' ') = 0
+              then CONCAT(UPPER(SUBSTRING(${ethnicity},1,1)), '',lower(SUBSTRING(${ethnicity},2,length(${ethnicity}))))
+              when strpos(ltrim(rtrim(${ethnicity})), ' ') <> 0 then
+   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${ethnicity})),1,1)),
+    lower(substring(${ethnicity},2,strpos(${ethnicity}, ' ')-1)),
+    upper(substring(${ethnicity},strpos(${ethnicity}, ' ')+1,1)),
+    lower(substring(${ethnicity},strpos(${ethnicity}, ' ')+2,length(${ethnicity}) - strpos(${ethnicity}, ' '))))
+
+else ${ethnicity} end ;;
+  }
+
+
+
   dimension: demo_gender {
     hidden: yes
     type: string
@@ -217,14 +233,35 @@ dimension: gender {
     sql: substring (${demo_prefer_language}, 33) ;;
   }
 
-  dimension: prefer_language {
+  dimension: prefer_language_capitalletters {
+    hidden: yes
     type: string
     sql: REPLACE(${prefer_language_source},'_',' ') ;;
   }
 
-  dimension: prefer_language_capital {
+  dimension: prefer_language {
     type: string
-    sql: concat(UPPER(SUBSTRING(${prefer_language},1,1)),LOWER(SUBSTRING(${prefer_language},2)))  ;;
+    sql: concat(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)),LOWER(SUBSTRING(${prefer_language_capitalletters},2)))  ;;
+  }
+
+  dimension: test1 {
+    sql: case when length(ltrim(rtrim(${prefer_language}))) = 2 then (${prefer_language})
+              when length(ltrim(rtrim(${prefer_language}))) > 2 and strpos(ltrim(rtrim(${prefer_language})), ' ') = 0
+              then CONCAT(UPPER(SUBSTRING(${prefer_language},1,1)), '',lower(SUBSTRING(${prefer_language},2,length(${prefer_language}))))
+              when strpos(ltrim(rtrim(${prefer_language})), ' ') <> 0 then
+   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language})),1,1)),
+    lower(substring(${prefer_language},2,strpos(${prefer_language}, ' ')-1)),
+    upper(substring(${prefer_language},strpos(${prefer_language}, ' ')+1,1)),
+    lower(substring(${prefer_language},strpos(${prefer_language}, ' ')+2,length(${prefer_language}) - strpos(${prefer_language}, ' '))))
+
+    when strpos(ltrim(rtrim(${prefer_language})), ' ') <> 0  and length(ltrim(rtrim(${prefer_language}))) > 3 then
+   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language})),1,1)),
+    lower(substring(${prefer_language},2,strpos(${prefer_language}, ' ')-1)),
+    upper(substring(${prefer_language},strpos(${prefer_language}, ' ')+1,1)),
+    lower(substring(${prefer_language},strpos(${prefer_language}, ' ')+2,length(${prefer_language}) - strpos(${prefer_language}, ' '))))
+
+
+      else ${prefer_language} end ;;
   }
 
   dimension: demo_presence_of_children{
