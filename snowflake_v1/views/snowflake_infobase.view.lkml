@@ -924,7 +924,7 @@ dimension: gender {
     hidden: yes
     sql: case when ${client}='JBL' then 'doc.aspx?sourcedoc={2c8f3534-8664-4399-90e8-cc547497abbc}&action=edit'
               when ${client}='CCL' then 'doc.aspx?sourcedoc={84014161-a74f-4fe8-90ed-77eb180f944f}&action=edit'
-              when ${client}='Nike' then 'Doc.aspx?sourcedoc=%[…]ile=Nike%20Info.docx&action=default&mobileredirect=true'
+              when ${client}='Nike' then 'Doc.aspx?sourcedoc=%7B1F18D331-7913-4114-A75B-BA0C808FD001%7D&file=Nike%20Info.docx&action=default&mobileredirect=true&cid=e747e0c2-9ede-4a25-896b-1c59d59966e2'
               end;;
     description: "dimension created to define the links depending on the client/audience"
   }
