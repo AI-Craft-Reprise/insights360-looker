@@ -144,15 +144,37 @@ view: snowflake_infobase {
     'DEMO_ETHNICITY_INDIVIDUAL_WHITE') THEN  ${statement}
     ELSE NULL END;;
   }
-dimension: geo_step1 {
-  type: string
-  sql: CASE WHEN ${category} = 'geo' THEN ${statement} else null end
-;; hidden: yes
+
+  dimension: geo_step1 {
+    type: string
+    sql: CASE WHEN ${category} = 'geo' THEN ${statement} else null end;;
+    hidden: yes
+  }
+
+  dimension: geo_step3 {
+    type: string
+    sql: replace (${geo_step1}, '_', ' ') ;;
+    hidden: yes
+  }
+
+  dimension: geo_step2 {
+    type: string
+    sql:substring (${geo_step3}, 9) ;;
+  }
+
+  dimension: geo {
+    type: string
+    sql: case when length(ltrim(rtrim(${geo_step2}))) = 2 then concat(UPPER(SUBSTRING(${geo_step2},1,1)),LOWER(SUBSTRING(${geo_step2},2)))
+              when length(ltrim(rtrim(${geo_step2}))) > 2 and strpos(ltrim(rtrim(${geo_step2})), ' ') = 0
+                then CONCAT(UPPER(SUBSTRING(${geo_step2},1,1)), '',lower(SUBSTRING(${geo_step2},2,length(${geo_step2}))))
+              when strpos(ltrim(rtrim(${geo_step2})), ' ') <> 0
+                then CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${geo_step2})),1,1)),
+                              lower(substring(${geo_step2},2,strpos(${geo_step2}, ' ')-1)),
+                              upper(substring(${geo_step2},strpos(${geo_step2}, ' ')+1,1)),
+                              lower(substring(${geo_step2},strpos(${geo_step2}, ' ')+2,length(${geo_step2}) - strpos(${geo_step2}, ' '))))
+        else ${geo_step2} end;;
 }
-dimension: geo {
-  type: string
-  sql:substring (${geo_step1}, 9) ;;
-}
+
 
   dimension: ethnicity_source {
     hidden: yes
@@ -162,10 +184,10 @@ dimension: geo {
 
   dimension: ethnicity_step2{
     type: string
-    sql: REPLACE(${ethnicity_source},'_',' ')
-  ;;
+    sql: REPLACE(${ethnicity_source},'_',' ');;
   }
-  # dimension: ethnicity_v1{
+
+ # dimension: ethnicity_v1{
   # type: string
   # sql: concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)));;
   # }
@@ -179,7 +201,6 @@ dimension: geo {
     lower(substring(${ethnicity_step2},2,strpos(${ethnicity_step2}, ' ')-1)),
     upper(substring(${ethnicity_step2},strpos(${ethnicity_step2}, ' ')+1,1)),
     lower(substring(${ethnicity_step2},strpos(${ethnicity_step2}, ' ')+2,length(${ethnicity_step2}) - strpos(${ethnicity_step2}, ' '))))
-
 else ${ethnicity_step2} end ;;
   }
 
