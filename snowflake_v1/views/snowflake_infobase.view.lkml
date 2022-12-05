@@ -220,8 +220,7 @@ dimension: gender {
 
   dimension: home_ownership {
     type: string
-    sql: concat(UPPER(SUBSTRING(${home_ownership_step1},1,1)),LOWER(SUBSTRING(${home_ownership_step1},2)))
-  ;;}
+    sql: concat(UPPER(SUBSTRING(${home_ownership_step1},1,1)),LOWER(SUBSTRING(${home_ownership_step1},2)));;}
 
 
   dimension: demo_prefer_language{
