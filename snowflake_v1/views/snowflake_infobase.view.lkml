@@ -265,18 +265,31 @@ dimension: gender {
     sql: concat(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)),LOWER(SUBSTRING(${prefer_language_capitalletters},2)))  ;;
   }
 
-  # dimension: test1 {
-  #   sql: case when length(ltrim(rtrim(${prefer_language}))) = 2 then (${prefer_language})
-  #             when length(ltrim(rtrim(${prefer_language}))) > 2 and strpos(ltrim(rtrim(${prefer_language})), ' ') = 0
-  #             then CONCAT(UPPER(SUBSTRING(${prefer_language},1,1)), '',lower(SUBSTRING(${prefer_language},2,length(${prefer_language}))))
-  #             when strpos(ltrim(rtrim(${prefer_language})), ' ') <> 0 then
-  # CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language})),1,1)),
-  #   lower(substring(${prefer_language},2,strpos(${prefer_language}, ' ')-1)),
-  #   upper(substring(${prefer_language},strpos(${prefer_language}, ' ')+1,1)),
-  #   lower(substring(${prefer_language},strpos(${prefer_language}, ' ')+2,length(${prefer_language}) - strpos(${prefer_language}, ' '))))
+  dimension: test1 {
+    sql: case when length(ltrim(rtrim(${ethnicity_step2}))) = 2 then (${ethnicity_step2})
+              when length(ltrim(rtrim(${ethnicity_step2}))) > 2 and strpos(ltrim(rtrim(${ethnicity_step2})), ' ') = 0
+              then CONCAT(UPPER(SUBSTRING(${ethnicity_step2},1,1)), '',lower(SUBSTRING(${ethnicity_step2},2,length(${ethnicity_step2}))))
+              when strpos(ltrim(rtrim(${ethnicity_step2})), ' ') <> 0 then
+   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${ethnicity_step2})),1,1)),
+    lower(substring(${ethnicity_step2},2,strpos(${ethnicity_step2}, ' ')-1)),
+    upper(substring(${ethnicity_step2},strpos(${ethnicity_step2}, ' ')+1,1)),
+    lower(substring(${ethnicity_step2},strpos(${ethnicity_step2}, ' ')+2,length(${ethnicity_step2}) - strpos(${ethnicity_step2}, ' '))))
+else ${ethnicity_step2} end ;;
+  }
+# --when strpos((substring(${prefer_language}, (length(${prefer_language}) - strpos(${prefer_language})), ' ')))<>0 then
+#   --  CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language})),1,1)),
+#     --lower(substring(${prefer_language},2,strpos(${prefer_language}, ' ')-1)),
+#   --  upper(substring(${prefer_language},strpos(${prefer_language}, ' ')+1,1)),
+#     --lower(substring(${prefer_language},strpos(${prefer_language}, ' ')+2,length(${prefer_language}) - strpos(${prefer_language}, ' '))),
+#     --upper(substring(${prefer_language},(length(${prefer_language})-strpos(${prefer_language}, ' ')))),
+#     --lower(substring(${prefer_language},(length(${prefer_language})-strpos(${prefer_language}, ' '))+2)))
 
-  #     else ${prefer_language} end ;;
-  # }
+
+
+
+
+
+
 
   dimension: demo_presence_of_children{
     hidden: yes
