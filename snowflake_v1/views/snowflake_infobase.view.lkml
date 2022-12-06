@@ -384,7 +384,7 @@ dimension: gender {
   }
 dimension: occupation {
  type: string
-  sql: concat(UPPER(SUBSTRING(${marital_status_step1},1,1)),LOWER(SUBSTRING(${marital_status_step1},2))) ;;
+  sql: concat(UPPER(SUBSTRING(${occupation_step2},1,1)),LOWER(SUBSTRING(${occupation_step2},2))) ;;
 }
   # dimension: occupation_final {
   #   type: string
