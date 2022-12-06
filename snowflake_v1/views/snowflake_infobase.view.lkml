@@ -149,11 +149,22 @@ dimension: geo_step1 {
   sql: CASE WHEN ${category} = 'geo' THEN ${statement} else null end
 ;; hidden: yes
 }
-dimension: geo {
+dimension: geo_step2 {
   type: string
   sql:substring (${geo_step1}, 9) ;;
 }
-
+dimension: geo {
+  type: string
+  sql:  case when length(ltrim(rtrim(${geo_step2}))) = 2 then (${geo_step2})
+              when length(ltrim(rtrim(${geo_step2}))) > 2 and strpos(ltrim(rtrim(${geo_step2})), ' ') = 0
+              then CONCAT(UPPER(SUBSTRING(${geo_step2},1,1)), '',lower(SUBSTRING(${geo_step2},2,length(${geo_step2}))))
+              when strpos(ltrim(rtrim(${geo_step2})), ' ') <> 0 then
+   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${geo_step2})),1,1)),
+    lower(substring(${geo_step2},2,strpos(${geo_step2}, ' ')-1)),
+    upper(substring(${geo_step2},strpos(${geo_step2}, ' ')+1,1)),
+    lower(substring(${geo_step2},strpos(${geo_step2}, ' ')+2,length(${geo_step2}) - strpos(${geo_step2}, ' '))))
+else ${geo_step2} end ; ;;
+}
   dimension: ethnicity_source {
     hidden: yes
     type: string
@@ -367,11 +378,14 @@ dimension: gender {
     sql: substring (${demo_occupation}, 17) ;;
   }
 
-  dimension: occupation {
+  dimension: occupation_step2{
     type: string
     sql: REPLACE(${occupation_source},'_',' ') ;;
   }
-
+dimension: occupation {
+ type: string
+  sql: concat(UPPER(SUBSTRING(${marital_status_step1},1,1)),LOWER(SUBSTRING(${marital_status_step1},2))) ;;
+}
   # dimension: occupation_final {
   #   type: string
   #   sql: concat(upper(substr(${occupation},1,1)),substr(${occupation_step1},2,length(${occupation_step1})),' ','');;
