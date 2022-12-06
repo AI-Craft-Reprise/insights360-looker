@@ -386,6 +386,11 @@ dimension: occupation {
  type: string
   sql: concat(UPPER(SUBSTRING(${occupation_step2},1,1)),LOWER(SUBSTRING(${occupation_step2},2))) ;;
 }
+
+  dimension: occupation_final {
+       type: string
+       sql: concat(upper(substr(${occupation},1,1)),substr(${occupation_step2},2,length(${occupation_step2})),' ','');;
+     }
   # dimension: occupation_final {
   #   type: string
   #   sql: concat(upper(substr(${occupation},1,1)),substr(${occupation_step1},2,length(${occupation_step1})),' ','');;
