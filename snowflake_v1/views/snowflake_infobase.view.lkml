@@ -391,11 +391,14 @@ dimension: gender {
     sql: substring (${demo_marital_status}, 21) ;;
   }
 
-  dimension: marital_status {
+  dimension: marital_status_step1{
     type: string
     sql: REPLACE(${marital_status_source},'_1','') ;;
   }
-
+dimension: marital_status {
+  type: string
+  sql: concat(UPPER(SUBSTRING(${marital_status_step1},1,1)),LOWER(SUBSTRING(${marital_status_step1},2))) ;;
+}
   dimension: lifestyle_charity_causes_contribute {
     hidden: yes
     type: string
