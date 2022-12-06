@@ -163,7 +163,7 @@ dimension: geo {
     lower(substring(${geo_step2},2,strpos(${geo_step2}, ' ')-1)),
     upper(substring(${geo_step2},strpos(${geo_step2}, ' ')+1,1)),
     lower(substring(${geo_step2},strpos(${geo_step2}, ' ')+2,length(${geo_step2}) - strpos(${geo_step2}, ' '))))
-else ${geo_step2} end ; ;;
+else ${geo_step2} end ;;
 }
   dimension: ethnicity_source {
     hidden: yes
