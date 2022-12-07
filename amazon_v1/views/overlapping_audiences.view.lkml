@@ -173,7 +173,12 @@ view: overlapping_audiences {
       (_airbyte_data.response.requestedaudiencemetadata.categorypath)[3], null);;
   }
 
-
+  dimension: level_4 {
+    description: "Category Level 4"
+    type: string
+    sql: if ((cardinality(_airbyte_data.response.categorypath)>3),
+      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[4], null);;
+  }
   measure: affinity_total {
     type: sum
     sql: ${affinity} ;;
