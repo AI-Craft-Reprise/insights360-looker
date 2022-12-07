@@ -178,7 +178,25 @@ view: overlapping_audiences {
     type: string
     sql: if ((cardinality(_airbyte_data.response.categorypath)>3),
       (_airbyte_data.response.requestedaudiencemetadata.categorypath)[4], null);;
+      }
+    dimension: level_5 {
+      description: "Category Level 5"
+      type: string
+      sql: if ((cardinality(_airbyte_data.response.categorypath)>4),
+        (_airbyte_data.response.requestedaudiencemetadata.categorypath)[5], null);;
   }
+    dimension: level_6 {
+      description: "Category Level 6"
+      type: string
+      sql: if ((cardinality(_airbyte_data.response.categorypath)>5),
+        (_airbyte_data.response.requestedaudiencemetadata.categorypath)[6], null);;
+  }
+      dimension: level_7 {
+        description: "Category Level 7"
+        type: string
+        sql: if ((cardinality(_airbyte_data.response.categorypath)>6),
+          (_airbyte_data.response.requestedaudiencemetadata.categorypath)[7], null);;
+          }
   measure: affinity_total {
     type: sum
     sql: ${affinity} ;;
