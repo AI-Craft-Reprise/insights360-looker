@@ -39,6 +39,11 @@ view: audience_insights {
     sql: ${response_value}.audienceinsight ;;
   }
 
+  dimension: audience_name {
+    type: string
+    sql: ${response}.audience_insights_request_name ;;
+  }
+
    dimension: totalaudiencecount {
      type: number
     sql: ${response_value}.totalaudiencecount;;
