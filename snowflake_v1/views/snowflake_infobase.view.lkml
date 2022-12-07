@@ -175,7 +175,6 @@ view: snowflake_infobase {
         else ${geo_step2} end;;
 }
 
-
   dimension: ethnicity_source {
     hidden: yes
     type: string
@@ -187,13 +186,8 @@ view: snowflake_infobase {
     sql: REPLACE(${ethnicity_source},'_',' ');;
   }
 
- # dimension: ethnicity_v1{
-  # type: string
-  # sql: concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)));;
-  # }
-
   dimension: ethnicity {
-    sql: case when length(ltrim(rtrim(${ethnicity_step2}))) = 2 then (${ethnicity_step2})
+    sql: case when length(ltrim(rtrim(${ethnicity_step2}))) = 2 then concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)))
               when length(ltrim(rtrim(${ethnicity_step2}))) > 2 and strpos(ltrim(rtrim(${ethnicity_step2})), ' ') = 0
               then CONCAT(UPPER(SUBSTRING(${ethnicity_step2},1,1)), '',lower(SUBSTRING(${ethnicity_step2},2,length(${ethnicity_step2}))))
               when strpos(ltrim(rtrim(${ethnicity_step2})), ' ') <> 0 then
@@ -203,8 +197,6 @@ view: snowflake_infobase {
     lower(substring(${ethnicity_step2},strpos(${ethnicity_step2}, ' ')+2,length(${ethnicity_step2}) - strpos(${ethnicity_step2}, ' '))))
 else ${ethnicity_step2} end ;;
   }
-
-
 
   dimension: demo_gender {
     hidden: yes
@@ -234,36 +226,38 @@ dimension: gender {
     sql: substring (${demo_home_ownership}, 6) ;;
   }
 
-  dimension: home_ownership {
+  dimension: home_ownership_step1{
     type: string
     sql: REPLACE(${home_ownership_source},'_',' ') ;;
   }
 
-  dimension: demo_prefer_language {
-    hidden: yes
+  dimension: home_ownership {
     type: string
-    sql: CASE WHEN ${statement} IN ('DEMO_PREFER_LANGUAGE_INDIVIDUAL_BILINGUAL_SPANISH_ENGLISH',
+    sql: concat(UPPER(SUBSTRING(${home_ownership_step1},1,1)),LOWER(SUBSTRING(${home_ownership_step1},2)));;}
+
+
+  dimension: demo_prefer_language{
+      type:  string
+      sql:  CASE WHEN ${statement} in ('DEMO_PREFER_LANGUAGE_INDIVIDUAL_BILINGUAL_SPANISH_ENGLISH',
               'DEMO_PREFER_LANGUAGE_INDIVIDUAL_NON_HISPANIC', 'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPANISH',
-              'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPEAK_SPANISH') THEN  lower(${statement})
-      ELSE NULL END;;
-  }
+              'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPEAK_SPANISH') THEN LOWER ${statement} ELSE NULL END ;;
+    }
 
-  dimension: prefer_language_source{
-    hidden: yes
-    type: string
-    sql: substring (${demo_prefer_language}, 33) ;;
-  }
-
-  dimension: prefer_language_capitalletters {
-    hidden: yes
-    type: string
-    sql: REPLACE(${prefer_language_source},'_',' ') ;;
-  }
+    dimension: prefer_language_source{
+      type: string
+      sql: substring (${demo_prefer_language}, 33) ;;
+    }
+    dimension: prefer_language_capitalletters {
+      hidden: yes
+      type: string
+      sql: REPLACE(${prefer_language_source},'_',' ') ;;
+    }
 
   dimension: prefer_language_fitstcap {
     type: string
     sql: concat(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)),LOWER(SUBSTRING(${prefer_language_capitalletters},2)))  ;;
   }
+
 
   dimension: prefer_language {
     type: string
@@ -277,22 +271,6 @@ dimension: gender {
     lower(substring(${prefer_language_fitstcap},strpos(${prefer_language_fitstcap}, ' ')+2,length(${prefer_language_fitstcap}) - strpos(${prefer_language_fitstcap}, ' '))))
 else ${prefer_language_fitstcap} end ;;
     }
-
-
-
-#   dimension: test1 {
-#     sql: case when length(ltrim(rtrim(${prefer_language}))) = 2 then (${prefer_language})
-#               when length(ltrim(rtrim(${prefer_language}))) > 2 and strpos(ltrim(rtrim(${prefer_language})), ' ') = 0
-#               then CONCAT(UPPER(SUBSTRING(${prefer_language},1,1)), '',lower(SUBSTRING(${prefer_language},2,length(${prefer_language}))))
-#               when strpos(ltrim(rtrim(${prefer_language})), ' ') <> 0 then
-#   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language})),1,1)),
-#     lower(substring(${prefer_language},2,strpos(${prefer_language}, ' ')-1)),
-#     upper(substring(${prefer_language},strpos(${prefer_language}, ' ')+1,1)),
-#     lower(substring(${prefer_language},strpos(${prefer_language}, ' ')+2,length(${prefer_language}) - strpos(${prefer_language}, ' '))))
-#               when strpos((substring(${prefer_language}, strpos((${prefer_language})), ' ')))), ' ') <> 0 then 'ok'
-
-# else ${prefer_language} end ;;
-#   }
 
   dimension: demo_presence_of_children{
     hidden: yes
@@ -401,15 +379,19 @@ else ${prefer_language_fitstcap} end ;;
     sql: substring (${demo_occupation}, 17) ;;
   }
 
-  dimension: occupation {
+  dimension: occupation_step2{
     type: string
     sql: REPLACE(${occupation_source},'_',' ') ;;
   }
+dimension: occupation {
+ type: string
+  sql: concat(UPPER(SUBSTRING(${occupation_step2},1,1)),LOWER(SUBSTRING(${occupation_step2},2))) ;;
+}
 
-  # dimension: occupation_final {
-  #   type: string
-  #   sql: concat(upper(substr(${occupation},1,1)),substr(${occupation_step1},2,length(${occupation_step1})),' ','');;
-  # }
+  dimension: occupation_final {
+       type: string
+       sql: concat(upper(substr(${occupation},1,1)),substr(${occupation_step2},2,length(${occupation_step2})),' ','');;
+     }
 
 
   dimension: demo_marital_status {
@@ -425,11 +407,14 @@ else ${prefer_language_fitstcap} end ;;
     sql: substring (${demo_marital_status}, 21) ;;
   }
 
-  dimension: marital_status {
+  dimension: marital_status_step1{
     type: string
     sql: REPLACE(${marital_status_source},'_1','') ;;
   }
-
+dimension: marital_status {
+  type: string
+  sql: concat(UPPER(SUBSTRING(${marital_status_step1},1,1)),LOWER(SUBSTRING(${marital_status_step1},2))) ;;
+}
   dimension: lifestyle_charity_causes_contribute {
     hidden: yes
     type: string
