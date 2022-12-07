@@ -233,43 +233,41 @@ dimension: gender {
 
   dimension: home_ownership {
     type: string
-    sql: concat(UPPER(SUBSTRING(${home_ownership_step1},1,1)),LOWER(SUBSTRING(${home_ownership_step1},2)));;}
+    sql: concat(UPPER(SUBSTRING(${home_ownership_step1},1,1)),LOWER(SUBSTRING(${home_ownership_step1},2)));;
+    }
 
 
   dimension: demo_prefer_language{
+    hidden: yes
       type:  string
       sql:  CASE WHEN ${statement} in ('DEMO_PREFER_LANGUAGE_INDIVIDUAL_BILINGUAL_SPANISH_ENGLISH',
               'DEMO_PREFER_LANGUAGE_INDIVIDUAL_NON_HISPANIC', 'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPANISH',
-              'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPEAK_SPANISH') THEN LOWER ${statement} ELSE NULL END ;;
+              'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPEAK_SPANISH') THEN  ${statement} ELSE NULL END ;;
     }
 
     dimension: prefer_language_source{
+      hidden: yes
       type: string
-      sql: substring (${demo_prefer_language}, 33) ;;
+      sql: lower (substring (${demo_prefer_language}, 33)) ;;
     }
+
     dimension: prefer_language_capitalletters {
       hidden: yes
       type: string
       sql: REPLACE(${prefer_language_source},'_',' ') ;;
     }
 
-  dimension: prefer_language_fitstcap {
-    type: string
-    sql: concat(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)),LOWER(SUBSTRING(${prefer_language_capitalletters},2)))  ;;
-  }
-
-
   dimension: prefer_language {
     type: string
-    sql:case when length(ltrim(rtrim(${prefer_language_fitstcap}))) = 2 then (${prefer_language_fitstcap})
-              when length(ltrim(rtrim(${prefer_language_fitstcap}))) > 2 and strpos(ltrim(rtrim(${prefer_language_fitstcap})), ' ') = 0
-              then CONCAT(UPPER(SUBSTRING(${prefer_language_fitstcap},1,1)), '',lower(SUBSTRING(${prefer_language_fitstcap},2,length(${prefer_language_fitstcap}))))
-              when strpos(ltrim(rtrim(${prefer_language_fitstcap})), ' ') <> 0 then
-   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language_fitstcap})),1,1)),
-    lower(substring(${prefer_language_fitstcap},2,strpos(${prefer_language_fitstcap}, ' ')-1)),
-    upper(substring(${prefer_language_fitstcap},strpos(${prefer_language_fitstcap}, ' ')+1,1)),
-    lower(substring(${prefer_language_fitstcap},strpos(${prefer_language_fitstcap}, ' ')+2,length(${prefer_language_fitstcap}) - strpos(${prefer_language_fitstcap}, ' '))))
-else ${prefer_language_fitstcap} end ;;
+    sql:case when length(ltrim(rtrim(${prefer_language_capitalletters}))) = 2 then concat(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)),LOWER(SUBSTRING(${prefer_language_capitalletters},2)))
+              when length(ltrim(rtrim(${prefer_language_capitalletters}))) > 2 and strpos(ltrim(rtrim(${prefer_language_capitalletters})), ' ') = 0
+              then CONCAT(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)), '',lower(SUBSTRING(${prefer_language_capitalletters},2,length(${prefer_language_capitalletters}))))
+              when strpos(ltrim(rtrim(${prefer_language_capitalletters})), ' ') <> 0 then
+   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language_capitalletters})),1,1)),
+    lower(substring(${prefer_language_capitalletters},2,strpos(${prefer_language_capitalletters}, ' ')-1)),
+    upper(substring(${prefer_language_capitalletters},strpos(${prefer_language_capitalletters}, ' ')+1,1)),
+    lower(substring(${prefer_language_capitalletters},strpos(${prefer_language_capitalletters}, ' ')+2,length(${prefer_language_capitalletters}) - strpos(${prefer_language_capitalletters}, ' '))))
+else ${prefer_language_capitalletters} end ;;
     }
 
   dimension: demo_presence_of_children{
