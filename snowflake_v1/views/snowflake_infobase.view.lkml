@@ -151,6 +151,7 @@ dimension: geo_step1 {
 }
 dimension: geo_step2 {
   type: string
+  hidden: yes
   sql:substring (${geo_step1}, 9) ;;
 }
 dimension: geo {
