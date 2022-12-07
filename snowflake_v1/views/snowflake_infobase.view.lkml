@@ -144,28 +144,38 @@ view: snowflake_infobase {
     'DEMO_ETHNICITY_INDIVIDUAL_WHITE') THEN  ${statement}
     ELSE NULL END;;
   }
-dimension: geo_step1 {
-  type: string
-  sql: CASE WHEN ${category} = 'geo' THEN ${statement} else null end
-;; hidden: yes
-}
-dimension: geo_step2 {
-  type: string
-  hidden: yes
-  sql:substring (${geo_step1}, 9) ;;
-}
-dimension: geo {
-  type: string
-  sql:  case when length(ltrim(rtrim(${geo_step2}))) = 2 then (${geo_step2})
+
+
+  dimension: geo_step1 {
+    type: string
+    sql: CASE WHEN ${category} = 'geo' THEN ${statement} else null end;;
+    hidden: yes
+  }
+
+  dimension: geo_step3 {
+    type: string
+    sql: replace (${geo_step1}, '_', ' ') ;;
+    hidden: yes
+  }
+
+  dimension: geo_step2 {
+    type: string
+    sql:substring (${geo_step3}, 9) ;;
+  }
+
+  dimension: geo {
+    type: string
+    sql: case when length(ltrim(rtrim(${geo_step2}))) = 2 then concat(UPPER(SUBSTRING(${geo_step2},1,1)),LOWER(SUBSTRING(${geo_step2},2)))
               when length(ltrim(rtrim(${geo_step2}))) > 2 and strpos(ltrim(rtrim(${geo_step2})), ' ') = 0
-              then CONCAT(UPPER(SUBSTRING(${geo_step2},1,1)), '',lower(SUBSTRING(${geo_step2},2,length(${geo_step2}))))
-              when strpos(ltrim(rtrim(${geo_step2})), ' ') <> 0 then
-   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${geo_step2})),1,1)),
-    lower(substring(${geo_step2},2,strpos(${geo_step2}, ' ')-1)),
-    upper(substring(${geo_step2},strpos(${geo_step2}, ' ')+1,1)),
-    lower(substring(${geo_step2},strpos(${geo_step2}, ' ')+2,length(${geo_step2}) - strpos(${geo_step2}, ' '))))
-else ${geo_step2} end ;;
+                then CONCAT(UPPER(SUBSTRING(${geo_step2},1,1)), '',lower(SUBSTRING(${geo_step2},2,length(${geo_step2}))))
+              when strpos(ltrim(rtrim(${geo_step2})), ' ') <> 0
+                then CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${geo_step2})),1,1)),
+                              lower(substring(${geo_step2},2,strpos(${geo_step2}, ' ')-1)),
+                              upper(substring(${geo_step2},strpos(${geo_step2}, ' ')+1,1)),
+                              lower(substring(${geo_step2},strpos(${geo_step2}, ' ')+2,length(${geo_step2}) - strpos(${geo_step2}, ' '))))
+        else ${geo_step2} end;;
 }
+
   dimension: ethnicity_source {
     hidden: yes
     type: string
@@ -174,16 +184,11 @@ else ${geo_step2} end ;;
 
   dimension: ethnicity_step2{
     type: string
-    sql: REPLACE(${ethnicity_source},'_',' ')
-  ;;
+    sql: REPLACE(${ethnicity_source},'_',' ');;
   }
-  # dimension: ethnicity_v1{
-  # type: string
-  # sql: concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)));;
-  # }
 
   dimension: ethnicity {
-    sql: case when length(ltrim(rtrim(${ethnicity_step2}))) = 2 then (${ethnicity_step2})
+    sql: case when length(ltrim(rtrim(${ethnicity_step2}))) = 2 then concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)))
               when length(ltrim(rtrim(${ethnicity_step2}))) > 2 and strpos(ltrim(rtrim(${ethnicity_step2})), ' ') = 0
               then CONCAT(UPPER(SUBSTRING(${ethnicity_step2},1,1)), '',lower(SUBSTRING(${ethnicity_step2},2,length(${ethnicity_step2}))))
               when strpos(ltrim(rtrim(${ethnicity_step2})), ' ') <> 0 then
@@ -191,11 +196,8 @@ else ${geo_step2} end ;;
     lower(substring(${ethnicity_step2},2,strpos(${ethnicity_step2}, ' ')-1)),
     upper(substring(${ethnicity_step2},strpos(${ethnicity_step2}, ' ')+1,1)),
     lower(substring(${ethnicity_step2},strpos(${ethnicity_step2}, ' ')+2,length(${ethnicity_step2}) - strpos(${ethnicity_step2}, ' '))))
-
 else ${ethnicity_step2} end ;;
   }
-
-
 
   dimension: demo_gender {
     hidden: yes
@@ -232,45 +234,42 @@ dimension: gender {
 
   dimension: home_ownership {
     type: string
-    sql: concat(UPPER(SUBSTRING(${home_ownership_step1},1,1)),LOWER(SUBSTRING(${home_ownership_step1},2)));;}
+    sql: concat(UPPER(SUBSTRING(${home_ownership_step1},1,1)),LOWER(SUBSTRING(${home_ownership_step1},2)));;
+    }
 
 
   dimension: demo_prefer_language{
+    hidden: yes
       type:  string
       sql:  CASE WHEN ${statement} in ('DEMO_PREFER_LANGUAGE_INDIVIDUAL_BILINGUAL_SPANISH_ENGLISH',
               'DEMO_PREFER_LANGUAGE_INDIVIDUAL_NON_HISPANIC', 'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPANISH',
-              'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPEAK_SPANISH') THEN LOWER ${statement} ELSE NULL END ;;
+              'DEMO_PREFER_LANGUAGE_INDIVIDUAL_SPEAK_SPANISH') THEN  ${statement} ELSE NULL END ;;
     }
 
     dimension: prefer_language_source{
+      hidden: yes
       type: string
-      sql: substring (${demo_prefer_language}, 33) ;;
+      sql: lower (substring (${demo_prefer_language}, 33)) ;;
     }
+
     dimension: prefer_language_capitalletters {
       hidden: yes
       type: string
       sql: REPLACE(${prefer_language_source},'_',' ') ;;
     }
 
-    dimension: prefer_language {
-      type: string
-      sql: concat(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)),LOWER(SUBSTRING(${prefer_language_capitalletters},2)))  ;;
+  dimension: prefer_language {
+    type: string
+    sql:case when length(ltrim(rtrim(${prefer_language_capitalletters}))) = 2 then concat(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)),LOWER(SUBSTRING(${prefer_language_capitalletters},2)))
+              when length(ltrim(rtrim(${prefer_language_capitalletters}))) > 2 and strpos(ltrim(rtrim(${prefer_language_capitalletters})), ' ') = 0
+              then CONCAT(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)), '',lower(SUBSTRING(${prefer_language_capitalletters},2,length(${prefer_language_capitalletters}))))
+              when strpos(ltrim(rtrim(${prefer_language_capitalletters})), ' ') <> 0 then
+   CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language_capitalletters})),1,1)),
+    lower(substring(${prefer_language_capitalletters},2,strpos(${prefer_language_capitalletters}, ' ')-1)),
+    upper(substring(${prefer_language_capitalletters},strpos(${prefer_language_capitalletters}, ' ')+1,1)),
+    lower(substring(${prefer_language_capitalletters},strpos(${prefer_language_capitalletters}, ' ')+2,length(${prefer_language_capitalletters}) - strpos(${prefer_language_capitalletters}, ' '))))
+else ${prefer_language_capitalletters} end ;;
     }
-
-    # dimension: test1 {
-    #   sql: case when length(ltrim(rtrim(${prefer_language}))) = 2 then (${prefer_language})
-    #             when length(ltrim(rtrim(${prefer_language}))) > 2 and strpos(ltrim(rtrim(${prefer_language})), ' ') = 0
-    #             then CONCAT(UPPER(SUBSTRING(${prefer_language},1,1)), '',lower(SUBSTRING(${prefer_language},2,length(${prefer_language}))))
-    #             when strpos(ltrim(rtrim(${prefer_language})), ' ') <> 0 then
-    # CONCAT (UPPER(SUBSTRING(ltrim(rtrim(${prefer_language})),1,1)),
-    #   lower(substring(${prefer_language},2,strpos(${prefer_language}, ' ')-1)),
-    #   upper(substring(${prefer_language},strpos(${prefer_language}, ' ')+1,1)),
-    #   lower(substring(${prefer_language},strpos(${prefer_language}, ' ')+2,length(${prefer_language}) - strpos(${prefer_language}, ' '))))
-
-    #     else ${prefer_language} end ;;
-    # }
-
-
 
   dimension: demo_presence_of_children{
     hidden: yes
@@ -392,10 +391,6 @@ dimension: occupation {
        type: string
        sql: concat(upper(substr(${occupation},1,1)),substr(${occupation_step2},2,length(${occupation_step2})),' ','');;
      }
-  # dimension: occupation_final {
-  #   type: string
-  #   sql: concat(upper(substr(${occupation},1,1)),substr(${occupation_step1},2,length(${occupation_step1})),' ','');;
-  # }
 
 
   dimension: demo_marital_status {

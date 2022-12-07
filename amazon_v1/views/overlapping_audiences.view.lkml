@@ -1,7 +1,6 @@
 view: overlapping_audiences {
   sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".overlapping_audiences
     ;;
-  # suggestions: no
 
   dimension: _airbyte_ab_id {
     type: string
@@ -57,6 +56,7 @@ view: overlapping_audiences {
               WHEN (${req_category}='Lifestyle' and ${req_name} LIKE 'LS -%') THEN SUBSTRING (${req_name}, 5)
               WHEN (${req_category}='Life event' and ${req_name} LIKE 'LS - %') THEN SUBSTRING (${req_name}, 6)
               ELSE ${req_name} END;;
+    html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
   }
 
   dimension: req_category {
@@ -152,6 +152,27 @@ view: overlapping_audiences {
     type: number
     sql: ${response}.affinity ;;
   }
+
+  dimension: level_1 {
+    description: "Category Level 1"
+    type: string
+    sql: (_airbyte_data.response.requestedaudiencemetadata.categorypath)[1];;
+  }
+
+  dimension: level_2 {
+    description: "Category Level 2"
+    type: string
+    sql: if ((cardinality(_airbyte_data.response.categorypath)>1),
+      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[2], null);;
+  }
+
+  dimension: level_3 {
+    description: "Category Level 3"
+    type: string
+    sql: if ((cardinality(_airbyte_data.response.categorypath)>2),
+      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[3], null);;
+  }
+
 
   measure: affinity_total {
     type: sum
