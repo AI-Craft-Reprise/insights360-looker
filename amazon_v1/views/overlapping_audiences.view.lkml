@@ -1,7 +1,6 @@
 view: overlapping_audiences {
   sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".overlapping_audiences
     ;;
-  # suggestions: no
 
   dimension: _airbyte_ab_id {
     type: string
