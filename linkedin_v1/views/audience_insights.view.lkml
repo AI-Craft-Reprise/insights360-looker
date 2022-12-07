@@ -45,6 +45,7 @@ view: audience_insights {
   }
 
    dimension: totalaudiencecount {
+    label: "Total Audience Count"
      type: number
     sql: ${response_value}.totalaudiencecount;;
    }

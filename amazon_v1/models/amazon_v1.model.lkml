@@ -25,10 +25,10 @@ explore: overlapping_audiences{}
 explore: audiences {
   # hidden: yes
 
-  join: overlapping_audiences {
-    relationship: one_to_one
-    sql_on: ${audiences.audienceid}=${overlapping_audiences.req_audienceid} ;;
-  }
+  # join: overlapping_audiences {
+  #   relationship: one_to_one
+  #   sql_on: ${audiences.audienceid}=${overlapping_audiences.req_audienceid} ;;
+  # }
 
   # join: audiences_with_advertisers {
   #   relationship: one_to_one
