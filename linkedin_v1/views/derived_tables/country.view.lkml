@@ -17,7 +17,7 @@ view: country {
       sql: ${TABLE}.name ;;
       description: ""
     }
-    dimension: urn {
+    dimension: country_urn {
       description: ""
     }
   }
