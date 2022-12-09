@@ -145,6 +145,7 @@ view: snowflake_infobase {
     ELSE NULL END;;
   }
 
+
   dimension: geo_step1 {
     type: string
     sql: CASE WHEN ${category} = 'geo' THEN ${statement} else null end;;

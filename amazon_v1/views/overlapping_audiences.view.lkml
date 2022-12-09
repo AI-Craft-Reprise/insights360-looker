@@ -216,6 +216,7 @@ view: overlapping_audiences {
   }
 
 
+
   measure: affinity_total {
     type: sum
     sql: ${affinity} ;;

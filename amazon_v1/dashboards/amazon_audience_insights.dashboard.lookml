@@ -359,7 +359,7 @@
     show_row_totals: true
     truncate_header: false
     series_labels:
-      interests.total_percentage: Interest total
+      interests.total_percentage: Total Percentage
     series_column_widths:
       inmarket.name: 320
     series_cell_visualizations:

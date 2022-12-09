@@ -5,8 +5,8 @@ view: audience_filter {
         # column: company { field: company.company }
         column: company_size { field: company_size.company_size }
         column: company_size_urn {field:company_size.company_size_urn}
-        column: country { field: country.country }
-        column: country_urn {field: country.country_urn}
+        # column: country { field: country.country }
+        # column: country_urn {field: country.country_urn}
         column: industry { field: industry.industry }
         column: industry_urn {field: industry.industry_urn}
         column: job_function {}
@@ -21,9 +21,9 @@ view: audience_filter {
     dimension: company_size {
       description: ""
     }
-    dimension: country {
-      description: ""
-    }
+    # dimension: country {
+    #   description: ""
+    # }
     dimension: industry {
       description: ""
     }
@@ -52,9 +52,9 @@ view: audience_filter {
     sql: array_agg(distinct ${company_size}) ;;
   }
 
-    measure: country_array {
-    sql: array_agg(distinct ${country}) ;;
-  }
+  #   measure: country_array {
+  #   sql: array_agg(distinct ${country}) ;;
+  # }
 
   measure: job_seniority_array {
     sql: array_agg(distinct ${job_seniority}) ;;
@@ -80,9 +80,9 @@ view: audience_filter {
     sql: array_agg(distinct ${industry_urn}) ;;
   }
 
-  measure: country_urn_array {
-    sql: array_agg(distinct ${country_urn}) ;;
-  }
+  # measure: country_urn_array {
+  #   sql: array_agg(distinct ${country_urn}) ;;
+  # }
 
 
 
