@@ -148,14 +148,14 @@ view: snowflake_infobase {
 
   dimension: geo_step1 {
     type: string
-    sql: CASE WHEN ${category} = 'geo' THEN ${statement} else null end;;
-    hidden: yes
+    sql: CASE WHEN ${category} IN ('geo', 'GEO') THEN ${statement} else null end;;
+    # hidden: yes
   }
 
   dimension: geo_step3 {
     type: string
     sql: replace (${geo_step1}, '_', ' ') ;;
-    hidden: yes
+    # hidden: yes
   }
 
   dimension: geo_step2 {

@@ -16,11 +16,13 @@ datagroup: persona_refresh {
   # description: "description string"
 }
 
-explore: overlapping_audiences{}
-#     {join: audiences {
-#     relationship: one_to_one
-#     sql_on: ${overlapping_audiences.req_audienceid}=${audiences.audienceid} ;;
-#   }
+explore: overlapping_audiences{
+    join: audiences {
+      type: inner
+    relationship: many_to_one
+    sql_on: ${overlapping_audiences.audienceid}=${audiences.audienceid} ;;
+  }
+  }
 
 explore: audiences {
   # hidden: yes
