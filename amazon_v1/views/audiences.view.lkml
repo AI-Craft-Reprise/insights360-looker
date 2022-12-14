@@ -41,63 +41,63 @@ view: audiences {
   dimension: level_1 {
     description: "Category Level 1"
     type: string
-    sql: (_airbyte_data.response.categorypath)[1];;
+    sql: ${category_path}[1];;
   }
 
   dimension: level_2 {
     description: "Category Level 2"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.categorypath)>1),
-                  (_airbyte_data.response.categorypath)[2], null);;
+    sql: if ((cardinality(${category_path})>1),
+                  ${category_path}[2], null);;
   }
 
   dimension: level_3 {
     description: "Category Level 3"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.categorypath)>2),
-      (_airbyte_data.response.categorypath)[3], null);;
+    sql: if ((cardinality(${category_path})>2),
+      ${category_path}[3], null);;
   }
 
   dimension: level_4 {
     description: "Category Level 4"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.categorypath)>3),
-      (_airbyte_data.response.categorypath)[4], null);;
+    sql: if ((cardinality(${category_path})>3),
+      ${category_path}[4], null);;
   }
 
   dimension: level_5 {
     description: "Category Level 5"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.categorypath)>4),
-      (_airbyte_data.response.categorypath)[5], null);;
+    sql: if ((cardinality(${category_path})>4),
+      ${category_path}[5], null);;
   }
 
   dimension: level_6 {
     description: "Category Level 6"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.categorypath)>5),
-      (_airbyte_data.response.categorypath)[6], null);;
+    sql: if ((cardinality(${category_path})>5),
+      ${category_path}[6], null);;
   }
 
   dimension: level_7 {
     description: "Category Level 7"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.categorypath)>6),
-      (_airbyte_data.response.categorypath)[7], null);;
+    sql: if ((cardinality(${category_path})>6),
+      ${category_path}[7], null);;
   }
 
   dimension: level_8 {
     description: "Category Level 8"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.categorypath)>7),
-      (_airbyte_data.response.categorypath)[8], null);;
+    sql: if ((cardinality(${category_path})>7),
+     ${category_path}[8], null);;
   }
 
   dimension: level_9 {
     description: "Category Level 9"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.categorypath)>8),
-      (_airbyte_data.response.categorypath)[9], null);;
+    sql: if ((cardinality(${category_path})>8),
+      ${category_path}[9], null);;
   }
 
   dimension: audiencename {
