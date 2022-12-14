@@ -175,7 +175,7 @@ view: overlapping_audiences {
   dimension: level_3 {
     description: "Requested Audience Category Level 3"
     type: string
-    sql: if ((cardinality(${requested_audience_category_path)>2),
+    sql: if ((cardinality(${requested_audience_category_path})>2),
                  ${requested_audience_category_path}[3], null);;
   }
 
