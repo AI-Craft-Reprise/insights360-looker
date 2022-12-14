@@ -153,66 +153,72 @@ view: overlapping_audiences {
     sql: ${response}.affinity ;;
   }
 
-  dimension: level_1 {
-    description: "Category Level 1"
+  dimension: requested_audience_category_path {
+    hidden: yes
     type: string
-    sql: (_airbyte_data.response.requestedaudiencemetadata.categorypath)[1];;
+    sql: ${requestedaudiencemetadata}.categorypath ;;
+  }
+
+  dimension: level_1 {
+    description: "Requested Audience Category Level 1"
+    type: string
+    sql: ${requested_audience_category_path}[1];;
   }
 
   dimension: level_2 {
-    description: "Category Level 2"
+    description: "Requested Audience Category Level 2"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.requestedaudiencemetadata.categorypath)>1),
-      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[2], null);;
+    sql: if ((cardinality(${requested_audience_category_path})>1),
+                  ${requested_audience_category_path}[2], null);;
   }
 
   dimension: level_3 {
-    description: "Category Level 3"
+    description: "Requested Audience Category Level 3"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.requestedaudiencemetadata.categorypath)>2),
-      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[3], null);;
+    sql: if ((cardinality(${requested_audience_category_path)>2),
+                 ${requested_audience_category_path}[3], null);;
   }
 
   dimension: level_4 {
-    description: "Category Level 4"
+    description: "Requested Audience Category Level 4"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.requestedaudiencemetadata.categorypath)>3),
-      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[4], null);;
+    sql: if ((cardinality(${requested_audience_category_path})>3),
+                ${requested_audience_category_path}[4], null);;
   }
 
   dimension: level_5 {
-    description: "Category Level 5"
+    description: "Requested Audience Category Level 5"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.requestedaudiencemetadata.categorypath)>4),
-      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[5], null);;
+    sql: if ((cardinality(${requested_audience_category_path})>4),
+                ${requested_audience_category_path}[5], null);;
   }
 
   dimension: level_6 {
-    description: "Category Level 6"
+    description: "Requested Audience Category Level 6"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.requestedaudiencemetadata.categorypath)>5),
-      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[6], null);;
+    sql: if ((cardinality(${requested_audience_category_path})>5),
+                ${requested_audience_category_path}[6], null);;
   }
 
   dimension: level_7 {
-    description: "Category Level 7"
+    description: "Requested Audience Category Level 7"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.requestedaudiencemetadata.categorypath)>6),
-      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[7], null);;
+    sql: if ((cardinality(${requested_audience_category_path})>6),
+                ${requested_audience_category_path}[7], null);;
   }
 
   dimension: level_8 {
-    description: "Category Level 8"
+    description: "Requested Audience Category Level 8"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.requestedaudiencemetadata.categorypath)>7),
-      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[8], null);;
+    sql: if ((cardinality(${requested_audience_category_path})>7),
+                ${requested_audience_category_path}[8], null);;
   }
 
   dimension: level_9 {
-    description: "Category Level 9"
+    description: "Requested Audience Category Level 9"
     type: string
-    sql: if ((cardinality(_airbyte_data.response.requestedaudiencemetadata.categorypath)>8),
-      (_airbyte_data.response.requestedaudiencemetadata.categorypath)[9], null);;
+    sql: if ((cardinality(${requested_audience_category_path})>8),
+                ${requested_audience_category_path}[9], null);;
   }
 
 
