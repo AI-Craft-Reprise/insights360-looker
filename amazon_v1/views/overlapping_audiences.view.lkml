@@ -43,11 +43,12 @@ view: overlapping_audiences {
   }
 
   dimension: req_name {
+    hidden: yes
     type: string
     sql: ${requestedaudiencemetadata}.name ;;
   }
 
-  dimension: req_audience_name {
+  dimension: requested_audience_name {
     type: string
     sql: CASE WHEN ${req_category}='IN-Market' then SUBSTRING (${req_name}, 6)
               WHEN (${req_category}='Lookalike' and ${req_name} LIKE 'AL%') THEN SUBSTRING (${req_name}, 6)
@@ -60,6 +61,7 @@ view: overlapping_audiences {
   }
 
   dimension: req_category {
+    hidden: yes
     type: string
     sql: ${requestedaudiencemetadata}.category ;;
   }
@@ -119,11 +121,11 @@ view: overlapping_audiences {
     sql: ${audiencemetadata}.category ;;
   }
 
-  dimension: filter_category {
-    label: "Filter Audience Category"
+  dimension: req_audience_category {
+    label: "Requested Audience Category"
     suggestions: ["In-market", "Interest", "Life event", "Lifestyle"]
     type: string
-    sql: ${audiencemetadata}.category ;;
+    sql: ${requestedaudiencemetadata}.category ;;
   }
 
   dimension: audienceforecast {
@@ -159,62 +161,62 @@ view: overlapping_audiences {
     sql: ${requestedaudiencemetadata}.categorypath ;;
   }
 
-  dimension: level_1 {
+  dimension: requested_audience_category_level_1 {
     description: "Requested Audience Category Level 1"
     type: string
     sql: ${requested_audience_category_path}[1];;
   }
 
-  dimension: level_2 {
+  dimension: requested_audience_category_level_2 {
     description: "Requested Audience Category Level 2"
     type: string
     sql: if ((cardinality(${requested_audience_category_path})>1),
                   ${requested_audience_category_path}[2], null);;
   }
 
-  dimension: level_3 {
+  dimension: requested_audience_category_level_3 {
     description: "Requested Audience Category Level 3"
     type: string
     sql: if ((cardinality(${requested_audience_category_path})>2),
                  ${requested_audience_category_path}[3], null);;
   }
 
-  dimension: level_4 {
+  dimension: requested_audience_category_level_4 {
     description: "Requested Audience Category Level 4"
     type: string
     sql: if ((cardinality(${requested_audience_category_path})>3),
                 ${requested_audience_category_path}[4], null);;
   }
 
-  dimension: level_5 {
+  dimension: requested_audience_category_level_5 {
     description: "Requested Audience Category Level 5"
     type: string
     sql: if ((cardinality(${requested_audience_category_path})>4),
                 ${requested_audience_category_path}[5], null);;
   }
 
-  dimension: level_6 {
+  dimension: requested_audience_category_level_6 {
     description: "Requested Audience Category Level 6"
     type: string
     sql: if ((cardinality(${requested_audience_category_path})>5),
                 ${requested_audience_category_path}[6], null);;
   }
 
-  dimension: level_7 {
+  dimension: requested_audience_category_level_7 {
     description: "Requested Audience Category Level 7"
     type: string
     sql: if ((cardinality(${requested_audience_category_path})>6),
                 ${requested_audience_category_path}[7], null);;
   }
 
-  dimension: level_8 {
+  dimension: requested_audience_category_level_8 {
     description: "Requested Audience Category Level 8"
     type: string
     sql: if ((cardinality(${requested_audience_category_path})>7),
                 ${requested_audience_category_path}[8], null);;
   }
 
-  dimension: level_9 {
+  dimension: requested_audience_category_level_9 {
     description: "Requested Audience Category Level 9"
     type: string
     sql: if ((cardinality(${requested_audience_category_path})>8),

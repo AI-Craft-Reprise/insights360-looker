@@ -38,62 +38,62 @@ view: audiences {
     sql: ${response}.categorypath ;;
   }
 
-  dimension: level_1 {
+  dimension: audience_category_level_1 {
     description: "Category Level 1"
     type: string
     sql: ${category_path}[1];;
   }
 
-  dimension: level_2 {
+  dimension: audience_category_level_2 {
     description: "Category Level 2"
     type: string
     sql: if ((cardinality(${category_path})>1),
                   ${category_path}[2], null);;
   }
 
-  dimension: level_3 {
+  dimension: audience_category_level_3 {
     description: "Category Level 3"
     type: string
     sql: if ((cardinality(${category_path})>2),
       ${category_path}[3], null);;
   }
 
-  dimension: level_4 {
+  dimension: audience_category_level_4 {
     description: "Category Level 4"
     type: string
     sql: if ((cardinality(${category_path})>3),
       ${category_path}[4], null);;
   }
 
-  dimension: level_5 {
+  dimension: audience_category_level_5 {
     description: "Category Level 5"
     type: string
     sql: if ((cardinality(${category_path})>4),
       ${category_path}[5], null);;
   }
 
-  dimension: level_6 {
+  dimension: audience_category_level_6 {
     description: "Category Level 6"
     type: string
     sql: if ((cardinality(${category_path})>5),
       ${category_path}[6], null);;
   }
 
-  dimension: level_7 {
+  dimension: audience_category_level_7 {
     description: "Category Level 7"
     type: string
     sql: if ((cardinality(${category_path})>6),
       ${category_path}[7], null);;
   }
 
-  dimension: level_8 {
+  dimension: audience_category_level_8 {
     description: "Category Level 8"
     type: string
     sql: if ((cardinality(${category_path})>7),
      ${category_path}[8], null);;
   }
 
-  dimension: level_9 {
+  dimension: audience_category_level_9 {
     description: "Category Level 9"
     type: string
     sql: if ((cardinality(${category_path})>8),

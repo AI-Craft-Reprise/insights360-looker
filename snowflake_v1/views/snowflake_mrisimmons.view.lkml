@@ -1,29 +1,11 @@
 view: snowflake_mrisimmons {
   sql_table_name: "airbyte-dev-snowflake-glue-ctg-db".snowflake_mrisimmons
     ;;
-  # suggestions: no
 
-  dimension: _airbyte_ab_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}._airbyte_ab_id ;;
-  }
-
-  dimension: _airbyte_data {
-    hidden: yes
-    type: string
-    sql: ${TABLE}._airbyte_data ;;
-  }
-
-  dimension: _airbyte_emitted_at {
-    hidden: yes
-    type: number
-    sql: ${TABLE}._airbyte_emitted_at ;;
-  }
 
   dimension: question_level_1 {
     type: string
-    sql: ${_airbyte_data}.question_level_1 ;;
+    sql: ${TABLE}.question_level_1 ;;
     # suggestions: ["PSYCHOGRAPHICS","ELECTRONICS","HOME","PERSONAL ITEMS","AUTOMOTIVE","AUTOMOTIVE AFTERMARKET",
     #   "DEMOGRAPHICS","TOBACCO","FINANCIAL","HOUSEHOLD PRODUCTS","PERSONAL CARE",
     #   "POLITICAL OUTLOOK/AFFILIATION & VOTING","TRUCKS/ATV/MOTORCYCLES","APPAREL/ACCESSORIES",
@@ -33,112 +15,102 @@ view: snowflake_mrisimmons {
 
   dimension: question_level_2 {
     type: string
-    sql: ${_airbyte_data}.question_level_2 ;;
+    sql: ${TABLE}.question_level_2 ;;
   }
 
   dimension: question_level_3 {
     type: string
-    sql: ${_airbyte_data}.question_level_3 ;;
+    sql: ${TABLE}.question_level_3 ;;
   }
 
   dimension: question_level_4 {
     type: string
-    sql: ${_airbyte_data}.question_level_4 ;;
+    sql: ${TABLE}.question_level_4 ;;
   }
 
   dimension: answer {
     type: string
-    sql: ${_airbyte_data}.answer ;;
+    sql: ${TABLE}.answer ;;
   }
 
   dimension: question_answer_concat {
     type: string
-    sql: ${_airbyte_data}.question_answer_concat ;;
+    sql: ${TABLE}.question_answer_concat ;;
   }
 
   dimension: keyword {
     type: string
-    sql: ${_airbyte_data}.keyword ;;
+    sql: ${TABLE}.keyword ;;
   }
 
   dimension: genpop_count {
     type: number
-    sql: ${_airbyte_data}.genpop_count ;;
+    sql: ${TABLE}.genpop_count ;;
   }
 
   dimension: genpop_total {
     type: number
-    sql: ${_airbyte_data}.genpop_total ;;
+    sql: ${TABLE}.genpop_total ;;
   }
 
   dimension: target_count {
     type: number
-    sql: ${_airbyte_data}.target_count ;;
+    sql: ${TABLE}.target_count ;;
   }
 
   dimension: target_total {
     type: number
-    sql: ${_airbyte_data}.target_total ;;
+    sql: ${TABLE}.target_total ;;
   }
 
   dimension: genpop_percent {
     type: number
-    sql: ${_airbyte_data}.genpop_percent ;;
+    sql: ${TABLE}.genpop_percent ;;
   }
 
   dimension: target_percent {
     type: number
-    sql: ${_airbyte_data}.target_percent ;;
+    sql: ${TABLE}.target_percent ;;
   }
 
   dimension: overall_index {
     type: number
-    sql: ${_airbyte_data}.overall_index ;;
+    sql: ${TABLE}.overall_index ;;
   }
 
   dimension: agency {
     type: string
-    sql: ${_airbyte_data}.agency ;;
+    sql: ${TABLE}.agency ;;
   }
 
   dimension: client {
     type: string
-    sql: ${_airbyte_data}.client ;;
+    sql: ${TABLE}.client ;;
   }
 
   dimension: audience_name {
     type: string
-    sql: ${_airbyte_data}.audience_name ;;
+    sql: ${TABLE}.audience_name ;;
   }
 
   dimension: created {
     type: string
-    sql: ${_airbyte_data}.created ;;
+    sql: ${TABLE}.created ;;
   }
 
   dimension: infobase_version {
     type: string
-    sql: ${_airbyte_data}.infobase_version ;;
+    sql: ${TABLE}.infobase_version ;;
   }
 
   dimension: source {
     type: string
-    sql: ${_airbyte_data}.source ;;
+    sql: ${TABLE}.source ;;
   }
 
   dimension: audience_size {
     type: string
-    sql: ${_airbyte_data}.audience_size ;;
-  }
-
-  dimension: _ab_source_file_last_modified {
-    type: date
-    sql: ${_airbyte_data}._ab_source_file_last_modified ;;
-  }
-
-  dimension: _ab_source_file_url {
-    type: string
-    sql: ${_airbyte_data}._ab_source_file_url ;;
+    sql: ${TABLE}.audience_size ;;
   }
 
   measure: target {

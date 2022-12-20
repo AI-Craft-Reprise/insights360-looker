@@ -51,26 +51,18 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 2
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 11
     col: 0
     width: 24
     height: 10
-  - name: ''
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: <img src="https://d1jfzm9ywrnbsn.cloudfront.net/logo.png" width="150"
-      height="50"/>
-    row: 0
-    col: 20
-    width: 4
-    height: 2
   - name: <font size= "6"><b>CPG</b> </font size>
     type: text
     title_text: <font size= "6"><b>CPG</b> </font size>
     subtitle_text: ''
     body_text: ''
-    row: 12
+    row: 21
     col: 0
     width: 24
     height: 1
@@ -79,10 +71,10 @@
     title_text: '<font size="6"> <b>Charity</b> </font>  '
     subtitle_text: ''
     body_text: ''
-    row: 0
+    row: 10
     col: 0
-    width: 20
-    height: 2
+    width: 24
+    height: 1
   - title: CPG Pet Owner / Pet Type
     name: CPG Pet Owner / Pet Type
     model: snowflake_insights_v1
@@ -129,7 +121,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 21
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 30
     col: 4
     width: 16
     height: 7
@@ -179,7 +173,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 13
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 22
     col: 0
     width: 24
     height: 8
@@ -188,7 +184,7 @@
     title_text: <font size= "6"><b>Demo</b> </font size>
     subtitle_text: ''
     body_text: ''
-    row: 28
+    row: 37
     col: 0
     width: 24
     height: 1
@@ -239,10 +235,12 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 29
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 38
     col: 13
     width: 11
-    height: 16
+    height: 14
   - title: Behavior
     name: Behavior
     model: snowflake_insights_v1
@@ -290,10 +288,12 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 29
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 38
     col: 0
     width: 13
-    height: 16
+    height: 14
   - title: Homeowner
     name: Homeowner
     model: snowflake_insights_v1
@@ -340,7 +340,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 45
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 52
     col: 13
     width: 11
     height: 5
@@ -390,7 +392,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 50
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 57
     col: 13
     width: 11
     height: 8
@@ -441,7 +445,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 45
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 52
     col: 0
     width: 13
     height: 24
@@ -450,7 +456,7 @@
     title_text: <font size= "6"><b>Finance</b> </font size>
     subtitle_text: ''
     body_text: ''
-    row: 69
+    row: 76
     col: 0
     width: 24
     height: 1
@@ -500,7 +506,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 70
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 77
     col: 13
     width: 11
     height: 11
@@ -550,7 +558,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 58
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 65
     col: 13
     width: 11
     height: 11
@@ -601,7 +611,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 70
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 77
     col: 0
     width: 13
     height: 11
@@ -610,7 +622,7 @@
     title_text: <font size= "6"><b>Home</b> </font size>
     subtitle_text: ''
     body_text: ''
-    row: 81
+    row: 88
     col: 0
     width: 24
     height: 1
@@ -661,7 +673,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 82
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 89
     col: 0
     width: 24
     height: 13
@@ -670,7 +684,7 @@
     title_text: '<font size= "6"><b>Interest</b> </font size> '
     subtitle_text: ''
     body_text: ''
-    row: 103
+    row: 110
     col: 0
     width: 24
     height: 1
@@ -679,7 +693,7 @@
     title_text: <font size= "6"><b>Insurance</b> </font size>
     subtitle_text: ''
     body_text: ''
-    row: 95
+    row: 102
     col: 0
     width: 24
     height: 1
@@ -729,7 +743,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 96
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 103
     col: 0
     width: 24
     height: 7
@@ -814,7 +830,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 111
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 118
     col: 0
     width: 24
     height: 10
@@ -864,7 +882,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 104
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 111
     col: 0
     width: 24
     height: 7
@@ -873,7 +893,7 @@
     title_text: <font size= "6"><b>Invest</b> </font size>
     subtitle_text: ''
     body_text: ''
-    row: 121
+    row: 128
     col: 0
     width: 24
     height: 1
@@ -882,7 +902,7 @@
     title_text: <font size= "6"><b>Lifestyle</b> </font size>
     subtitle_text: ''
     body_text: ''
-    row: 133
+    row: 140
     col: 0
     width: 24
     height: 1
@@ -933,7 +953,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 122
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 129
     col: 0
     width: 24
     height: 11
@@ -983,7 +1005,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 134
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 141
     col: 0
     width: 24
     height: 6
@@ -1033,7 +1057,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 140
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 147
     col: 0
     width: 8
     height: 6
@@ -1084,7 +1110,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 156
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 163
     col: 0
     width: 24
     height: 11
@@ -1169,7 +1197,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 146
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 153
     col: 0
     width: 24
     height: 10
@@ -1219,7 +1249,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 140
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 147
     col: 8
     width: 16
     height: 6
@@ -1304,7 +1336,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 167
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 174
     col: 0
     width: 24
     height: 10
@@ -1390,7 +1424,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 177
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 184
     col: 0
     width: 24
     height: 10
@@ -1399,7 +1435,7 @@
     title_text: <font size= "6"><b>Retail</b> </font size>
     subtitle_text: ''
     body_text: ''
-    row: 197
+    row: 204
     col: 0
     width: 24
     height: 1
@@ -1408,7 +1444,7 @@
     title_text: <font size= "6"><b>Tech</b> </font size>
     subtitle_text: ''
     body_text: ''
-    row: 207
+    row: 214
     col: 0
     width: 24
     height: 1
@@ -1458,7 +1494,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 198
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 205
     col: 12
     width: 12
     height: 9
@@ -1544,7 +1582,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 187
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 194
     col: 0
     width: 24
     height: 10
@@ -1594,7 +1634,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 198
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 205
     col: 0
     width: 12
     height: 9
@@ -1645,7 +1687,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 208
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 215
     col: 0
     width: 12
     height: 11
@@ -1696,7 +1740,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 208
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 215
     col: 12
     width: 12
     height: 11
@@ -1705,7 +1751,7 @@
     title_text: <font size= "6"><b>Travel</b> </font size>
     subtitle_text: ''
     body_text: ''
-    row: 219
+    row: 226
     col: 0
     width: 24
     height: 1
@@ -1755,7 +1801,9 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 220
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 227
     col: 14
     width: 10
     height: 8
@@ -1841,11 +1889,114 @@
       Audience Name: snowflake_infobase.audience_name
       Agency: snowflake_infobase.agency
       Client: snowflake_infobase.client
-    row: 220
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+    row: 227
     col: 0
     width: 14
     height: 8
+  - title: Infobase Complete List
+    name: Infobase Complete List
+    model: snowflake_insights_v1
+    explore: snowflake_infobase
+    type: looker_grid
+    fields: [snowflake_infobase.category, snowflake_infobase.statement, snowflake_infobase.target_percentage,
+      snowflake_infobase.index]
+    filters: {}
+    sorts: [snowflake_infobase.statement]
+    limit: 500
+    show_view_names: false
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_cell_visualizations:
+      snowflake_infobase.target_percentage:
+        is_active: true
+      snowflake_infobase.index:
+        is_active: true
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    defaults_version: 1
+    series_types: {}
+    title_hidden: true
+    listen:
+      Audience Name: snowflake_infobase.audience_name
+      Agency: snowflake_infobase.agency
+      Client: snowflake_infobase.client
+      Category: snowflake_infobase.category
+      Date Created: snowflake_infobase.created
+      Infobase Version: snowflake_infobase.infobase_version
+      Target Percentage: snowflake_infobase.target_percentage
+      Index: snowflake_infobase.index
+    row: 0
+    col: 0
+    width: 24
+    height: 10
   filters:
+  - name: Agency
+    title: Agency
+    type: field_filter
+    default_value: INI
+    allow_multiple_values: false
+    required: true
+    ui_config:
+      type: advanced
+      display: popover
+    model: snowflake_insights_v1
+    explore: snowflake_infobase
+    listens_to_filters: []
+    field: snowflake_infobase.agency
+  - name: Client
+    title: Client
+    type: field_filter
+    default_value: CCL
+    allow_multiple_values: false
+    required: true
+    ui_config:
+      type: advanced
+      display: popover
+    model: snowflake_insights_v1
+    explore: snowflake_infobase
+    listens_to_filters: [Agency]
+    field: snowflake_infobase.client
   - name: Audience Name
     title: Audience Name
     type: field_filter
@@ -1857,10 +2008,36 @@
       display: popover
     model: snowflake_insights_v1
     explore: snowflake_infobase
-    listens_to_filters: []
+    listens_to_filters: [Agency, Client]
     field: snowflake_infobase.audience_name
-  - name: Agency
-    title: Agency
+  - name: Date Created
+    title: Date Created
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+    model: snowflake_insights_v1
+    explore: snowflake_infobase
+    listens_to_filters: [Agency, Client]
+    field: snowflake_infobase.created
+  - name: Infobase Version
+    title: Infobase Version
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+    model: snowflake_insights_v1
+    explore: snowflake_infobase
+    listens_to_filters: [Agency, Client]
+    field: snowflake_infobase.infobase_version
+  - name: Category
+    title: Category
     type: field_filter
     default_value: ''
     allow_multiple_values: true
@@ -1871,9 +2048,9 @@
     model: snowflake_insights_v1
     explore: snowflake_infobase
     listens_to_filters: []
-    field: snowflake_infobase.agency
-  - name: Client
-    title: Client
+    field: snowflake_infobase.category
+  - name: Target Percentage
+    title: Target Percentage
     type: field_filter
     default_value: ''
     allow_multiple_values: true
@@ -1881,7 +2058,22 @@
     ui_config:
       type: advanced
       display: popover
+      options: []
     model: snowflake_insights_v1
     explore: snowflake_infobase
     listens_to_filters: []
-    field: snowflake_infobase.client
+    field: snowflake_infobase.target_percentage
+  - name: Index
+    title: Index
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+      options: []
+    model: snowflake_insights_v1
+    explore: snowflake_infobase
+    listens_to_filters: []
+    field: snowflake_infobase.index

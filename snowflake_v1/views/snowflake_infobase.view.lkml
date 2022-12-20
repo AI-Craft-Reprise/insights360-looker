@@ -2,114 +2,91 @@ view: snowflake_infobase {
   sql_table_name: "airbyte-dev-snowflake-glue-ctg-db".snowflake_infobase
     ;;
 
-  dimension: _airbyte_ab_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}._airbyte_ab_id ;;
-  }
-
-  dimension: _airbyte_data {
-    hidden: yes
-    type: string
-    sql: ${TABLE}._airbyte_data ;;
-  }
-
-  dimension: _airbyte_emitted_at {
-    hidden: yes
-    type: number
-    sql: ${TABLE}._airbyte_emitted_at ;;
-  }
 
   dimension: category {
     type: string
-    sql: ${_airbyte_data}.category ;;
+    sql: ${TABLE}.category ;;
   }
 
   dimension: statement {
     type: string
-    sql: ${_airbyte_data}.statement ;;
+    sql: ${TABLE}.statement ;;
   }
 
   dimension: genpop_cnt {
     type: number
-    sql: ${_airbyte_data}.genpop_cnt ;;
+    sql: ${TABLE}.genpop_cnt ;;
   }
 
   dimension: genpop_total {
     type: number
-    sql: ${_airbyte_data}.genpop_total ;;
+    sql: ${TABLE}.genpop_total ;;
   }
 
   dimension: genpop_percent {
     type: number
-    sql: ${_airbyte_data}.genpop_percent ;;
+    sql: ${TABLE}.genpop_percent ;;
   }
 
   dimension: target_cnt {
     type: number
-    sql: ${_airbyte_data}.target_cnt ;;
+    sql: ${TABLE}.target_cnt ;;
   }
 
   dimension: target_total {
     type: number
-    sql: ${_airbyte_data}.target_total ;;
+    sql: ${TABLE}.target_total ;;
   }
 
   dimension: target_percent {
     type: number
-    sql: ${_airbyte_data}.target_percent ;;
+    sql: ${TABLE}.target_percent ;;
   }
 
   dimension: target_index {
     type: number
-    sql: ${_airbyte_data}.target_index ;;
+    sql: ${TABLE}.target_index ;;
   }
 
   dimension: agency {
     type: string
-    sql: ${_airbyte_data}.agency ;;
+    sql: ${TABLE}.agency ;;
   }
 
   dimension: client {
     type: string
-    sql: ${_airbyte_data}.client ;;
+    sql: ${TABLE}.client ;;
   }
 
   dimension: audience_name {
     type: string
-    sql: ${_airbyte_data}.audience_name ;;
+    sql: ${TABLE}.audience_name ;;
   }
 
   dimension: created {
     type: string
-    sql: ${_airbyte_data}.created ;;
+    sql: ${TABLE}.created ;;
   }
 
   dimension: infobase_version {
     type: string
-    sql: ${_airbyte_data}.infobase_version ;;
+    sql: ${TABLE}.infobase_version ;;
   }
 
   dimension: source {
     type: string
-    sql: ${_airbyte_data}.source ;;
+    sql: ${TABLE}.source ;;
   }
 
   dimension: audience_size {
     type: string
-    sql: ${_airbyte_data}.audience_size ;;
+    sql: ${TABLE}.audience_size ;;
   }
 
-  dimension: _ab_source_file_last_modified {
-    hidden: yes
-    type: date
-    sql: ${_airbyte_data}._ab_source_file_last_modified ;;
-  }
-
-  dimension: _ab_source_file_url {
+  dimension: _emmited_at {
     hidden: yes
     type: string
-    sql: ${_airbyte_data}._ab_source_file_url ;;
+    sql: ${TABLE}._emmited_at ;;
   }
 
   dimension: demo_age {
