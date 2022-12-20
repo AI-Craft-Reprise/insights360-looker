@@ -6,9 +6,18 @@ include: "/snowflake_v1/**/*.view"                # include all views in the vie
 
 
 explore: snowflake_mrisimmons {
+  access_filter: {
+    field: agency
+    user_attribute: agency
+  }
+
 }
 
 explore: snowflake_infobase {
+  access_filter: {
+    field: agency
+    user_attribute: agency
+  }
 }
 
 # # Select the views that should be a part of this model,
