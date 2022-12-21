@@ -20,6 +20,8 @@ view: audience_filter {
     # }
     dimension: company_size {
       description: ""
+      suggestions: ["10,001+ employees", "5001-10,000 employees", "1001-5000 employees", "501-1000 employees","201-500 employees","51-200 employees", "11-50 employees","2-10 employees", "Myself Only"
+]
     }
     # dimension: country {
     #   description: ""
