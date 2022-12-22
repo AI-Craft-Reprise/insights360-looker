@@ -39,7 +39,7 @@ explore: audience_insights {
   }
 
   join: audience_insights_entities {
-    relationship: one_to_one
+    relationship: one_to_many
     sql_on: ${segmentations.value}= ${audience_insights_entities.entity_urn} ;;
   }
 
