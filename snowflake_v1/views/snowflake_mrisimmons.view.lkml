@@ -224,7 +224,7 @@ view: snowflake_mrisimmons {
     label: "Shopping & Style"
     type: string
     sql: CASE WHEN ${question_level_2} IN ('BUYING STYLES','FASHION & STYLE ATTITUDES','SHOPPING ATTITUDES',
-                    'Buying Styles', 'Fashion & Styke Attitudes', 'Shopping Attitudes')
+                    'Buying Styles', 'Fashion & Style Attitudes', 'Shopping Attitudes')
                     THEN ${question_level_2}
 
                           ELSE NULL END ;;
@@ -245,7 +245,7 @@ view: snowflake_mrisimmons {
     label: "Travel & Money"
     type: string
     sql: CASE WHEN ${question_level_2} IN ('AUTOMOTIVE ATTITUDES','FINANCE ATTITUDES', 'VACATION TRAVEL ATTITUDES',
-                    'Automotive Attitudes', 'Finance Attitudes', 'Vacation Travel attitudes')
+                    'Automotive Attitudes', 'Finance Attitudes', 'Vacation Travel Attitudes')
                     THEN ${question_level_2}
 
                           ELSE NULL END ;;
