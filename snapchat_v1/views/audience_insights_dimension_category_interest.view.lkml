@@ -122,4 +122,19 @@ view: audience_insights_dimension_category_interest {
     type: string
     sql: ${response}.reference_audience_size_maximum ;;
   }
+
+  measure: target_audience_percent {
+    type: sum
+    sql: ${insight_target_audience_percent} ;;
+  }
+
+  measure: reference_audience_percent {
+    type: sum
+    sql: ${insight_reference_audience_percent} ;;
+  }
+
+  measure: target_index_to_reference {
+    type: sum
+    sql: ${insight_target_index_to_reference} ;;
+  }
 }

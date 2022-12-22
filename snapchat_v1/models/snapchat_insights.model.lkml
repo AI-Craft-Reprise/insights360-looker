@@ -7,7 +7,7 @@ include: "/snapchat_v1/views/**/*.view"                # include all views in th
 explore: audience_insights_dimension_category_demo{
   join: country {
     relationship: one_to_many
-    sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country) ;;
+    sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country);;
   }
 }
 
@@ -16,9 +16,20 @@ explore: audience_insights_dimension_category_interest {
     type: left_outer
     relationship: one_to_one
     sql_on: ${audience_insights_dimension_category_interest.insight_id}=${targeting_categories.id} ;;
-
   }
 }
+
+explore: audience_insights_dimension_category_device {}
+
+explore: audience_insights_dimension_category_geo {
+  join: country {
+    relationship: one_to_many
+    sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country);;
+  }
+}
+
+
+
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 #
