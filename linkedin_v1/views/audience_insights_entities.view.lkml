@@ -30,12 +30,16 @@ view: audience_insights_entities {
     sql: ${response}.name ;;
   }
 
-  dimension: entity_urn {
+  dimension: urn {
     sql: ${response}.urn ;;
   }
 
   dimension: facet_urn {
     sql: ${response}.faceturn;;
+  }
+
+  dimension: entity_urn {
+    sql: ${response}.entityurn ;;
   }
 
 

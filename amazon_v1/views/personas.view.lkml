@@ -55,11 +55,6 @@ view: personas {
     type: date_time
   }
 
-  # dimension: date_utc {
-  #   type: string
-  #   sql: cast(${lastmodified} as varchar) ;;
-  # }
-
   dimension: expression {
     type: string
     sql: ${response}.expression ;;
