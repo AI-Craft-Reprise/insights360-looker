@@ -64,6 +64,11 @@ explore: audience_insights {
     sql_on: ${audience_insights.audience_name}=${audience_insights_requests.name};;
   }
 
+
+
+
+
+
 # join: insights_req {
 #     relationship: one_to_many
 #     sql:  CROSS JOIN UNNEST(_airbyte_data.request.body)

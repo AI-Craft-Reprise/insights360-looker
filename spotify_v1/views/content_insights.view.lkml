@@ -21,7 +21,7 @@ view: content_insights {
   }
 
   dimension: request {
-    # hidden: yes
+    hidden: yes
     type: string
     sql: ${_airbyte_data}.request ;;
   }

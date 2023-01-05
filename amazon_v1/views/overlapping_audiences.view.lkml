@@ -105,20 +105,20 @@ view: overlapping_audiences {
     label: "Audience"
     type: string
     sql: CASE WHEN SUBSTRING (${name_full}, 1, 2) IN ('LS', 'IM', 'IN', 'LE') then substring (${name_full}, 6)
+              WHEN (${category}='Lookalike' and ${name_full} LIKE 'Lookalike%') then SUBSTRING (${name_full}, 13)
+              WHEN (${category}='Demographic' and ${name_full} LIKE 'Demo%') then SUBSTRING (${name_full}, 8)
           ELSE ${name_full} end;;
   }
 
 
   dimension: category {
     label: "Audience Category"
-    suggestions: ["In-market", "Interest", "Life event", "Lifestyle"]
     type: string
     sql: ${audiencemetadata}.category ;;
   }
 
   dimension: req_audience_category {
     label: "Requested Audience Category"
-    suggestions: ["In-market", "Interest", "Life event", "Lifestyle"]
     type: string
     sql: ${requestedaudiencemetadata}.category ;;
   }
