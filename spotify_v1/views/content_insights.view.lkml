@@ -39,7 +39,7 @@ view: content_insights {
   }
 
   dimension: age_group_array_req {
-    hidden: yes
+    # hidden: yes
     sql: ${filters}.age_group ;;
   }
 

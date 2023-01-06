@@ -4,6 +4,10 @@ view: audience_targeting_criteria {
     sql: ${TABLE}.urn ;;
   }
 
+  dimension: value {
+    sql: ${TABLE}.value ;;
+  }
+
   }
 
 # LEFT JOIN UNNEST(${resource_compute_googleapis_com_firewall.resource__data__allowed}) as allowed
