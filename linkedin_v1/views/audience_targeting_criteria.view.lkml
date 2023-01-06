@@ -4,6 +4,10 @@ view: audience_targeting_criteria {
     sql: ${TABLE}.urn ;;
   }
 
+  dimension: value {
+    sql: ${TABLE}.value ;;
+  }
+
   }
 
 view: audience_targeting_criteria_value {
