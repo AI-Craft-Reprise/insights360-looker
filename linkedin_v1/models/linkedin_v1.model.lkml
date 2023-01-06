@@ -64,10 +64,19 @@ explore: audience_insights {
     sql_on: ${audience_insights.audience_name}=${audience_insights_requests.name};;
   }
 
-join: audience_targeting_criteria {
-  relationship: many_to_many
-  sql:  , unnest(${audience_insights_requests.response}.targeting_criteria) t(audience_targeting_criteria)
-        ;;
+  join: audience_targeting_criteria {
+    view_label: "Audience Targeting Criteria"
+    relationship: many_to_many
+    sql:  , unnest(${audience_insights_requests.response}.targeting_criteria) t(audience_targeting_criteria)
+          ;;
+  }
+  join: audience_targeting_criteria_value {
+    from: audience_targeting_criteria_value
+    view_label: "Audience Targeting Criteria"
+    relationship: one_to_many
+    required_joins: [audience_targeting_criteria]
+    sql:  , unnest(audience_targeting_criteria.value) t(audience_targeting_criteria_value)
+      ;;
 }
 
 
