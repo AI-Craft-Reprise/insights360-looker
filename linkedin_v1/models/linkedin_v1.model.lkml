@@ -64,6 +64,11 @@ explore: audience_insights {
     sql_on: ${audience_insights.audience_name}=${audience_insights_requests.name};;
   }
 
+join: audience_targeting_criteria {
+  relationship: many_to_many
+  sql:  , unnest(${audience_insights_requests.response}.targeting_criteria) t(audience_targeting_criteria)
+        ;;
+}
 
 
 

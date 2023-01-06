@@ -47,6 +47,10 @@ view: audience_insights_requests {
     sql: ${response}.targeting_criteria;;
   }
 
+  # dimension: value {
+  #   sql: ${targeting_criteria}.value ;;
+  # }
+
   measure: count {
     type: count
     drill_fields: []
