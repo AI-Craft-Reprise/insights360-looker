@@ -77,7 +77,8 @@ explore: audience_insights {
     required_joins: [audience_targeting_criteria]
     sql:  , unnest(audience_targeting_criteria.value) t(audience_targeting_criteria_value)
       ;;
-}
+  }
+
 
 
 

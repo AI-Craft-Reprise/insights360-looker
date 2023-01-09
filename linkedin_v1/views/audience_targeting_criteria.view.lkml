@@ -5,6 +5,7 @@ view: audience_targeting_criteria {
   }
 
   dimension: value {
+    hidden: yes
     sql: ${TABLE}.value ;;
   }
 

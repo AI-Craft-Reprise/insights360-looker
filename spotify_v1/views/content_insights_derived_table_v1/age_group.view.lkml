@@ -112,3 +112,7 @@
 #     sql: ${TABLE}.insight_value ;;
 #   }
 # }
+
+# If necessary, uncomment the line below to include explore_source.
+
+# include: "spotify_insights_v1.model.lkml"

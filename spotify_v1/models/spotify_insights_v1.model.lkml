@@ -25,6 +25,19 @@ explore: content_insights {
     relationship: one_to_many
     sql: , UNNEST(_airbyte_data.request.body.filters.country) t (content_country) ;;
   }
+
+  # join: content_insights_age_groups {
+  #   from: content_insights_age_groups
+  #   view_label: "Age Group"
+  #   sql_on: ${audience_segment_insights.request} = ${age_group.request} and ${content_insights.uri} = ${content_insights_age_} and ${audience_segment_insights.country} = ${age_group.country};;
+  #   relationship: one_to_many
+  # }
+
+  # join: age_group_minutes {
+  #   view_label: "Age Group"
+  #   sql_on: ${age_group.pk} = ${age_group_minutes.pk};;
+  #   relationship:  one_to_one
+  # }
 }
 
 
