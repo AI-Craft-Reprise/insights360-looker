@@ -1,4 +1,5 @@
 view: targeting_interests_dlxp {
+  view_label: "Interests Mapping"
   sql_table_name: "airbyte-dev-snapchat-marketing-glue-ctg-db".targeting_interests_dlxp
     ;;
    dimension: _airbyte_ab_id {
@@ -30,7 +31,6 @@ view: targeting_interests_dlxp {
   }
 
   dimension: name {
-    primary_key: yes
     sql: ${response}.name ;;
   }
   measure: count {
