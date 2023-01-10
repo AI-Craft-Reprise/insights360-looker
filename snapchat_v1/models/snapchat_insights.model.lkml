@@ -6,9 +6,21 @@ include: "/snapchat_v1/views/**/*.view"                # include all views in th
 
 explore: audience_insights_dimension_category_demo{
   join: country {
-    relationship: one_to_many
+    relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country);;
   }
+  join: geos {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.targeting_spec.geos) t (geos);;
+  }
+  join: interests {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interests);;
+  }
+  # join: targeting_interests_dlxc {
+  #   relationship: one_to_one
+  #   sql_on: ${interests.category_id}=targeting_interes ;;
+  # }
 }
 
 explore: audience_insights_dimension_category_interest {

@@ -26,24 +26,33 @@ explore: content_insights {
     sql: , UNNEST(_airbyte_data.request.body.filters.country) t (content_country) ;;
   }
 
-  # join: content_insights_age_groups {
+  # join: content_insights_age_groups{
   #   from: content_insights_age_groups
-  #   view_label: "Age Group"
-  #   sql_on: ${audience_segment_insights.request} = ${age_group.request} and ${content_insights.uri} = ${content_insights_age_} and ${audience_segment_insights.country} = ${age_group.country};;
+  #   view_label: "Age Groups"
+  #   sql_on: ${content_insights.request}=${content_insights_age_groups.request} and ${content_insights.uri}=${content_insights_age_groups.uri} ;;
   #   relationship: one_to_many
   # }
 
-  # join: age_group_minutes {
+  # join: age_group_minutes_percent {
   #   view_label: "Age Group"
-  #   sql_on: ${age_group.pk} = ${age_group_minutes.pk};;
-  #   relationship:  one_to_one
+  #   sql_on: ${content_insights_age_groups.pk}=${age_group_minutes_percent.pk};;
+  #   relationship: one_to_one
   # }
+
 }
 
 
 explore: listener_insights {
   join: listener_country {
     relationship: one_to_many
-    sql: , UNNEST(_airbyte_data.request.body.filters.country) t (content_country) ;;
+    sql: , UNNEST(_airbyte_data.request.body.filters.country) t (listener_country) ;;
+  }
+  join: listener_age {
+    relationship: one_to_many
+    sql: , unnest (_airbyte_data.request.body.filters.age_group) t(listener_age) ;;
+  }
+  join: listener_gender {
+    relationship: one_to_many
+    sql: , unnest (_airbyte_data.request.body.filters.gender) t(listener_gender) ;;
   }
 }

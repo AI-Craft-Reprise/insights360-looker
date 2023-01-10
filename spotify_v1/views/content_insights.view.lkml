@@ -132,6 +132,7 @@ view: content_insights {
 
                                 ELSE NULL END ;;
     # suggestions: ["afternoon", "morning", "night"]
+    order_by_field: time_of_day_sort
   }
 
   dimension: device{
@@ -162,6 +163,16 @@ view: content_insights {
               end
               ;;
   }
+
+  dimension: time_of_day_sort {
+    hidden: yes
+    type: number
+    sql: case when ${time_of_day}='morning' then 1
+    when ${time_of_day}='afternoon' then 2
+    when ${time_of_day}='night' then 3
+    end;;
+    }
+
   # dimension: audience_key {
   #   type:  string
   #   sql: concat('Gender:(',array_join(${gender_array_req},','),') Country:(',array_join(${country_array_req},','),') Age Group:(',array_join(${age_group_array_req}, ','), ')') ;;

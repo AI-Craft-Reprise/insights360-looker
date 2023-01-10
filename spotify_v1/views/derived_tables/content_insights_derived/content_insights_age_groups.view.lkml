@@ -30,6 +30,10 @@
           field: gender.gender
           value: ""
         }
+        filters: {
+          field: content_insights.dimension
+          value: "age_group"
+        }
         }
         }
 
@@ -39,7 +43,8 @@
     primary_key: yes
    sql: ${age}||${content_country}||${gender}||${uri} ;;
   }
-    dimension: request {}
+    dimension: request {
+    }
     dimension: dimension {
       description: ""
     }
@@ -105,7 +110,7 @@
       derived_table: {
         explore_source: content_insights {
           filters: {
-            field: audience_segment_insights.field
+            field: content_insights.field
             value: "minutes_percent"
           }
         }
