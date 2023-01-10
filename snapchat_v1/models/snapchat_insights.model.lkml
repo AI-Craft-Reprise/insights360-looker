@@ -17,19 +17,27 @@ explore: audience_insights_dimension_category_demo{
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.targeting_spec.demographics) t (demo);;
   }
-  # join:  {
-  #   from: audience_targeting_criteria_value
-  #   view_label: "Audience Targeting Criteria"
-  #   relationship: one_to_many
-  #   required_joins: [audience_targeting_criteria]
-  #   sql:  , unnest(audience_targeting_criteria.value) t(audience_targeting_criteria_value)
-  #     ;;
-  # }
+  join: age_group   {
+    from: age_group
+    view_label: "Targeting Audience Filters"
+    relationship: many_to_one
+    required_joins: [demo]
+    sql:  , unnest(demo.age_groups) t(age_group)
+      ;;
+  }
 
   join: interests {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interests);;
   }
+  # join:   {
+  #   from: age_group
+  #   view_label: "Targeting Audience Filters"
+  #   relationship: many_to_one
+  #   required_joins: [demo]
+  #   sql:  , unnest(demo.age_groups) t(age_group)
+  #     ;;
+  # }
   # join: targeting_interests_dlxc {
   #   type: inner
   #   relationship: one_to_one

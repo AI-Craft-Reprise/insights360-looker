@@ -8,10 +8,11 @@ view: interests {
     sql: ${TABLE} ;;
   }
 
+}
+
+view: interest_category {
   dimension: category_id{
     type: string
-    sql: ${interest}.category_id ;;
-    # suggestions: ["ca", "gb", "us"]
+    sql: ${TABLE} ;;
   }
-
 }
