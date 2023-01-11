@@ -1,6 +1,6 @@
-view: device_country {
+view: interest_geos {
 
-  view_label: "Base Audience Filter"
+ view_label: "Targeting Audience Filters"
 
   dimension: country{
     hidden: yes
@@ -9,7 +9,6 @@ view: device_country {
   }
 
   dimension: country_code{
-    label: "Base Country Code"
     type: string
     sql: ${country}.country_code ;;
     suggestions: ["au", "ca", "de", "es", "gb", "in", "jp", "mx", "us"]

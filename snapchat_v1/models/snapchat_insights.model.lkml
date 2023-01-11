@@ -5,6 +5,7 @@ include: "/snapchat_v1/views/**/*.view"                # include all views in th
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 explore: audience_insights_dimension_category_demo{
+  label: "Demo Insights"
   join: country {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country);;
@@ -45,16 +46,45 @@ explore: audience_insights_dimension_category_demo{
 }
 
 explore: audience_insights_dimension_category_interest {
-  join: targeting_categories {
-    type: left_outer
-    relationship: one_to_one
-    sql_on: ${audience_insights_dimension_category_interest.insight_id}=${targeting_categories.id} ;;
+  label: "Interest Insights"
+  join: interest_country {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (interest_country);;
   }
+  join: interest_geos {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.targeting_spec.geos) t (interest_geos);;
+  }
+  join: interest_demo {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.targeting_spec.demographics) t (interest_demo);;
+  }
+  join: interest_age_group   {
+    from: interest_age_group
+    view_label: "Targeting Audience Filters"
+    relationship: many_to_one
+    required_joins: [interest_demo]
+    sql:  , unnest(interest_demo.age_groups) t(interest_age_group)
+      ;;
+  }
+  join: interest_interests {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interest_interests);;
+  }
+  # join:  interest_interest_category {
+  #   from: interest_interest_category
+  #   view_label: "Targeting Audience Filters"
+  #   relationship: many_to_one
+  #   required_joins: [interest_interests]
+  #   sql:  , unnest(interest_interests.category_id) t(interest_category)
+  #     ;;
+  # }
 }
 
 
 
 explore: audience_insights_dimension_category_device {
+  label: "Device Insights"
   join: device_country {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (device_country);;
@@ -93,6 +123,7 @@ explore: audience_insights_dimension_category_device {
 
 
 explore: audience_insights_dimension_category_geo {
+  label: "Geo Insights"
   join: country {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country);;

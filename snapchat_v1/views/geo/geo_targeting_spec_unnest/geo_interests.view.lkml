@@ -13,7 +13,7 @@ view: geo_interests {
   view: geo_interest_category {
     view_label: "Targeting Audience Filters"
     dimension: category_id{
-      label: "Category ID"
+      label: "Interest Category ID"
       type: string
       sql: ${TABLE} ;;
     }

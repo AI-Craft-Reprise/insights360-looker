@@ -9,9 +9,10 @@ view: geo_country {
   }
 
   dimension: country_code{
+    label: "Base Country Code"
     type: string
     sql: ${country}.country_code ;;
-    suggestions: ["ca", "gb", "us"]
+    suggestions: ["au", "ca", "de", "es", "gb", "in", "jp", "mx", "us"]
   }
 
 

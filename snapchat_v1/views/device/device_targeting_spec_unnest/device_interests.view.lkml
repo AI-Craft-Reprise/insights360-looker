@@ -13,7 +13,7 @@ view: device_interests {
   view: device_interest_category {
     view_label: "Targeting Audience Filters"
     dimension: category_id{
-      label: "Category ID"
+      label: "Interest Category ID"
       type: string
       sql: ${TABLE} ;;
     }

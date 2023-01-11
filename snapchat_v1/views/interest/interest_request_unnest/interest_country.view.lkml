@@ -1,4 +1,4 @@
-view: device_country {
+view: interest_country {
 
   view_label: "Base Audience Filter"
 

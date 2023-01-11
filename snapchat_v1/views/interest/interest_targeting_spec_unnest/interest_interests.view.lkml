@@ -1,4 +1,4 @@
-view: interests {
+view: interest_interests {
 
   view_label: "Targeting Audience Filters"
 
@@ -10,7 +10,7 @@ view: interests {
 
 }
 
-view: interest_category {
+view: interest_interest_category {
   view_label: "Targeting Audience Filters"
   dimension: category_id{
     label: "Interest Category ID"

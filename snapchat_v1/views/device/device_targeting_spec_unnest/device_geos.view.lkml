@@ -10,7 +10,7 @@ view: device_geos {
   dimension: country_code{
     type: string
     sql: ${country}.country_code ;;
-    suggestions: ["ca", "gb", "us"]
+    suggestions: ["au", "ca", "de", "es", "gb", "in", "jp", "mx", "us"]
   }
 
 
