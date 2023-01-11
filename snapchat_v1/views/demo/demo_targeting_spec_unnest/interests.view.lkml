@@ -11,7 +11,9 @@ view: interests {
 }
 
 view: interest_category {
+  view_label: "Targeting Audience Filters"
   dimension: category_id{
+    label: "Category ID"
     type: string
     sql: ${TABLE} ;;
   }

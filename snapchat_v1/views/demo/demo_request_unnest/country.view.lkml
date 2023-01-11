@@ -1,5 +1,7 @@
 view: country {
 
+  view_label: "Base Audience Filter"
+
   dimension: country{
     hidden: yes
     type: string
