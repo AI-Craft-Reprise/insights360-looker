@@ -71,14 +71,14 @@ explore: audience_insights_dimension_category_interest {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interest_interests);;
   }
-  # join:  interest_interest_category {
-  #   from: interest_interest_category
-  #   view_label: "Targeting Audience Filters"
-  #   relationship: many_to_one
-  #   required_joins: [interest_interests]
-  #   sql:  , unnest(interest_interests.category_id) t(interest_category)
-  #     ;;
-  # }
+  join:  interest_interest_category {
+    from: interest_interest_category
+    view_label: "Targeting Audience Filters"
+    relationship: many_to_one
+    required_joins: [interest_interests]
+    sql:  , unnest(interest_interests.category_id) t(interest_interest_category)
+      ;;
+  }
 }
 
 

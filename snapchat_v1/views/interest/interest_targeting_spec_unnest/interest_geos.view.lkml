@@ -8,7 +8,8 @@ view: interest_geos {
     sql: ${TABLE} ;;
   }
 
-  dimension: country_code{
+  dimension: target_country_code{
+    label: "Target Country"
     type: string
     sql: ${country}.country_code ;;
     suggestions: ["au", "ca", "de", "es", "gb", "in", "jp", "mx", "us"]

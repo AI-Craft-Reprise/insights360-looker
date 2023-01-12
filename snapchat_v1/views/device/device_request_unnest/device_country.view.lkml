@@ -9,7 +9,7 @@ view: device_country {
   }
 
   dimension: country_code{
-    label: "Base Country Code"
+    label: "Base Country"
     type: string
     sql: ${country}.country_code ;;
     suggestions: ["au", "ca", "de", "es", "gb", "in", "jp", "mx", "us"]

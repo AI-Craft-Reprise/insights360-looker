@@ -8,6 +8,7 @@ view: device_geos {
   }
 
   dimension: country_code{
+    label: "Target Country"
     type: string
     sql: ${country}.country_code ;;
     suggestions: ["au", "ca", "de", "es", "gb", "in", "jp", "mx", "us"]
