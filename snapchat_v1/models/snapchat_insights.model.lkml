@@ -31,7 +31,6 @@ explore: audience_insights_dimension_category_demo{
     sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interests);;
   }
 
-
   join:  interest_category {
     from: interest_category
     view_label: "Targeting Audience Filters"
@@ -39,11 +38,6 @@ explore: audience_insights_dimension_category_demo{
     sql_on: ${audience_insights_dimension_category_demo._airbyte_ab_id} = ${interest_category._airbyte_ab_id}
       ;;
   }
-  # join: targeting_interests_dlxc {
-  #   type: inner
-  #   relationship: one_to_one
-  #   sql_on: ${interest_category.category_id}=${targeting_interests_dlxc.id} ;;
-  # }
 }
 
 explore: audience_insights_dimension_category_interest {
@@ -110,14 +104,14 @@ explore: audience_insights_dimension_category_device {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (device_interests);;
   }
-  join:  device_interest_category {
-    from: interest_category
-    view_label: "Targeting Audience Filters"
-    relationship: many_to_one
-    required_joins: [device_interests]
-    sql:  , unnest(device_interests.category_id) t(device_interest_category)
-      ;;
-  }
+
+  # join:  interest_category {
+  #   from: interest_category
+  #   view_label: "Targeting Audience Filters"
+  #   relationship: one_to_many
+  #   sql_on: ${audience_insights_dimension_category_demo._airbyte_ab_id} = ${device_interest_category._airbyte_ab_id}
+  #     ;;
+  # }
 }
 
 
