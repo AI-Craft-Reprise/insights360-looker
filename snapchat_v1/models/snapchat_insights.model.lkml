@@ -30,12 +30,13 @@ explore: audience_insights_dimension_category_demo{
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interests);;
   }
+
+
   join:  interest_category {
     from: interest_category
     view_label: "Targeting Audience Filters"
-    relationship: many_to_one
-    required_joins: [interests]
-    sql:  , unnest(interests.category_id) t(interest_category)
+    relationship: one_to_many
+    sql_on: ${audience_insights_dimension_category_demo._airbyte_ab_id} = ${interest_category._airbyte_ab_id}
       ;;
   }
   # join: targeting_interests_dlxc {
