@@ -143,7 +143,17 @@ view: audience_segment_insights {
     type: string
     sql: case when ${dimension} = 'time_of_day' then ${insight_key}
       else null end;;
+    order_by_field: time_of_day_sort
   }
+
+  dimension: time_of_day_sort {
+    hidden: yes
+    type: number
+    sql: case when ${time_of_day}='morning' then 1
+              when ${time_of_day}='afternoon' then 2
+              when ${time_of_day}='night' then 3
+         end;;
+    }
 
 
   measure: count {

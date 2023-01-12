@@ -1,7 +1,6 @@
 view: ad_targeting_facets {
   sql_table_name: "airbyte-dev-linkedin-ads-glue-ctg-db".ad_targeting_facets
     ;;
-  # suggestions: no
 
   dimension: _airbyte_ab_id {
     hidden: yes

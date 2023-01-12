@@ -62,6 +62,7 @@ view: audience_insights_dimension_category_demo {
   }
 
   dimension:  insight_id {
+    hidden: yes
     type: string
     sql: ${response}.insight_id ;;
   }
@@ -123,6 +124,76 @@ view: audience_insights_dimension_category_demo {
     sql: ${response}.reference_audience_size_maximum ;;
   }
 
+  dimension: life_events {
+    sql: case when ${insight_name} LIKE ('Life Event%') then
+        SUBSTRING (${insight_name}, 13, length(${insight_name})-13) end;;
+  }
+
+  dimension: marital_status{
+    sql: case when ${insight_name} LIKE ('Marital Status%') then
+      SUBSTRING (${insight_name}, 17, length(${insight_name})-17) end;;
+  }
+
+  dimension: home_status{
+    sql: case when ${insight_name} LIKE ('Home Status%') then
+      SUBSTRING (${insight_name}, 14, length(${insight_name})-14) end;;
+  }
+
+  dimension: presence_of_child{
+    sql: case when ${insight_name} LIKE ('Presence of Child%') then
+      SUBSTRING (${insight_name}, 20, length(${insight_name})-20) end;;
+    order_by_field: presence_of_child_sort
+  }
+
+  dimension: presence_of_child_sort {
+    hidden: yes
+    type: number
+    sql: case when ${presence_of_child}='Age: 0-3' then 1
+              when ${presence_of_child}='Age: 4-6' then 2
+              when ${presence_of_child}='Age: 7-9' then 3
+              when ${presence_of_child}='Age: 10-12' then 4
+              when ${presence_of_child}='Age: 13-15' then 5
+              when ${presence_of_child}='Age: 16-18' then 6
+ else null end
+    ;;
+  }
+
+
+  dimension: occupation{
+    sql: case when ${insight_name} LIKE ('Occupation%') then
+      SUBSTRING (${insight_name}, 13, length(${insight_name})-13) end;;
+  }
+
+  dimension: education{
+    sql: case when ${insight_name} LIKE ('Education%') then
+      SUBSTRING (${insight_name}, 12, length(${insight_name})-12) end;;
+  }
+
+  dimension: income{
+    type: string
+    sql: case when ${insight_name} LIKE ('Household Income%') then
+      SUBSTRING (${insight_name}, 19, length(${insight_name})-19) end;;
+    order_by_field: income_sort
+  }
+
+  dimension: income_sort {
+    hidden: yes
+    type: number
+    sql: case when ${income}='$1,000-$24,999' then 1
+              when ${income}='$25,000-$49,999' then 2
+              when ${income}='$50,000-$74,999' then 3
+              when ${income}='$75,000-$99,999' then 4
+              when ${income}='$100,000-$124,999' then 5
+              when ${income}=' $125,000-$149,999' then 6
+              when ${income}='$150,000-$174,999' then 7
+              when ${income}='$175,000-$199,999' then 8
+              when ${income}='$200,000-$249,999' then 9
+              when ${income}='$250,000+' then 99 else null end
+    ;;
+  }
+
+
+
   measure: reference_audience_size_max {
     type: sum
     sql: ${reference_audience_size_maximum} ;;
@@ -143,20 +214,22 @@ view: audience_insights_dimension_category_demo {
     sql: ${targeting_audience_size_minimum} ;;
   }
 
-  measure: insight_target_audience_percentage {
+  measure: target_audience_percent {
     type: sum
     sql: ${insight_target_audience_percent} ;;
   }
 
-  measure: insight_reference_audience_percentage {
+  measure: reference_audience_percent {
     type: sum
     sql: ${insight_reference_audience_percent} ;;
   }
 
-  measure:  insight_target_to_reference_index{
+  measure: target_index_to_reference {
     type: sum
     sql: ${insight_target_index_to_reference} ;;
   }
+
+
 
 
   measure: count {

@@ -39,9 +39,4 @@ view: topretailcategories {
     value_format: "0.0"
   }
 
-
-
-  # there is also an array - Path that can be unnested if needed
-  # (eg. path=[Books, Subjects, Health, Fitness & Dieting, Exercise & Fitness, Weight Training])
-
  }

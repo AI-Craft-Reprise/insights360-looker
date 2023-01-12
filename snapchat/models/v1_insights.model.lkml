@@ -11,6 +11,7 @@ datagroup: insights_default_datagroup {
 persist_with: insights_default_datagroup
 
 explore: snap {
+  hidden: yes
   always_filter: {
     filters: [base_spec_geos.country_code: "us",
               ]}

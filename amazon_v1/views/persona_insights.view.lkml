@@ -1,7 +1,6 @@
 view: persona_insights {
   sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".persona_insights
     ;;
-  # suggestions: no
 
   dimension: _airbyte_ab_id {
     type: string
@@ -20,16 +19,6 @@ view: persona_insights {
     sql: ${TABLE}._airbyte_emitted_at ;;
     hidden: yes
   }
-
-  # dimension: category{
-  #   type: string
-  #   sql: ${_airbyte_data}.category ;;
-  # }
-
-  # dimension: category_type{
-  #   type: string
-  #   sql: ${_airbyte_data}.category_type ;;
-  # }
 
   dimension: response {
     type: string
@@ -79,80 +68,9 @@ view: persona_insights {
     sql: ${response}.personainsights ;;
   }
 
-
-  # dimension: lastupdatedat{
-  #   type: date
-  #   sql: ${_airbyte_data}.lastupdatedat ;;
-  # }
-
-  # dimension: estimatedsize{
-  #   type: string
-  #   sql: ${_airbyte_data}.estimatedsize ;;
-  # }
-
-  # dimension: min{
-  #   label: "Min Estimated Size "
-  #   type: number
-  #   sql: ${estimatedsize}.min ;;
-  # }
-
-  # dimension: max{
-  #   label: "Max Estimated Size"
-  #   type: number
-  #   sql: ${estimatedsize}.max ;;
-  # }
-
-  # dimension: percentage{
-  #   type: number
-  #   sql: ${_airbyte_data}.percentage ;;
-  # value_format_name: percent_1
-  # }
-
-  # dimension: affinity{
-  #   type: number
-  #   sql: ${_airbyte_data}.affinity ;;
-  #   value_format: "0.00"
-  # }
-
-  # dimension: name{
-  #   type: string
-  #   sql: ${_airbyte_data}.name ;;
-  # }
-
-  # dimension: id{
-  #   type: string
-  #   sql: ${_airbyte_data}.id ;;
-  # }
-
-  # dimension: path{
-  #   type: string
-  #   sql: ${_airbyte_data}.path ;;
-  # }
-
-  # dimension: attribute{
-  #   type: string
-  #   sql: ${_airbyte_data}.attribute ;;
-  # }
-
   measure: count {
     type: count
     drill_fields: []
   }
 
-  # dimension: name {
-  #   type: string
-  #   sql: _user_attributes['agency'] ;;
-  # }
-  # dimension: logos {
-  #   type: string
-  #   sql: ${name} ;;
-  #   html:
-  #         {% if name == "Initiative" %}
-  #         &lt;img src="https://d1jfzm9ywrnbsn.cloudfront.net/logo.png" height="170" width="255"&gt;
-  #         {% elsif name == "UM" %}
-  #         &lt;img src="https://th.bing.com/th/id/R.ad92044dcc2ab081e4f09e6a8411dfaa?rik=Q2%2brxYZHMP3YrQ&pid=ImgRaw&r=0" height="170" width="255"&gt;
-  #         {% else %}
-  #         &lt;img src="https://mediaserver.responsesource.com/press-release/84285/dev_logo_rgb_1200dpi.jpg" height="170" width="170"&gt;
-  #         {% endif %} ;;
-  # }
-}
+  }

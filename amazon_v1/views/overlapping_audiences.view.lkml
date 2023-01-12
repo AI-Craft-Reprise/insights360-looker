@@ -50,21 +50,16 @@ view: overlapping_audiences {
 
   dimension: requested_audience_name {
     type: string
-    sql: CASE WHEN ${req_category}='IN-Market' then SUBSTRING (${req_name}, 6)
-              WHEN (${req_category}='Lookalike' and ${req_name} LIKE 'AL%') THEN SUBSTRING (${req_name}, 6)
-              WHEN (${req_category}='Lookalike' and ${req_name} LIKE 'Lookalike%') THEN SUBSTRING (${req_name}, 13)
-              WHEN (${req_category}='Lifestyle' and ${req_name} LIKE 'LS - %') THEN SUBSTRING (${req_name}, 6)
-              WHEN (${req_category}='Lifestyle' and ${req_name} LIKE 'LS -%') THEN SUBSTRING (${req_name}, 5)
-              WHEN (${req_category}='Life event' and ${req_name} LIKE 'LS - %') THEN SUBSTRING (${req_name}, 6)
+    sql: CASE WHEN (${req_audience_category}='In-market' and ${req_name} LIKE 'IM%') then SUBSTRING (${req_name}, 6)
+              WHEN (${req_audience_category}='Interest' and ${req_name} LIKE 'LS -%') THEN SUBSTRING (${req_name}, 6)
+              WHEN (${req_audience_category}='Interest' and ${req_name} LIKE 'LS-%') THEN SUBSTRING (${req_name}, 5)
+              WHEN (${req_audience_category}='Lifestyle' and ${req_name} LIKE 'LS - %') THEN SUBSTRING (${req_name}, 6)
+              WHEN (${req_audience_category}='Lifestyle' and ${req_name} LIKE 'LS -%') THEN SUBSTRING (${req_name}, 5)
+              WHEN (${req_audience_category}='Life event' and ${req_name} LIKE 'LS - %') THEN SUBSTRING (${req_name}, 6)
               ELSE ${req_name} END;;
-    html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
+    # html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p> ;;
   }
 
-  dimension: req_category {
-    hidden: yes
-    type: string
-    sql: ${requestedaudiencemetadata}.category ;;
-  }
 
   dimension: req_audienceforecast {
     hidden: yes
@@ -110,20 +105,20 @@ view: overlapping_audiences {
     label: "Audience"
     type: string
     sql: CASE WHEN SUBSTRING (${name_full}, 1, 2) IN ('LS', 'IM', 'IN', 'LE') then substring (${name_full}, 6)
+              WHEN (${category}='Lookalike' and ${name_full} LIKE 'Lookalike%') then SUBSTRING (${name_full}, 13)
+              WHEN (${category}='Demographic' and ${name_full} LIKE 'Demo%') then SUBSTRING (${name_full}, 8)
           ELSE ${name_full} end;;
   }
 
 
   dimension: category {
     label: "Audience Category"
-    suggestions: ["In-market", "Interest", "Life event", "Lifestyle"]
     type: string
     sql: ${audiencemetadata}.category ;;
   }
 
   dimension: req_audience_category {
     label: "Requested Audience Category"
-    suggestions: ["In-market", "Interest", "Life event", "Lifestyle"]
     type: string
     sql: ${requestedaudiencemetadata}.category ;;
   }

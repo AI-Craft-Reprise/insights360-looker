@@ -1,8 +1,10 @@
-view: country {
+view: listener_age {
 
-  dimension: country{
-    type: string
+  label: "Request Filters"
+
+  dimension: age {
     sql: ${TABLE} ;;
+    suggestions: ["18-24", "25-34", "35-44", "55-64"]
   }
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
@@ -34,7 +36,7 @@ view: country {
   # }
 }
 
-# view: country {
+# view: listener_age {
 #   # Or, you could make this view a derived table, like this:
 #   derived_table: {
 #     sql: SELECT

@@ -1,43 +1,39 @@
-view: ad_targeting_entities_organizations {
-  sql_table_name: "airbyte-dev-linkedin-ads-glue-ctg-db".ad_targeting_entities_organizations
+view: targeting_interests_dlxc {
+  view_label: "Interests Mapping"
+
+  sql_table_name: "airbyte-dev-snapchat-marketing-glue-ctg-db".targeting_interests_dlxc
     ;;
 
-
   dimension: _airbyte_ab_id {
+    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_ab_id ;;
   }
 
   dimension: _airbyte_data {
+    hidden: yes
     type: string
     sql: ${TABLE}._airbyte_data ;;
   }
 
   dimension: _airbyte_emitted_at {
+    hidden: yes
     type: number
     sql: ${TABLE}._airbyte_emitted_at ;;
   }
 
   dimension: response {
     hidden: yes
-    type: string
-    sql:  ${_airbyte_data}.response ;;
+    sql: ${_airbyte_data}.response ;;
+  }
+
+  dimension: id {
+    primary_key: yes
+    sql: ${response}.id ;;
   }
 
   dimension: name {
-    type: string
     sql: ${response}.name ;;
-  }
-
-  dimension: urn {
-    type: string
-    sql: ${response}.urn ;;
-    primary_key: yes
-  }
-
-  dimension: faceturn {
-    type: string
-    sql: ${response}.faceturn ;;
   }
 
   measure: count {

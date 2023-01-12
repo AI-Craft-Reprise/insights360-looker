@@ -1,7 +1,6 @@
 view: persona_demographics {
   sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".persona_demographics
     ;;
-  # suggestions: no
 
   dimension: _airbyte_ab_id {
     type: string
@@ -40,7 +39,7 @@ view: persona_demographics {
 
   dimension: response {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${_airbyte_data}.response ;;
   }
 
@@ -59,8 +58,6 @@ view: persona_demographics {
     type: string
     sql: ${response}.propertyownership ;;
   }
-
-  # unnest propertyownership, income,relationship,gender,age
 
   measure: count {
     type: count

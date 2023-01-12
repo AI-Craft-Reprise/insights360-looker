@@ -61,6 +61,18 @@ view: audience_insights_dimension_category_geo {
     sql: ${response}.distribution_name ;;
   }
 
+  dimension: metro_id {
+    group_label: "Geo Distibution Name"
+    sql: case when ${distribution_name}='metro_id' then ${distribution_name}
+           else null end;;
+  }
+
+  dimension: region_id {
+    group_label: "Geo Distibution Name"
+    sql: case when ${distribution_name}='region_id' then ${distribution_name}
+      else null end;;
+  }
+
   dimension:  insight_id {
     type: string
     sql: ${response}.insight_id ;;
@@ -120,5 +132,20 @@ view: audience_insights_dimension_category_geo {
   dimension: reference_audience_size_maximum {
     type: string
     sql: ${response}.reference_audience_size_maximum ;;
+  }
+
+  measure: target_audience_percent {
+    type: sum
+    sql: ${insight_target_audience_percent} ;;
+  }
+
+  measure: reference_audience_percent {
+    type: sum
+    sql: ${insight_reference_audience_percent} ;;
+  }
+
+  measure: target_index_to_reference {
+    type: sum
+    sql: ${insight_target_index_to_reference} ;;
   }
 }

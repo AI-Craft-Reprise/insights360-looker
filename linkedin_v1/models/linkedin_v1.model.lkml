@@ -5,11 +5,7 @@ include: "/linkedin_v1/**/*.view"                # include all views in the view
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 explore: ad_targeting_entities {
-  join: ad_targeting_entities_organizations {
-    type: full_outer
-    relationship: many_to_many
-    sql_on: ${ad_targeting_entities.faceturn}=${ad_targeting_entities_organizations.faceturn} ;;
-      }
+hidden: yes
 }
 
 explore: ad_targeting_facets {
@@ -30,10 +26,6 @@ explore: ad_targeting_facets {
       AS t(segmentations) ;;
   }
 
-  join: ad_targeting_entities_organizations {
-    relationship: one_to_many
-    sql_on: ${ad_targeting_facets.urn}=${ad_targeting_entities_organizations.urn} ;;
-  }
 
 }
 
@@ -46,9 +38,9 @@ explore: audience_insights {
       AS t(segmentations) ;;
   }
 
-  join: ad_targeting_entities {
-    relationship: one_to_one
-    sql_on: ${segmentations.value}=${ad_targeting_entities.urn} ;;
+  join: audience_insights_entities {
+    relationship: one_to_many
+    sql_on: ${segmentations.value}= ${audience_insights_entities.entity_urn} ;;
   }
 
   join: facets_urns_and_names {
@@ -67,15 +59,30 @@ explore: audience_insights {
         AS t(request) ;;
   }
 
-  join: ad_targeting_entities_organizations {
-    relationship: one_to_one
-    sql_on: ${segmentations.value}=${ad_targeting_entities_organizations.urn} ;;
-  }
-
   join: audience_insights_requests {
     relationship: many_to_one
     sql_on: ${audience_insights.audience_name}=${audience_insights_requests.name};;
   }
+
+  join: audience_targeting_criteria {
+    view_label: "Audience Targeting Criteria"
+    relationship: many_to_many
+    sql:  , unnest(${audience_insights_requests.response}.targeting_criteria) t(audience_targeting_criteria)
+          ;;
+  }
+  join: audience_targeting_criteria_value {
+    from: audience_targeting_criteria_value
+    view_label: "Audience Targeting Criteria"
+    relationship: one_to_many
+    required_joins: [audience_targeting_criteria]
+    sql:  , unnest(audience_targeting_criteria.value) t(audience_targeting_criteria_value)
+      ;;
+  }
+
+
+
+
+
 
 # join: insights_req {
 #     relationship: one_to_many
