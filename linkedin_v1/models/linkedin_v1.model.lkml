@@ -8,6 +8,17 @@ explore: ad_targeting_entities {
 hidden: yes
 }
 
+explore: targeting_criteria_value {
+  join: audience_insights_requests {
+    relationship: many_to_one
+    sql_on: ${targeting_criteria_value._airbyte_ab_id}=${audience_insights_requests._airbyte_ab_id} ;;
+  }
+  # join: audience_insights_entities {
+  #   relationship: one_to_one
+  #   sql_on: ${targeting_criteria_value.value}=${audience_insights_entities.urn} ;;
+  # }
+}
+
 explore: ad_targeting_facets {
 
   join: ad_targeting_entities {
@@ -30,6 +41,24 @@ explore: ad_targeting_facets {
 }
 
 explore: audience_insights {
+
+  join: audience_insights_requests {
+    relationship: one_to_one
+    sql_on: ${audience_insights.audience_name}=${audience_insights_requests.name};;
+  }
+
+  join: audience_targeting_criteria {
+    relationship: many_to_one
+    sql: , unnest (${audience_insights_requests.targeting_criteria}) t (audience_targeting_criteria);;
+  }
+
+  join:  targeting_criteria_value {
+    from: targeting_criteria_value
+    view_label: "Targeting Audience Filters"
+    relationship: one_to_many
+    sql_on: ${audience_insights_requests._airbyte_ab_id}=${targeting_criteria_value._airbyte_ab_id}
+      ;;
+  }
 
 
   join: segmentations {
@@ -59,38 +88,7 @@ explore: audience_insights {
         AS t(request) ;;
   }
 
-  join: audience_insights_requests {
-    relationship: many_to_one
-    sql_on: ${audience_insights.audience_name}=${audience_insights_requests.name};;
-  }
 
-  # join: audience_targeting_criteria {
-  #   view_label: "Audience Targeting Criteria"
-  #   relationship: many_to_many
-  #   sql:  , unnest(${audience_insights_requests.response}.targeting_criteria) t(audience_targeting_criteria)
-  #         ;;
-  # }
-  # join: audience_targeting_criteria_value {
-  #   from: audience_targeting_criteria_value
-  #   view_label: "Audience Targeting Criteria"
-  #   relationship: one_to_many
-  #   required_joins: [audience_targeting_criteria]
-  #   sql:  , unnest(audience_targeting_criteria.value) t(audience_targeting_criteria_value)
-  #     ;;
-  # }
-
-  join: audience_targeting_criteria {
-    relationship: many_to_one
-    sql: , unnest (_airbyte_data.response.targeting_criteria) t (criteria);;
-  }
-
-  # join:  targeting_criteria_value {
-  #   from: targeting_criteria_value
-  #   view_label: "Targeting Audience Filters"
-  #   relationship: one_to_many
-  #   sql_on: ${audience_insights_dimension_category_demo._airbyte_ab_id} = ${interest_category._airbyte_ab_id}
-  #     ;;
-  # }
 
 
 
