@@ -95,11 +95,13 @@ view: audience_insights_dimension_category_demo {
   }
 
   dimension: gender {
+    hidden: yes
     type: string
     sql: ${insight_metadata}.gender ;;
   }
 
   dimension: age_groups {
+    hidden: yes
     type: string
     sql: ${insight_metadata}.age_groups ;;
   }

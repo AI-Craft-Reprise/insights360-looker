@@ -68,12 +68,13 @@ view: content_insights {
   dimension: name {
     type: string
     sql: ${content_info}.name ;;
+    html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p>;;
   }
 
   dimension: content_type {
     type: string
     sql: ${content_info}.content_type ;;
-    # suggestions: ["playlist", "podcast"]
+    html: <p style="color: black; font-size:60%; text-align:center">{{ rendered_value }}</p>;;
   }
 
   dimension: uri {
