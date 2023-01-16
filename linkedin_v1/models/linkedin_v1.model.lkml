@@ -8,15 +8,27 @@ explore: ad_targeting_entities {
 hidden: yes
 }
 
-explore: targeting_criteria_value {
-  join: audience_insights_requests {
+explore: audience_insights_requests  {
+
+  join: audience_targeting_criteria {
     relationship: many_to_one
-    sql_on: ${targeting_criteria_value._airbyte_ab_id}=${audience_insights_requests._airbyte_ab_id} ;;
+    sql: , unnest (${audience_insights_requests.targeting_criteria}) t (audience_targeting_criteria);;
   }
-  # join: audience_insights_entities {
-  #   relationship: one_to_one
-  #   sql_on: ${targeting_criteria_value.value}=${audience_insights_entities.urn} ;;
-  # }
+
+  join: targeting_criteria_value {
+    relationship: many_to_one
+    sql_on: ${audience_insights_requests._airbyte_ab_id}=${targeting_criteria_value._airbyte_ab_id} ;;
+  }
+
+  join: ad_targeting_entities{
+    relationship: one_to_one
+    sql_on: ${targeting_criteria_value.targeting_criteria_value}=${ad_targeting_entities.urn} ;;
+  }
+  join: audience_insights_entities{
+    relationship: one_to_one
+    sql_on: ${targeting_criteria_value.targeting_criteria_value}=${audience_insights_entities.urn} ;;
+  }
+
 }
 
 explore: ad_targeting_facets {
@@ -47,6 +59,17 @@ explore: audience_insights {
     sql_on: ${audience_insights.audience_name}=${audience_insights_requests.name};;
   }
 
+  join: segmentations {
+    relationship: one_to_many
+    sql: CROSS JOIN UNNEST(_airbyte_data.response.value.audienceinsight.segmentations)
+      AS t(segmentations) ;;
+  }
+
+  join: audience_insights_entities {
+    relationship: one_to_many
+    sql_on: ${segmentations.value}= ${audience_insights_entities.entity_urn} ;;
+  }
+
   join: audience_targeting_criteria {
     relationship: many_to_one
     sql: , unnest (${audience_insights_requests.targeting_criteria}) t (audience_targeting_criteria);;
@@ -58,18 +81,6 @@ explore: audience_insights {
     relationship: one_to_many
     sql_on: ${audience_insights_requests._airbyte_ab_id}=${targeting_criteria_value._airbyte_ab_id}
       ;;
-  }
-
-
-  join: segmentations {
-    relationship: one_to_many
-    sql: CROSS JOIN UNNEST(_airbyte_data.response.value.audienceinsight.segmentations)
-      AS t(segmentations) ;;
-  }
-
-  join: audience_insights_entities {
-    relationship: one_to_many
-    sql_on: ${segmentations.value}= ${audience_insights_entities.entity_urn} ;;
   }
 
   join: facets_urns_and_names {

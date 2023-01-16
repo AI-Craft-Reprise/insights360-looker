@@ -6,10 +6,6 @@ include: "/snapchat_v1/views/**/*.view"                # include all views in th
 
 explore: audience_insights_dimension_category_demo{
   label: "Demo Insights"
-  join: country {
-    relationship: many_to_one
-    sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country);;
-  }
 
   join: interests {
     relationship: many_to_one
@@ -21,6 +17,11 @@ explore: audience_insights_dimension_category_demo{
     relationship: one_to_many
     sql_on: ${audience_insights_dimension_category_demo._airbyte_ab_id} = ${interest_category._airbyte_ab_id}
       ;;
+  }
+
+  join: country {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country);;
   }
 
   join: geos {
