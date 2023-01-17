@@ -29,7 +29,7 @@ view: targeting_criteria_value {
     hidden: yes
   }
   dimension: _airbyte_ab_id {
-    # hidden: yes
+    hidden: yes
   }
   dimension: targeting_criteria_value {
     label: "Targeting Criteria Value"

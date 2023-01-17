@@ -1,4 +1,4 @@
-view: ad_targeting_entities {
+view: ad_targeting_entities{
   sql_table_name: "airbyte-dev-linkedin-ads-glue-ctg-db".ad_targeting_entities
     ;;
 
@@ -33,11 +33,13 @@ view: ad_targeting_entities {
   }
 
   dimension: name {
+    label: "Entity Name"
     type: string
     sql: ${response}.name ;;
   }
 
   dimension: urn {
+    label: "Entity URN"
     type: string
     sql: ${response}.urn ;;
   }
@@ -109,22 +111,25 @@ view: ad_targeting_entities {
   }
 
   dimension: q {
+    hidden: yes
     type: string
     sql: ${params}.q ;;
   }
 
   dimension: queryversion {
+    hidden: yes
     type: string
     sql: ${params}.queryversion ;;
   }
 
   dimension: start {
+    hidden: yes
     type: string
     sql: ${params}.start ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
-  }
+  # measure: count {
+  #   type: count
+  #   drill_fields: []
+  # }
 }

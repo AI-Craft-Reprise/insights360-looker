@@ -27,24 +27,28 @@ view: audience_insights_entities {
   }
 
   dimension: entity_name {
+    label: "Country Name"
     sql: ${response}.name ;;
   }
 
   dimension: urn {
+    label: "Country URN"
     sql: ${response}.urn ;;
   }
 
   dimension: facet_urn {
+    label: "Geo Facet URN"
     sql: ${response}.faceturn;;
   }
 
   dimension: entity_urn {
+    hidden: yes
     sql: ${response}.entityurn ;;
   }
 
 
-  measure: count {
-    type: count
-    drill_fields: []
-  }
+  # measure: count {
+  #   type: count
+  #   drill_fields: []
+  # }
 }
