@@ -1,5 +1,5 @@
 view: audience_insights_requests {
-  sql_table_name: "airbyte-dev-linkedin-ads-glue-ctg-db".audience_insights_requests
+  sql_table_name: "airbyte-@{env}-linkedin-ads-glue-ctg-db".audience_insights_requests
     ;;
 
   dimension: _airbyte_ab_id {

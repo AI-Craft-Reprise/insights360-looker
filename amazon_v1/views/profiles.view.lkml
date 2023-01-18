@@ -1,5 +1,5 @@
 view: profiles {
-  sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".profiles
+  sql_table_name: "airbyte-@{env}-amazon-ads-glue-ctg-db".profiles
     ;;
   # suggestions: no
 

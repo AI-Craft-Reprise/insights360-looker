@@ -1,5 +1,5 @@
 view: targeting_age_group {
-  sql_table_name: "airbyte-dev-snapchat-marketing-glue-ctg-db".targeting_age_group
+  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".targeting_age_group
     ;;
 
   dimension: _airbyte_ab_id {

@@ -1,5 +1,5 @@
 view: targeting_categories {
-  sql_table_name: "airbyte-dev-snapchat-marketing-glue-ctg-db".targeting_categories
+  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".targeting_categories
     ;;
 
 

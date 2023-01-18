@@ -1,5 +1,5 @@
 view: organizations {
-  sql_table_name: "airbyte-dev-snapchat-marketing-glue-ctg-db".organizations
+  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".organizations
     ;;
   suggestions: no
 

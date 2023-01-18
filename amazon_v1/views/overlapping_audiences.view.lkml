@@ -1,5 +1,5 @@
 view: overlapping_audiences {
-  sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".overlapping_audiences
+  sql_table_name: "airbyte-@{env}-amazon-ads-glue-ctg-db".overlapping_audiences
     ;;
 
   dimension: _airbyte_ab_id {

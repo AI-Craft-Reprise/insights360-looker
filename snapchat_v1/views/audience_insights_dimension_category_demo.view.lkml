@@ -1,9 +1,10 @@
 view: audience_insights_dimension_category_demo {
-  sql_table_name: "airbyte-dev-snapchat-marketing-glue-ctg-db".audience_insights_dimension_category_demo
+  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".audience_insights_dimension_category_demo
     ;;
 
   dimension: _airbyte_ab_id {
     hidden: yes
+    primary_key: yes
     type: string
     sql: ${TABLE}._airbyte_ab_id ;;
   }

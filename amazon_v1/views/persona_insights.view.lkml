@@ -1,5 +1,5 @@
 view: persona_insights {
-  sql_table_name: "airbyte-dev-amazon-ads-glue-ctg-db".persona_insights
+  sql_table_name: "airbyte-@{env}-amazon-ads-glue-ctg-db".persona_insights
     ;;
 
   dimension: _airbyte_ab_id {

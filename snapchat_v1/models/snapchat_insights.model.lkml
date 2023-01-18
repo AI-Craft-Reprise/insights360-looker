@@ -19,6 +19,11 @@ explore: audience_insights_dimension_category_demo{
       ;;
   }
 
+  # join: interest_names {
+  #   relationship: one_to_one
+  #   sql_on: ${interest_category.interest_category_id}= ;;
+  # }
+
   join: country {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country);;
@@ -44,11 +49,26 @@ explore: audience_insights_dimension_category_demo{
 }
 
 explore: audience_insights_dimension_category_interest {
+
   label: "Interest Insights"
+
+  join: interest_interests {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interests);;
+  }
+  join:  interest_interest_category {
+    from: interest_interest_category
+    view_label: "Targeting Audience Filters"
+    relationship: one_to_many
+    sql_on: ${audience_insights_dimension_category_interest._airbyte_ab_id} = ${interest_interest_category._airbyte_ab_id}
+      ;;
+  }
+
   join: interest_country {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (interest_country);;
   }
+
   join: interest_geos {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.targeting_spec.geos) t (interest_geos);;
@@ -65,24 +85,25 @@ explore: audience_insights_dimension_category_interest {
     sql:  , unnest(interest_demo.age_groups) t(interest_age_group)
       ;;
   }
-  join: interest_interests {
-    relationship: many_to_one
-    sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interest_interests);;
-  }
-  join:  interest_interest_category {
-    from: interest_interest_category
-    view_label: "Targeting Audience Filters"
-    relationship: many_to_one
-    required_joins: [interest_interests]
-    sql:  , unnest(interest_interests.category_id) t(interest_interest_category)
-      ;;
-  }
+
 }
 
 
 
 explore: audience_insights_dimension_category_device {
   label: "Device Insights"
+
+  join: device_interests {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interests);;
+  }
+  join:  device_interest_category {
+    from: device_interest_category
+    view_label: "Targeting Audience Filters"
+    relationship: one_to_many
+    sql_on: ${audience_insights_dimension_category_device._airbyte_ab_id} = ${device_interest_category._airbyte_ab_id}
+      ;;
+  }
   join: device_country {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (device_country);;
@@ -103,18 +124,18 @@ explore: audience_insights_dimension_category_device {
     sql:  , unnest(device_demo.age_groups) t(device_age_group)
       ;;
   }
-  join: device_interests {
-    relationship: many_to_one
-    sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (device_interests);;
-  }
+  # join: device_interests {
+  #   relationship: many_to_one
+  #   sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (device_interests);;
+  # }
 
-  join:  device_interest_category {
-    from: device_interest_category
-    view_label: "Targeting Audience Filters"
-    relationship: one_to_many
-    sql_on: ${audience_insights_dimension_category_device._airbyte_ab_id} = ${device_interest_category._airbyte_ab_id}
-      ;;
-  }
+  # join:  device_interest_category {
+  #   from: device_interest_category
+  #   view_label: "Targeting Audience Filters"
+  #   relationship: one_to_many
+  #   sql_on: ${audience_insights_dimension_category_device._airbyte_ab_id} = ${device_interest_category._airbyte_ab_id}
+  #     ;;
+  # }
 }
 
 
@@ -122,6 +143,18 @@ explore: audience_insights_dimension_category_device {
 
 explore: audience_insights_dimension_category_geo {
   label: "Geo Insights"
+
+  join: geo_interests {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interests);;
+  }
+  join:  geo_interest_category {
+    from: geo_interest_category
+    view_label: "Targeting Audience Filters"
+    relationship: one_to_many
+    sql_on: ${audience_insights_dimension_category_geo._airbyte_ab_id} = ${geo_interest_category._airbyte_ab_id}
+      ;;
+  }
   join: country {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country);;
@@ -142,16 +175,4 @@ explore: audience_insights_dimension_category_geo {
     sql:  , unnest(geo_demo.age_groups) t(geo_age_group)
       ;;
   }
-  join: geo_interests {
-    relationship: many_to_one
-    sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (geo_interests);;
-  }
-  join:  geo_interest_category {
-    from: interest_category
-    view_label: "Targeting Audience Filters"
-    relationship: many_to_one
-    required_joins: [geo_interests]
-    sql:  , unnest(geo_interests.category_id) t(geo_interest_category)
-      ;;
-  }
-  }
+}

@@ -1,5 +1,5 @@
 view: listener_insights {
-  sql_table_name: "airbyte-dev-spotify-ads-glue-ctg-db".listener_insights
+  sql_table_name: "airbyte-@{env}-spotify-ads-glue-ctg-db".listener_insights
     ;;
 
   dimension: _airbyte_ab_id {

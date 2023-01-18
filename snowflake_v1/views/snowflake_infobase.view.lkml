@@ -1,5 +1,5 @@
 view: snowflake_infobase {
-  sql_table_name: "airbyte-dev-snowflake-glue-ctg-db".snowflake_infobase
+  sql_table_name: "airbyte-@{env}-snowflake-glue-ctg-db".snowflake_infobase
     ;;
 
 

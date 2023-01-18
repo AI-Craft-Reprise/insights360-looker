@@ -1,5 +1,5 @@
 view: ad_targeting_entities{
-  sql_table_name: "airbyte-dev-linkedin-ads-glue-ctg-db".ad_targeting_entities
+  sql_table_name: "airbyte-@{env}-linkedin-ads-glue-ctg-db".ad_targeting_entities
     ;;
 
   dimension: _airbyte_ab_id {

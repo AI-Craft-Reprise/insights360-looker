@@ -1,5 +1,5 @@
 view: targeting_advanced_demographics {
-  sql_table_name: "airbyte-dev-snapchat-marketing-glue-ctg-db".targeting_advanced_demographics
+  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".targeting_advanced_demographics
     ;;
   suggestions: no
 

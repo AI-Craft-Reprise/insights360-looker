@@ -1,6 +1,6 @@
 view: targeting_interests_vac {
   view_label: "Interests Mapping"
-  sql_table_name: "airbyte-dev-snapchat-marketing-glue-ctg-db".targeting_interests_vac
+  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".targeting_interests_vac
     ;;
   dimension: _airbyte_ab_id {
     hidden: yes

@@ -1,5 +1,5 @@
 view: targeting_categories_location {
-  sql_table_name: "airbyte-dev-snapchat-marketing-glue-ctg-db".targeting_categories_location
+  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".targeting_categories_location
     ;;
 
  dimension: _airbyte_ab_id {
