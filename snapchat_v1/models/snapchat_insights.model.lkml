@@ -19,10 +19,10 @@ explore: audience_insights_dimension_category_demo{
       ;;
   }
 
-  # join: interest_names {
-  #   relationship: one_to_one
-  #   sql_on: ${interest_category.interest_category_id}= ;;
-  # }
+  join: interest_names {
+    relationship: one_to_one
+    sql_on: ${interest_category.interest_category_id}=${interest_names.interest_id} ;;
+  }
 
   join: country {
     relationship: many_to_one
