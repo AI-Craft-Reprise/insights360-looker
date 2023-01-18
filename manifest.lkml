@@ -1,6 +1,11 @@
 constant: env {
   value: "prd"
-  #value: "dev"
+  # value: "dev"
+}
+
+constant: connection {
+  value: "insights_athena_prd"
+  # value: "insights_athena_dev"
 }
 
 constant: amazon_persona_creator_url {

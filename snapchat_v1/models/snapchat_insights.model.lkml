@@ -1,4 +1,4 @@
-connection: "insights_athena"
+connection: "@{connection}"
 
 include: "/snapchat_v1/views/**/*.view"                # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project

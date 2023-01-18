@@ -1,4 +1,4 @@
-connection: "insights_athena"
+connection: "@{connection}"
 
 include: "/agency/views/*.view.lkml"
 
