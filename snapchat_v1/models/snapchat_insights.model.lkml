@@ -64,6 +64,11 @@ explore: audience_insights_dimension_category_interest {
       ;;
   }
 
+  join: interest_names {
+    relationship: one_to_one
+    sql_on: ${interest_interest_category.interest_interest_category_id}=${interest_names.interest_id} ;;
+  }
+
   join: interest_country {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (interest_country);;
@@ -103,6 +108,10 @@ explore: audience_insights_dimension_category_device {
     relationship: one_to_many
     sql_on: ${audience_insights_dimension_category_device._airbyte_ab_id} = ${device_interest_category._airbyte_ab_id}
       ;;
+  }
+  join: interest_names {
+    relationship: one_to_one
+    sql_on: ${device_interest_category.device_interest_category_id}=${interest_names.interest_id} ;;
   }
   join: device_country {
     relationship: many_to_one
@@ -154,6 +163,10 @@ explore: audience_insights_dimension_category_geo {
     relationship: one_to_many
     sql_on: ${audience_insights_dimension_category_geo._airbyte_ab_id} = ${geo_interest_category._airbyte_ab_id}
       ;;
+  }
+  join: interest_names {
+    relationship: one_to_one
+    sql_on: ${geo_interest_category.geo_interest_category_id}=${interest_names.interest_id} ;;
   }
   join: country {
     relationship: many_to_one
