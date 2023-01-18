@@ -11,7 +11,7 @@ view: device_geos {
     label: "Target Country"
     type: string
     sql: ${country}.country_code ;;
-    suggestions: ["au", "ca", "de", "es", "gb", "in", "jp", "mx", "us"]
+    suggestions: ["au", "ca", "de", "es", "gb", "in", "it", "jp", "mx", "us"]
   }
 
 

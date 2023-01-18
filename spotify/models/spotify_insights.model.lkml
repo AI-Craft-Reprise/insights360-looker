@@ -9,6 +9,7 @@ include: "/spotify/**/*.view"
 
 
   explore: audience_segment_insights {
+    hidden: yes
 
     join: gender {
       from: gender
@@ -171,6 +172,7 @@ include: "/spotify/**/*.view"
 
 
   explore: content_insights {
+    hidden: yes
 
     #   join: gender {
     #   from: gender
@@ -329,7 +331,8 @@ include: "/spotify/**/*.view"
 
   }
 
-  explore: listener_insights {}
+  explore: listener_insights {
+    hidden:yes}
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.

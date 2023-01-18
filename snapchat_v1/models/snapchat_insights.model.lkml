@@ -6,10 +6,24 @@ include: "/snapchat_v1/views/**/*.view"                # include all views in th
 
 explore: audience_insights_dimension_category_demo{
   label: "Demo Insights"
+
+  join: interests {
+    relationship: many_to_one
+    sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interests);;
+  }
+  join:  interest_category {
+    from: interest_category
+    view_label: "Targeting Audience Filters"
+    relationship: one_to_many
+    sql_on: ${audience_insights_dimension_category_demo._airbyte_ab_id} = ${interest_category._airbyte_ab_id}
+      ;;
+  }
+
   join: country {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.base_spec.geos) t (country);;
   }
+
   join: geos {
     relationship: many_to_one
     sql: , unnest (_airbyte_data.request.body.targeting_spec.geos) t (geos);;
@@ -26,18 +40,7 @@ explore: audience_insights_dimension_category_demo{
     sql:  , unnest(demo.age_groups) t(age_group)
       ;;
   }
-  join: interests {
-    relationship: many_to_one
-    sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (interests);;
-  }
 
-  join:  interest_category {
-    from: interest_category
-    view_label: "Targeting Audience Filters"
-    relationship: one_to_many
-    sql_on: ${audience_insights_dimension_category_demo._airbyte_ab_id} = ${interest_category._airbyte_ab_id}
-      ;;
-  }
 }
 
 explore: audience_insights_dimension_category_interest {
@@ -105,13 +108,13 @@ explore: audience_insights_dimension_category_device {
     sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (device_interests);;
   }
 
-  # join:  interest_category {
-  #   from: interest_category
-  #   view_label: "Targeting Audience Filters"
-  #   relationship: one_to_many
-  #   sql_on: ${audience_insights_dimension_category_demo._airbyte_ab_id} = ${device_interest_category._airbyte_ab_id}
-  #     ;;
-  # }
+  join:  device_interest_category {
+    from: device_interest_category
+    view_label: "Targeting Audience Filters"
+    relationship: one_to_many
+    sql_on: ${audience_insights_dimension_category_device._airbyte_ab_id} = ${device_interest_category._airbyte_ab_id}
+      ;;
+  }
 }
 
 

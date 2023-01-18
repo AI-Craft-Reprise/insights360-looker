@@ -35,6 +35,7 @@ view: segmentations {
   }
 
   measure: Count {
+    label: "Count Entity"
     type: sum
     sql: ${entitycount} ;;
   }
