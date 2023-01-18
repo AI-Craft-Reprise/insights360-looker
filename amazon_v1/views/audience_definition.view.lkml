@@ -16,8 +16,8 @@ view: audience_definition {
     sql: 'audiences=' || array_join(${audienceid_array}, ',');;
     action: {
       label: "Create Amazon Ads Persona"
-      url: "https://4o3uathjpbvnkmdclhv2iorfli0jbuhf.lambda-url.us-east-1.on.aws?action=personas.create&{{ value }}"
-      form_url: "https://4o3uathjpbvnkmdclhv2iorfli0jbuhf.lambda-url.us-east-1.on.aws?action=looker.form&{{ value }}"
+      url: "@{amazon_persona_creator_url}?action=personas.create&{{ value }}"
+      form_url: "@{amazon_persona_creator_url}?action=looker.form&{{ value }}"
     }
   }
 }
