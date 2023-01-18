@@ -75,8 +75,8 @@ view: audience_definition {
           '&staff_count_ranges=' || array_join(${company_size_urn_array}, '_') ;;
       action: {
         label: "Create LinkedIn Persona"
-        url: "https://tnp62pdrwczfo3jbo6p6rjrbge0vsrys.lambda-url.us-east-1.on.aws/?action=request.create&locations=urn:li:geo:103644278&{{ value }}"
-        form_url: "https://tnp62pdrwczfo3jbo6p6rjrbge0vsrys.lambda-url.us-east-1.on.aws/?action=looker.form&locations=urn:li:geo:103644278&{{ value }}"
+        url: "@{linkedin_audience_creator_url}?action=request.create&locations=urn:li:geo:103644278&{{ value }}"
+        form_url: "@{linkedin_audience_creator_url}?action=looker.form&locations=urn:li:geo:103644278&{{ value }}"
       }
     }
   }
