@@ -1,5 +1,8 @@
 view: income {
 
+  # This view is part of persona_insights table, since demographics data is nested,
+  # we had to create separate views for each element and then unnest it in the explore
+
   view_label: "Persona Insights Demographics"
 
   dimension: income_attribute {
@@ -23,11 +26,13 @@ dimension: subject_ordering {
   }
 
   dimension: income_percent {
+    hidden: yes
     type: number
     sql: ${TABLE}.percentage ;;
   }
 
   dimension: income_affinity {
+    hidden: yes
     type: number
     sql: ${TABLE}.affinity ;;
   }

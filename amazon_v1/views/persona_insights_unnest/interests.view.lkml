@@ -1,5 +1,8 @@
 view: interests {
 
+   # This view is part of persona_insights table, values for each category are nested,
+  # we had to create separate view for each of them and then unnest it in the explore
+
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
@@ -15,14 +18,17 @@ view: interests {
   dimension: name {
     type: string
     sql: substring (${name_full}, 6) ;;
+    # 6 characters (including spaces) removed from the original Name
   }
 
   dimension: percent {
+    hidden: yes
     type: number
     sql: ${TABLE}.percentage ;;
   }
 
   dimension: affinity {
+    hidden: yes
     type: number
     sql: ${TABLE}.affinity ;;
   }

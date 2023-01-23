@@ -1,5 +1,8 @@
 view: gender {
 
+  # This view is part of persona_insights table, since demographics data is nested,
+  # we had to create separate view for each element and then unnest it in the explore
+
   view_label: "Persona Insights Demographics"
 
   dimension: gender_attribute {
@@ -8,11 +11,13 @@ view: gender {
   }
 
   dimension: gender_percent {
+    hidden: yes
     type: number
     sql: ${TABLE}.percentage ;;
   }
 
   dimension: gender_affinity {
+    hidden: yes
     type: number
     sql: ${TABLE}.affinity ;;
   }

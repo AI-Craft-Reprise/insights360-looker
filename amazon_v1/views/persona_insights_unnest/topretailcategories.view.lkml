@@ -1,5 +1,8 @@
 view: topretailcategories {
 
+     # This view is part of persona_insights table, since the data is nested,
+  # we had to create a new view which is unnested in the explore
+
   label: "Top Retail Categories"
 
   dimension: id {
@@ -14,11 +17,13 @@ view: topretailcategories {
   }
 
   dimension: percent {
+    hidden: yes
     type: number
     sql: ${TABLE}.percentage ;;
   }
 
   dimension: affinity {
+    hidden: yes
     type: number
     sql: ${TABLE}.affinity ;;
   }

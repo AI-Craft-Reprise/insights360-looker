@@ -2,6 +2,9 @@ view: agency {
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
 
+# This view is crated to enable adding Initiative and UM logo depending on the user,
+  # in case you need to add it to the dashboard, just find it in the explore
+
   derived_table: {
     sql: SELECT
         'UM' as name, 'https://www.umww.com/wp-content/uploads/2020/07/cropped-UM_Logo.png' as logo

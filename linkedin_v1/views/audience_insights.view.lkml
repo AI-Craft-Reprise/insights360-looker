@@ -4,6 +4,7 @@ view: audience_insights {
   # suggestions: no
 
   dimension: _airbyte_ab_id {
+    primary_key: yes
     hidden: yes
     type: string
     sql: ${TABLE}._airbyte_ab_id ;;

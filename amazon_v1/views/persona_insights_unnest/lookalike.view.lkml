@@ -1,5 +1,8 @@
 view: lookalike {
 
+   # This view is part of persona_insights table, since the data is nested,
+  # we had to create a new view which is unnested in the explore
+
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
@@ -13,11 +16,13 @@ view: lookalike {
   }
 
   dimension: percent {
+    hidden: yes
     type: number
     sql: ${TABLE}.percentage ;;
   }
 
   dimension: affinity {
+    hidden: yes
   type: number
   sql: ${TABLE}.affinity ;;
   }
