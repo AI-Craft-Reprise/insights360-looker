@@ -122,7 +122,7 @@ explore: persona_insights {
 
   # join: persona_audiences_unnest {
   #   relationship: one_to_many
-  #   sql_on: ${persona_insights._airbyte_ab_id}=persona_au;;
+  #   sql_on: ${persona_insights._airbyte_ab_id}=persona_audi;;
   # }
 
   # join: audiences {
