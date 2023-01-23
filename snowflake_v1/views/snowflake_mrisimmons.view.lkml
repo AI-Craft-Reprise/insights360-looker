@@ -265,9 +265,4 @@ view: snowflake_mrisimmons {
 
   }
 
-  # measure: index_internet_social_tv {
-  #   type: sum
-  #   sql: ${overall_index};;
-  #   filters: [summaries_grouped: "Internet, Social, TV"]
-  # }
 }

@@ -83,8 +83,6 @@ view: personas {
     sql: ${expression}.audiences ;;
   }
 
-  # unnest if needed
-
   dimension: name {
     type: string
     sql: ${response}.name ;;

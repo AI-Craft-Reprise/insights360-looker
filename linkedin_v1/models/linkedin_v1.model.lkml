@@ -37,22 +37,6 @@ explore: audience_insights {
       ;;
   }
 
-  # join: facets_urns_and_names {
-  #   relationship: one_to_one
-  #   sql_on: ${audience_insights.groupedby}=${facets_urns_and_names.facet_urn_key} ;;
-  # }
-
-  # join: entity_name_and_urn {
-  #   relationship: one_to_one
-  #   sql_on: ${segmentations.value}=${entity_name_and_urn.entity_urn_key} ;;
-  # }
-
-  # join: audience_request {
-  #   relationship: one_to_many
-  #   sql: CROSS JOIN UNNEST(_airbyte_data.request.body,'$.request.targetingCriteria.include')
-  #     AS t(request) ;;
-  # }
-
   join: ad_targeting_entities{
     view_label: "Audience Definition Details"
     relationship: many_to_many
@@ -65,7 +49,6 @@ explore: audience_insights {
     relationship:one_to_one
     sql_on: ${targeting_criteria_value.targeting_criteria_value}= ${audience_insights_entities_country.urn} ;;
   }
-
 }
 
 explore: job_functions {
@@ -102,36 +85,8 @@ explore: audience_filter {
 }
 
 
-
-
-explore: ad_targeting_entities {
-hidden: yes
-}
-
-# explore: audience_insights_requests  {
-
-#   join: audience_targeting_criteria {
-#     relationship: many_to_one
-#     sql: , unnest (${audience_insights_requests.targeting_criteria}) t (audience_targeting_criteria);;
-#   }
-
-#   join: targeting_criteria_value {
-#     relationship: many_to_one
-#     sql_on: ${audience_insights_requests._airbyte_ab_id}=${targeting_criteria_value._airbyte_ab_id} ;;
-#   }
-
-#   join: ad_targeting_entities{
-#     relationship: one_to_one
-#     sql_on: ${targeting_criteria_value.targeting_criteria_value}=${ad_targeting_entities.urn} ;;
-#   }
-#   join: audience_insights_entities{
-#     relationship: one_to_one
-#     sql_on: ${targeting_criteria_value.targeting_criteria_value}=${audience_insights_entities.urn} ;;
-#   }
-
-# }
-
 explore: ad_targeting_facets {
+  description: "This explore is used to define elements of the new Audience"
 
   join: ad_targeting_entities {
     relationship: one_to_one

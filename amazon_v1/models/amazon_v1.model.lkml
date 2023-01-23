@@ -25,37 +25,7 @@ explore: overlapping_audiences{
   }
 
 explore: audiences {
-  # hidden: yes
 
-  # join: overlapping_audiences {
-  #   relationship: one_to_one
-  #   sql_on: ${audiences.audienceid}=${overlapping_audiences.req_audienceid} ;;
-  # }
-
-  # join: audiences_with_advertisers {
-  #   relationship: one_to_one
-  #   sql_on: ${audiences.audienceid}=${audiences_with_advertisers.audienceid} ;;
-  # }
-
-  # join: advertisers {
-  #   relationship: one_to_many
-  #   sql_on: ${audiences_with_advertisers.advertiserid}=${advertisers.advertiserid} ;;
-  # }
-
-  # join: overlapping_audiences_with_advertisers {
-  #   relationship: one_to_many
-  #   sql_on: ${audiences.audienceid}=${overlapping_audiences_with_advertisers.audienceid} ;;
-  # }
-
-  # join: persona_demographics {
-  #   relationship: one_to_many
-  #   sql_on: ${advertisers.advertiserid}=${persona_demographics.advertiserid} and ${advertisers.profileid}=${persona_demographics.profileid} ;;
-  # }
-
-  # join: persona_insights {
-  #   relationship: one_to_one
-  #   sql_on: ${persona_demographics.advertiserid}=${persona_insights.advertiserid} and ${persona_demographics.profileid}=${persona_insights.profileid} ;;
-  # }
   join: audience_definition {
     view_label: "Audience Definition"
     type: cross
@@ -122,10 +92,6 @@ explore: persona_insights {
       AS t(gender) ;;
   }
 
-
-    # join: gender {
-    # sql: CASE WHEN ${gender.gender_affinity}='[Female]' THEN 'Female'};;
-
   join: relationship {
     relationship: one_to_many
     sql: CROSS JOIN UNNEST(_airbyte_data.response.personainsights.demographics.relationship)
@@ -154,47 +120,32 @@ explore: persona_insights {
     sql: , UNNEST(_airbyte_data.response.expression.demographics.age) t(persona_age) ;;
   }
 
+  join: audiences {
+    relationship: many_to_one
+    type: cross
+  }
 
-
-
-
-
-  # join: demo_propertyownership_unnest {
-  #   relationship: one_to_many
-  #   sql: ,
-  #       unnest(
-  #         _airbyte_data.response
-  #       ) t(demo_propertyownership_unnest) ;;
+  # join: persona_audiences_unnest {
+  #   sql_on: ${audiences.audienceid}=perso ;;
   # }
-
-  # join: demo_propertyownership {
-  #   required_joins: [demo_propertyownership_unnest]
-  #   relationship: one_to_many
-  #   sql: ,
-  #       unnest(
-  #         demo_propertyownership_unnest.propertyownership
-  #       ) t(demo_propertyownership) ;;
-  # }
-}
+  }
 
 
-# }
 
-
-explore: personas {
+# explore: personas {
   # hidden: yes
 
-  persist_with: persona_refresh
+#   persist_with: persona_refresh
 
 
-  join: persona_gender {
-    relationship: one_to_many
-    sql: , UNNEST(_airbyte_data.response.expression.demographics.gender) t(persona_gender) ;;
-  }
+#   join: persona_gender {
+#     relationship: one_to_many
+#     sql: , UNNEST(_airbyte_data.response.expression.demographics.gender) t(persona_gender) ;;
+#   }
 
-  join: persona_age {
-    relationship: one_to_many
-    sql: , UNNEST(_airbyte_data.response.expression.demographics.age) t(persona_age) ;;
-  }
+#   join: persona_age {
+#     relationship: one_to_many
+#     sql: , UNNEST(_airbyte_data.response.expression.demographics.age) t(persona_age) ;;
+#   }
 
-}
+# }
