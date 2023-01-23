@@ -120,15 +120,16 @@ explore: persona_insights {
     sql: , UNNEST(_airbyte_data.response.expression.demographics.age) t(persona_age) ;;
   }
 
-  join: audiences {
-    relationship: many_to_one
-    type: cross
-  }
-
   # join: persona_audiences_unnest {
-  #   sql_on: ${audiences.audienceid}=perso ;;
+  #   relationship: one_to_many
+  #   sql_on: ${persona_insights._airbyte_ab_id}=persona_au;;
   # }
-  }
+
+  # join: audiences {
+  #   relationship: many_to_one
+  #   sql_on: ${persona_audiences_unnest.audience}=${audiences.audienceid} ;;
+  # }
+}
 
 
 
