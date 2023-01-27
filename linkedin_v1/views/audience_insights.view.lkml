@@ -1,7 +1,7 @@
 view: audience_insights {
   sql_table_name: "airbyte-@{env}-linkedin-ads-glue-ctg-db".audience_insights
     ;;
-  # suggestions: no
+
 
   dimension: _airbyte_ab_id {
     primary_key: yes

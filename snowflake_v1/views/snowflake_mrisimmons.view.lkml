@@ -29,6 +29,7 @@ view: snowflake_mrisimmons {
   }
 
   dimension: question_answer_concat {
+    hidden: yes
     type: string
     sql: ${TABLE}.question_answer_concat ;;
   }
@@ -160,31 +161,32 @@ view: snowflake_mrisimmons {
     drill_fields: []
   }
 
+# The following dimensions are created oin order to separate questions and statements into different categories.
+
   dimension: media {
     type: string
-    sql: CASE WHEN ${question_level_1} IN ('MEDIA', 'Media') THEN ${question_level_2}
+    sql: CASE WHEN UPPER(${question_level_1}) IN ('MEDIA') THEN ${question_level_2}
 
               ELSE NULL END ;;
   }
 
   dimension: media_internet_websites_apps {
     type: string
-    sql: CASE WHEN ${question_level_3} IN ('WEBSITES VISITED OR APPS USED IN THE LAST 30 DAYS','Websites Visited Or Apps Used In The Last 30 Days') THEN ${question_level_4}
+    sql: CASE WHEN UPPER(${question_level_3}) IN ('WEBSITES VISITED OR APPS USED IN THE LAST 30 DAYS') THEN ${question_level_4}
 
               ELSE NULL END ;;
   }
 
   dimension: social_media {
     type: string
-    sql: CASE WHEN ${question_level_3} IN ('SOCIAL MEDIA, PHOTO OR VIDEO-SHARING SERVICES VISITED OR USED IN THE LAST 30 DAYS'
-                                            , 'Social Media, Photo Or Video-Sharing Services Visited Or Used In The Last 30 Days') THEN ${question_level_4}
+    sql: CASE WHEN UPPER(${question_level_3}) IN ('SOCIAL MEDIA, PHOTO OR VIDEO-SHARING SERVICES VISITED OR USED IN THE LAST 30 DAYS') THEN ${question_level_4}
 
               ELSE NULL END ;;
   }
 
   dimension: psychographics {
     type: string
-    sql: CASE WHEN ${question_level_1} IN ('PSYCHOGRAPHICS', 'Psychographics') THEN ${question_level_2}
+    sql: CASE WHEN UPPER(${question_level_1}) IN ('PSYCHOGRAPHICS') THEN ${question_level_2}
 
                     ELSE NULL END ;;
   }
@@ -192,63 +194,55 @@ view: snowflake_mrisimmons {
   dimension: psychographics_aboutme{
     label: "About Me"
     type: string
-    sql: CASE WHEN ${question_level_2} IN ('GENERAL ATTITUDES','GENERAL ATTITUDES [HISPANIC/LATINO RESPONDENTS ONLY]',
-                    'SELF-CONCEPTS','YOUR ATTITUDES', 'General Attitudes', 'General Attitudes [Hispanic/Latino Respondents Only]',
-                    'Self-Concepts', 'Your attitudes')
+    sql: CASE WHEN UPPER(${question_level_2}) IN ('GENERAL ATTITUDES','GENERAL ATTITUDES [HISPANIC/LATINO RESPONDENTS ONLY]',
+                    'SELF-CONCEPTS','YOUR ATTITUDES')
                     THEN ${question_level_2}
 
                           ELSE NULL END ;;
-    # suggestions: ["GENERAL ATTITUDES", "GENERAL ATTITUDES [HISPANIC/LATINO RESPONDENTS ONLY]", "SELF-CONCEPTS", "YOUR ATTITUDES"]
   }
 
   dimension: psychographics_shoppingandstyle{
     label: "Shopping & Style"
     type: string
-    sql: CASE WHEN ${question_level_2} IN ('BUYING STYLES','FASHION & STYLE ATTITUDES','SHOPPING ATTITUDES',
-                    'Buying Styles', 'Fashion & Style Attitudes', 'Shopping Attitudes')
+    sql: CASE WHEN UPPER(${question_level_2}) IN ('BUYING STYLES','FASHION & STYLE ATTITUDES','SHOPPING ATTITUDES')
                     THEN ${question_level_2}
 
                           ELSE NULL END ;;
-    # suggestions: ["BUYING STYLES", "FASHION & STYLE ATTITUDES", "SHOPPING ATTITUDES"]
   }
 
   dimension: psychographics_foodandhealth{
     label: "Food & Health"
     type: string
-    sql: CASE WHEN ${question_level_2} IN ('FOOD ATTITUDES','HEALTH ATTITUDES', 'Food Attitudes', 'Health Attitudes')
+    sql: CASE WHEN UPPER(${question_level_2}) IN ('FOOD ATTITUDES','HEALTH ATTITUDES')
                     THEN ${question_level_2}
 
                           ELSE NULL END ;;
-    # suggestions: ["FOOD ATTITUDES", "HEALTH ATTITUDES"]
   }
 
   dimension: psychographics_travelandmoney{
     label: "Travel & Money"
     type: string
-    sql: CASE WHEN ${question_level_2} IN ('AUTOMOTIVE ATTITUDES','FINANCE ATTITUDES', 'VACATION TRAVEL ATTITUDES',
+    sql: CASE WHEN UPPER(${question_level_2}) IN ('AUTOMOTIVE ATTITUDES','FINANCE ATTITUDES', 'VACATION TRAVEL ATTITUDES',
                     'Automotive Attitudes', 'Finance Attitudes', 'Vacation Travel Attitudes')
                     THEN ${question_level_2}
 
                           ELSE NULL END ;;
-    # suggestions: ["AUTOMOTIVE ATTITUDES", "FINANCE ATTITUDES", "VACATION TRAVEL ATTITUDES"]
   }
 
   dimension: psychographics_media{
     label: "Psychographics Media"
     type: string
-    sql: CASE WHEN ${question_level_2} IN ('ATTITUDES TOWARD ADVERTISING','CELLULAR / MOBILE OPINIONS', 'MORE TV WATCHING',
-                      'SOCIAL MEDIA ATTITUDES', 'TECHNOLOGY ATTITUDES', 'Attitudes Towards Advertising', 'Cellular / Mobile Opinions',
-                      'More Tc Watching', 'Social Media attitudes', 'Technology Attitudes')
+    sql: CASE WHEN UPPER(${question_level_2}) IN ('ATTITUDES TOWARD ADVERTISING','CELLULAR / MOBILE OPINIONS', 'MORE TV WATCHING',
+                      'SOCIAL MEDIA ATTITUDES', 'TECHNOLOGY ATTITUDES')
                     THEN ${question_level_2}
 
                           ELSE NULL END ;;
-    # suggestions: ["ATTITUDES TOWARD ADVERTISING", "CELLULAR / MOBILE OPINIONS", "MORE TV WATCHING", "SOCIAL MEDIA ATTITUDES", "TECHNOLOGY ATTITUDES"]
   }
 
 
   dimension: summaries_grouped {
     type: string
-    sql: CASE WHEN ${answer} IN ('INTERNET I (HEAVY)', 'Internet I (Heavy)', 'INTERNET II', 'Internet Ii', 'INTERNET III', 'Internet Iii', 'INTERNET IV', 'Internet Iv', 'INTERNET V (LIGHT)', 'Internet V (Light)',
+    sql: CASE WHEN UPPER(${answer}) IN ('INTERNET I (HEAVY)', 'Internet I (Heavy)', 'INTERNET II', 'Internet Ii', 'INTERNET III', 'Internet Iii', 'INTERNET IV', 'Internet Iv', 'INTERNET V (LIGHT)', 'Internet V (Light)',
       'SOCIAL MEDIA I (HEAVY)', 'Social Media I (Heavy)', 'SOCIAL MEDIA II', 'Social Media Ii', 'SOCIAL MEDIA III', 'Social Media Iii', 'SOCIAL MEDIA IV', 'Social Media Iv', 'SOCIAL MEDIA V (LIGHT)', 'Social Media V (Light)',
       'TV (DAY TIME) I (HEAVY)', 'Tv (Day Time) I (Heavy)', 'TV (DAY TIME) II', 'Tv (Day Time) Ii', 'TV (DAY TIME) III (LIGHT)', 'Tv (Day Time) Iii (Light)', 'TV (PRIME TIME) I (HEAVY)', 'Tv (Prime Time) I (Heavy)',
       'TV (PRIME TIME) II', 'Tv (Prime Time) Ii', 'TV (PRIME TIME) III', 'Tv (Prime Time) Iii', 'TV (PRIME TIME) IV','Tv (Prime Time) Iv', 'TV (PRIME TIME) V (LIGHT)', 'Tv (Prime Time) V (Light)',
@@ -259,7 +253,7 @@ view: snowflake_mrisimmons {
 
   dimension: media_summaries{
     type: string
-    sql: CASE WHEN ${question_level_3} IN ('MEDIA QUINTILE/TERCILE CODES', 'Media Quintile/Tercile Codes') THEN ${question_level_4}
+    sql: CASE WHEN UPPER(${question_level_3}) IN ('MEDIA QUINTILE/TERCILE CODES') THEN ${question_level_4}
 
                     ELSE NULL END ;;
 

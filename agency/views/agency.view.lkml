@@ -7,10 +7,10 @@ view: agency {
 
   derived_table: {
     sql: SELECT
-        'UM' as name, 'https://www.umww.com/wp-content/uploads/2020/07/cropped-UM_Logo.png' as logo
+        'UM' as name, 'https://raw.githubusercontent.com/AI-Craft-Reprise/insights360-infra/main/terraform/assets/um.png?token=GHSAT0AAAAAAB56ZAVJLPE3P36OQBPONW7MY6TYT4A' as logo
         union all
         SELECT
-        'Initiative' as name, 'https://upload.wikimedia.org/wikipedia/en/2/27/Initiative_agency_logo.png' as logo
+        'Initiative' as name, 'https://raw.githubusercontent.com/AI-Craft-Reprise/insights360-infra/main/terraform/assets/initiative.png?token=GHSAT0AAAAAAB56ZAVIXWEFUCEG2MZKBJLUY6TYWHA' as logo
       ;;
   }
   dimension: name {
@@ -23,3 +23,6 @@ view: agency {
     # html: <img src={{value}} style="width:102px;height:103px;"> ;;
   }
   }
+
+# https://upload.wikimedia.org/wikipedia/en/2/27/Initiative_agency_logo.png
+# https://www.umww.com/wp-content/uploads/2020/07/cropped-UM_Logo.png

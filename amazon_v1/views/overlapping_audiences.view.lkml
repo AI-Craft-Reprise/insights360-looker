@@ -110,7 +110,6 @@ view: overlapping_audiences {
           ELSE ${name_full} end;;
   }
 
-
   dimension: category {
     label: "Audience Category"
     type: string

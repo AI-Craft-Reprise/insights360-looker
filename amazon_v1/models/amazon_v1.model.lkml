@@ -127,7 +127,7 @@ explore: persona_insights {
 
   join: audiences {
     view_label: "Audience Name"
-    relationship: many_to_one
+    relationship: one_to_one
     sql_on: ${audience_id.audience_id}=${audiences.audienceid} ;;
     fields: [audiences.audiencename]
   }
