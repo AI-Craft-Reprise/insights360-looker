@@ -108,6 +108,7 @@ view: snowflake_infobase {
   }
 
   dimension: age {
+    group_label: "Demo"
     type: string
     sql: REPLACE(${age_source},'_','-');;
     description: "Replacing all underscores with dashes (30_34 is going to be 30-34)"
@@ -142,6 +143,7 @@ view: snowflake_infobase {
   }
 
   dimension: geo {
+    group_label: "Demo"
     type: string
     sql: case when length(ltrim(rtrim(${geo_step2}))) = 2 then concat(UPPER(SUBSTRING(${geo_step2},1,1)),LOWER(SUBSTRING(${geo_step2},2)))
               when length(ltrim(rtrim(${geo_step2}))) > 2 and strpos(ltrim(rtrim(${geo_step2})), ' ') = 0
@@ -161,11 +163,13 @@ view: snowflake_infobase {
   }
 
   dimension: ethnicity_step2{
+    hidden: yes
     type: string
     sql: REPLACE(${ethnicity_source},'_',' ');;
   }
 
   dimension: ethnicity {
+    group_label: "Demo"
     sql: case when length(ltrim(rtrim(${ethnicity_step2}))) = 2 then concat(UPPER(SUBSTRING(${ethnicity_step2},1,1)),LOWER(SUBSTRING(${ethnicity_step2},2)))
               when length(ltrim(rtrim(${ethnicity_step2}))) > 2 and strpos(ltrim(rtrim(${ethnicity_step2})), ' ') = 0
               then CONCAT(UPPER(SUBSTRING(${ethnicity_step2},1,1)), '',lower(SUBSTRING(${ethnicity_step2},2,length(${ethnicity_step2}))))
@@ -190,6 +194,7 @@ else ${ethnicity_step2} end ;;
     hidden: yes
   }
 dimension: gender {
+  group_label: "Demo"
   type: string
   sql: concat(UPPER(SUBSTRING(${gender_step1},1,1)),LOWER(SUBSTRING(${gender_step1},2))) ;;
 }
@@ -213,6 +218,7 @@ dimension: gender {
   }
 
   dimension: home_ownership {
+    group_label: "Demo"
     type: string
     sql: concat(UPPER(SUBSTRING(${home_ownership_step1},1,1)),LOWER(SUBSTRING(${home_ownership_step1},2)));;
     }
@@ -239,6 +245,7 @@ dimension: gender {
     }
 
   dimension: prefer_language {
+    group_label: "Demo"
     type: string
     sql:case when length(ltrim(rtrim(${prefer_language_capitalletters}))) = 2 then concat(UPPER(SUBSTRING(${prefer_language_capitalletters},1,1)),LOWER(SUBSTRING(${prefer_language_capitalletters},2)))
               when length(ltrim(rtrim(${prefer_language_capitalletters}))) > 2 and strpos(ltrim(rtrim(${prefer_language_capitalletters})), ' ') = 0
@@ -265,6 +272,7 @@ else ${prefer_language_capitalletters} end ;;
   }
 
   dimension: presence_of_children {
+    group_label: "Demo"
     type: string
     sql:  case when ${presence_of_children_source} = 'N' then 'No'
                when ${presence_of_children_source} = 'Y' then 'Yes'
@@ -284,6 +292,7 @@ else ${prefer_language_capitalletters} end ;;
   }
 
   dimension: household_size {
+    group_label: "Demo"
     type: string
     sql: substring (${demo_household_size}, 25) ;;
   }
@@ -316,6 +325,7 @@ else ${prefer_language_capitalletters} end ;;
   }
 
   dimension: income {
+    group_label: "Demo"
     type: string
     order_by_field: income_sort
     sql: REPLACE(${income_clean},'_','-') ;;
@@ -363,15 +373,16 @@ else ${prefer_language_capitalletters} end ;;
     type: string
     sql: REPLACE(${occupation_source},'_',' ') ;;
   }
-dimension: occupation {
+dimension: occupation_final {
   hidden: yes
  type: string
   sql: concat(UPPER(SUBSTRING(${occupation_step2},1,1)),LOWER(SUBSTRING(${occupation_step2},2))) ;;
 }
 
-  dimension: occupation_final {
+  dimension: occupation {
+    group_label: "Demo"
        type: string
-       sql: concat(upper(substr(${occupation},1,1)),substr(${occupation_step2},2,length(${occupation_step2})),' ','');;
+       sql: concat(upper(substr(${occupation_final},1,1)),substr(${occupation_step2},2,length(${occupation_step2})),' ','');;
      }
 
 
@@ -394,6 +405,7 @@ dimension: occupation {
     sql: REPLACE(${marital_status_source},'_1','') ;;
   }
 dimension: marital_status {
+  group_label: "Demo"
   type: string
   sql: concat(UPPER(SUBSTRING(${marital_status_step1},1,1)),LOWER(SUBSTRING(${marital_status_step1},2))) ;;
 }
@@ -413,6 +425,7 @@ dimension: marital_status {
   }
 
   dimension: charity_causes_contribute {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_charity_causes_contribute}, 27) ;;
   }
@@ -429,6 +442,7 @@ dimension: marital_status {
     }
 
   dimension: cpg_health_diet {
+    group_label: "Lifestyle"
       type: string
       sql: substring (${lifestyle_cpg_health_diet}, 17) ;;
     }
@@ -442,6 +456,7 @@ dimension: marital_status {
   }
 
   dimension: cpg_pet {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_cpg_pet}, 9) ;;
   }
@@ -458,6 +473,7 @@ dimension: marital_status {
   }
 
   dimension: demo_behavior_affluent {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_demo_behavior_affluent}, 24) ;;
   }
@@ -476,6 +492,7 @@ dimension: marital_status {
   }
 
   dimension: demo_behavior {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_demo_behavior}, 15) ;;
   }
@@ -488,6 +505,7 @@ dimension: marital_status {
   }
 
   dimension: demo_home_owner {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_demo_home_owner}, 11) ;;
   }
@@ -503,6 +521,7 @@ dimension: marital_status {
   }
 
   dimension: life_event {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_demo_life_event}, 17) ;;
   }
@@ -525,6 +544,7 @@ dimension: marital_status {
   }
 
   dimension: demo_occupation_lifestyle {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_demo_occupation}, 17) ;;
   }
@@ -539,6 +559,7 @@ dimension: marital_status {
   }
 
   dimension: demo_prefer_language_lifestyle {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_demo_prefer_language}, 22) ;;
   }
@@ -553,6 +574,7 @@ dimension: marital_status {
   }
 
   dimension: finance_affluence {
+    group_label: "Finance"
     type: string
     sql: substring (${finance_finance_affluence}, 19) ;;
   }
@@ -570,6 +592,7 @@ dimension: marital_status {
   }
 
   dimension: finance {
+    group_label: "Finance"
     type: string
     sql: substring (${finance_finance}, 9) ;;
   }
@@ -586,6 +609,7 @@ dimension: marital_status {
   }
 
   dimension: home_energy_segment {
+    group_label: "Home"
     type: string
     sql: substring (${home_home_energy_segment}, 21) ;;
   }
@@ -601,6 +625,7 @@ dimension: marital_status {
   }
 
   dimension: insurance_dynamics {
+    group_label: "Insurance"
     type: string
     sql: substring (${insurance_insurance_dynamics}, 20) ;;
   }
@@ -615,6 +640,7 @@ dimension: marital_status {
   }
 
   dimension: attitude_brand_interact {
+    group_label: "Interest"
     type: string
     sql: substring (${interest_attitude_brand_interact}, 25) ;;
   }
@@ -640,6 +666,7 @@ dimension: marital_status {
   }
 
   dimension: interest {
+    group_label: "Interest"
     type: string
     sql: substring (${interest_interest}, 10) ;;
   }
@@ -655,6 +682,7 @@ dimension: marital_status {
   }
 
   dimension: invest_segment {
+    group_label: "Invest"
     type: string
     sql: substring (${invest_invest_segment}, 16) ;;
   }
@@ -669,6 +697,7 @@ dimension: marital_status {
   }
 
   dimension: lifestyle_ent {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_lifestyle_ent}, 15) ;;
   }
@@ -681,6 +710,7 @@ dimension: marital_status {
   }
 
   dimension: lifestyle_green {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_lifestyle_green}, 11) ;;
   }
@@ -695,6 +725,7 @@ dimension: marital_status {
   }
 
   dimension: lifestyle_in_market {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_lifestyle_in_market}, 21) ;;
   }
@@ -718,6 +749,7 @@ dimension: marital_status {
   }
 
   dimension: lifestyle_personicx_fin {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_lifestyle_personicx_fin}, 26) ;;
   }
@@ -733,6 +765,7 @@ dimension: marital_status {
   }
 
   dimension: lifestyle_personicx_insurance {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_lifestyle_personicx_insurance}, 31) ;;
   }
@@ -757,6 +790,7 @@ dimension: marital_status {
   }
 
   dimension: lifestyle_personicx_lifestage {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_lifestyle_personicx_lifestage}, 32) ;;
   }
@@ -778,6 +812,7 @@ dimension: marital_status {
   }
 
   dimension: lifestyle_personicx_prime {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_lifestyle_personicx_prime}, 30) ;;
   }
@@ -795,6 +830,7 @@ dimension: marital_status {
   }
 
   dimension: lifestyle_personicx_prime_place {
+    group_label: "Lifestyle"
     type: string
     sql: substring (${lifestyle_lifestyle_personicx_prime_place}, 33) ;;
   }
@@ -809,6 +845,7 @@ dimension: marital_status {
   }
 
   dimension: retail_attitude_behavior {
+    group_label: "Retail"
     type: string
     sql: substring (${retail_retail_attitude_behavior}, 26) ;;
   }
@@ -823,6 +860,7 @@ dimension: marital_status {
   }
 
   dimension: retail_segment {
+    group_label: "Retail"
     type: string
     sql: substring (${retail_retail_segment}, 16) ;;
   }
@@ -838,6 +876,7 @@ dimension: marital_status {
   }
 
   dimension: tech_social_media {
+    group_label: "Tech"
     type: string
     sql: substring (${tech_tech_social_media}, 19) ;;
   }
@@ -852,6 +891,7 @@ dimension: marital_status {
   }
 
   dimension: tech_technographic_sement {
+    group_label: "Tech"
     type: string
     sql: substring (${tech_tech_technographic_sement}, 28) ;;
   }
@@ -870,6 +910,7 @@ dimension: marital_status {
 
 
   dimension: travel_activity {
+    group_label: "Travel"
     type: string
     sql: substring (${travel_travel_activity}, 17) ;;
   }
@@ -883,6 +924,7 @@ dimension: marital_status {
   }
 
   dimension: travel_attitude_behavior {
+    group_label: "Travel"
     type: string
     sql: substring (${travel_travel_attitude_behavior}, 26) ;;
   }

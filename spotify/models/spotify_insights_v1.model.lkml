@@ -1,6 +1,6 @@
 connection: "@{connection}"
 
-include: "/spotify_v1/**/*.view.lkml"                # include all views in the views/ folder in this project
+include: "/spotify/**/*.view.lkml"                # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -25,20 +25,6 @@ explore: content_insights {
     relationship: one_to_many
     sql: , UNNEST(_airbyte_data.request.body.filters.country) t (content_country) ;;
   }
-
-  # join: content_insights_age_groups{
-  #   from: content_insights_age_groups
-  #   view_label: "Age Groups"
-  #   sql_on: ${content_insights.request}=${content_insights_age_groups.request} and ${content_insights.uri}=${content_insights_age_groups.uri} ;;
-  #   relationship: one_to_many
-  # }
-
-  # join: age_group_minutes_percent {
-  #   view_label: "Age Group"
-  #   sql_on: ${content_insights_age_groups.pk}=${age_group_minutes_percent.pk};;
-  #   relationship: one_to_one
-  # }
-
 }
 
 

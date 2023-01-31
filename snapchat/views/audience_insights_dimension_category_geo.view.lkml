@@ -1,9 +1,8 @@
-view: audience_insights_dimension_category_device {
-  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".audience_insights_dimension_category_device
+view: audience_insights_dimension_category_geo {
+  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".audience_insights_dimension_category_geo
     ;;
 
-
-   dimension: _airbyte_ab_id {
+  dimension: _airbyte_ab_id {
     hidden: yes
     primary_key: yes
     type: string
@@ -63,34 +62,16 @@ view: audience_insights_dimension_category_device {
     sql: ${response}.distribution_name ;;
   }
 
-  dimension: carrier_id {
-    group_label: "Device Distribution Name"
-    sql: case when ${distribution_name}='carrier_id'
-    then ${distribution_name} else null end;;
+  dimension: metro_id {
+    group_label: "Geo Distibution Name"
+    sql: case when ${distribution_name}='metro_id' then ${distribution_name}
+           else null end;;
   }
 
-  dimension: connection_type {
-    group_label: "Device Distribution Name"
-    sql: case when ${distribution_name}='connection_type'
-      then ${distribution_name} else null end;;
-  }
-
-  dimension: make {
-    group_label: "Device Distribution Name"
-    sql: case when ${distribution_name}='make'
-      then ${distribution_name} else null end;;
-  }
-
-  dimension: marketing_name_only {
-    group_label: "Device Distribution Name"
-    sql: case when ${distribution_name}='marketing_name_only'
-      then ${distribution_name} else null end;;
-  }
-
-  dimension: os_type {
-    group_label: "Device Distribution Name"
-    sql: case when ${distribution_name}='os_type'
-      then ${distribution_name} else null end;;
+  dimension: region_id {
+    group_label: "Geo Distibution Name"
+    sql: case when ${distribution_name}='region_id' then ${distribution_name}
+      else null end;;
   }
 
   dimension:  insight_id {
@@ -124,14 +105,10 @@ view: audience_insights_dimension_category_device {
     sql: ${response}.insight_metadata ;;
   }
 
-  dimension: gender {
+  dimension: regions {
+    hidden: yes
     type: string
-    sql: ${insight_metadata}.gender ;;
-  }
-
-  dimension: age_groups {
-    type: string
-    sql: ${insight_metadata}.age_groups ;;
+    sql: ${insight_metadata}.regions ;;
   }
 
   dimension: targeting_audience_size_minimum {
@@ -167,10 +144,5 @@ view: audience_insights_dimension_category_device {
   measure: target_index_to_reference {
     type: sum
     sql: ${insight_target_index_to_reference} ;;
-  }
-
-  measure: count {
-    type: count
-    drill_fields: []
   }
 }

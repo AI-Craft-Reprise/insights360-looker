@@ -56,11 +56,13 @@ view: listener_insights {
   }
 
   dimension: dimension {
+    group_label: "Dimensions"
     type: string
     sql: ${response}.dimension ;;
   }
 
   dimension: days_of_week {
+    group_label: "Dimensions"
     type: string
     sql: case when ${dimension} = 'days_of_week' then ${insight_key}
       else null end;;
@@ -101,6 +103,7 @@ view: listener_insights {
   }
 
   dimension: hour_of_day {
+    group_label: "Dimensions"
     type: string
     sql: case when ${dimension} = 'time_of_day' then ${insight_key}
       else null end;;

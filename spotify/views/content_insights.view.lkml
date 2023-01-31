@@ -112,6 +112,7 @@ view: content_insights {
   }
 
   dimension: age_groups{
+    group_label: "Dimensions"
     type: string
     sql: CASE WHEN ${dimension} = 'age_group' THEN ${insight_key}
 
@@ -120,6 +121,7 @@ view: content_insights {
   }
 
   dimension: gender{
+    group_label: "Dimensions"
     type: string
     sql: CASE WHEN ${dimension} = 'gender' THEN ${insight_key}
 
@@ -128,6 +130,7 @@ view: content_insights {
   }
 
   dimension: time_of_day{
+    group_label: "Dimensions"
     type: string
     sql: CASE WHEN ${dimension} = 'time_of_day' THEN ${insight_key}
 
@@ -137,6 +140,7 @@ view: content_insights {
   }
 
   dimension: device{
+    group_label: "Dimensions"
     type: string
     sql: CASE WHEN ${dimension} = 'device' THEN ${insight_key}
 
@@ -145,6 +149,7 @@ view: content_insights {
   }
 
    dimension: days_of_week {
+    group_label: "Dimensions"
     type: string
     sql: case when ${dimension} = 'days_of_week' then ${insight_key}
       else null end;;
@@ -193,11 +198,3 @@ view: content_insights {
     drill_fields: []
   }
 }
-
-
-# view: content_insights_gender {
-#   dimension: gender {
-#     type:  string
-#     sql: ${TABLE} ;;
-#   }
-# }

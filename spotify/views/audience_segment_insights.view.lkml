@@ -101,24 +101,28 @@ view: audience_segment_insights {
   }
 
   dimension: age_group {
+    group_label: "Dimensions"
     type: string
     sql: case when ${dimension} = 'age_group' then ${insight_key}
           else null end;;
   }
 
   dimension: gender {
+    group_label: "Dimensions"
     type: string
     sql: case when ${dimension} = 'gender' then ${insight_key}
       else null end;;
   }
 
   dimension: device {
+    group_label: "Dimensions"
     type: string
     sql: case when ${dimension} = 'device' then ${insight_key}
       else null end;;
   }
 
   dimension: days_of_week {
+    group_label: "Dimensions"
     type: string
     sql: case when ${dimension} = 'days_of_week' then ${insight_key}
       else null end;;
@@ -140,6 +144,7 @@ view: audience_segment_insights {
   }
 
   dimension: time_of_day {
+    group_label: "Dimensions"
     type: string
     sql: case when ${dimension} = 'time_of_day' then ${insight_key}
       else null end;;

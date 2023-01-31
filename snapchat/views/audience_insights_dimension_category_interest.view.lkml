@@ -1,8 +1,9 @@
-view: audience_insights_dimension_category_geo {
-  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".audience_insights_dimension_category_geo
+view: audience_insights_dimension_category_interest {
+  sql_table_name: "airbyte-@{env}-snapchat-marketing-glue-ctg-db".audience_insights_dimension_category_interest
     ;;
 
-  dimension: _airbyte_ab_id {
+
+   dimension: _airbyte_ab_id {
     hidden: yes
     primary_key: yes
     type: string
@@ -62,18 +63,6 @@ view: audience_insights_dimension_category_geo {
     sql: ${response}.distribution_name ;;
   }
 
-  dimension: metro_id {
-    group_label: "Geo Distibution Name"
-    sql: case when ${distribution_name}='metro_id' then ${distribution_name}
-           else null end;;
-  }
-
-  dimension: region_id {
-    group_label: "Geo Distibution Name"
-    sql: case when ${distribution_name}='region_id' then ${distribution_name}
-      else null end;;
-  }
-
   dimension:  insight_id {
     type: string
     sql: ${response}.insight_id ;;
@@ -105,15 +94,12 @@ view: audience_insights_dimension_category_geo {
     sql: ${response}.insight_metadata ;;
   }
 
-  dimension: gender {
+  dimension: parent_id {
+    hidden: yes
     type: string
     sql: ${insight_metadata}.gender ;;
   }
 
-  dimension: age_groups {
-    type: string
-    sql: ${insight_metadata}.age_groups ;;
-  }
 
   dimension: targeting_audience_size_minimum {
     type: string

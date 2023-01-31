@@ -1,6 +1,6 @@
 connection: "@{connection}"
 
-include: "/snapchat_v1/views/**/*.view"                # include all views in the views/ folder in this project
+include: "/snapchat/views/**/*.view"                # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -45,8 +45,8 @@ explore: audience_insights_dimension_category_demo{
     sql:  , unnest(demo.age_groups) t(age_group)
       ;;
   }
-
 }
+
 
 explore: audience_insights_dimension_category_interest {
 
@@ -133,21 +133,7 @@ explore: audience_insights_dimension_category_device {
     sql:  , unnest(device_demo.age_groups) t(device_age_group)
       ;;
   }
-  # join: device_interests {
-  #   relationship: many_to_one
-  #   sql: , unnest (_airbyte_data.request.body.targeting_spec.interests) t (device_interests);;
-  # }
-
-  # join:  device_interest_category {
-  #   from: device_interest_category
-  #   view_label: "Targeting Audience Filters"
-  #   relationship: one_to_many
-  #   sql_on: ${audience_insights_dimension_category_device._airbyte_ab_id} = ${device_interest_category._airbyte_ab_id}
-  #     ;;
-  # }
 }
-
-
 
 
 explore: audience_insights_dimension_category_geo {

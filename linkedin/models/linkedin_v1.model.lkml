@@ -1,11 +1,20 @@
 connection: "@{connection}"
 
-include: "/linkedin_v1/**/*.view"                # include all views in the views/ folder in this project
+include: "/linkedin/**/*.view"                # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
+datagroup: persona_refresh {
+  max_cache_age: "24 hours"
+  sql_trigger: SELECT max(created_at) FROM audience_insights_requests ;;
+  interval_trigger: "5 minutes"
+  # label: "desired label"
+  description: "Setup for caching policy"
+}
 
 explore: audience_insights {
+
+  persist_with: persona_refresh
 
   join: audience_insights_requests {
     relationship: one_to_one
@@ -52,6 +61,7 @@ explore: audience_insights {
 }
 
 explore: job_functions {
+  hidden: yes
   join: job_seniorities {
     type: cross
     relationship: many_to_many
