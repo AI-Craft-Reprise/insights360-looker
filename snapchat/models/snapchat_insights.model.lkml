@@ -4,6 +4,7 @@ include: "/snapchat/views/**/*.view"                # include all views in the v
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
+
 explore: audience_insights_dimension_category_demo{
   label: "Demo Insights"
 
