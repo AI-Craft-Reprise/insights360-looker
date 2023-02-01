@@ -6,9 +6,8 @@ include: "/linkedin/**/*.view"                # include all views in the views/ 
 
 datagroup: persona_refresh {
   max_cache_age: "24 hours"
-  sql_trigger: SELECT max(created_at) FROM "airbyte-@{env}-linkedin-ads-glue-ctg-db".audience_insights_requests ;;
+  sql_trigger: SELECT max(_airbyte_data.response.created_at) FROM "airbyte-@{env}-linkedin-ads-glue-ctg-db".audience_insights_requests ;;
   interval_trigger: "5 minutes"
-  # label: "desired label"
   description: "Setup for caching policy"
 }
 
