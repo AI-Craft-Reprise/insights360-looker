@@ -10,9 +10,8 @@ include: "/amazon/**/*.view"                # include all views in the views/ fo
 
 datagroup: persona_refresh {
   max_cache_age: "24 hours"
-  sql_trigger: SELECT max(_airbyte_emitted_at) FROM "airbyte-prd-amazon-ads-glue-ctg-db".personas ;;
+  sql_trigger: SELECT max(_airbyte_emitted_at) FROM "airbyte-@{env}-amazon-ads-glue-ctg-db".personas ;;
   interval_trigger: "5 minutes"
-
 }
 
 explore: overlapping_audiences{
