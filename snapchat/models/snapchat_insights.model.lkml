@@ -4,9 +4,14 @@ include: "/snapchat/views/**/*.view"                # include all views in the v
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
+datagroup: refresh_schedule {
+  max_cache_age: "24 hours"
+  interval_trigger: "12 hours"
+}
 
 explore: audience_insights_dimension_category_demo{
   label: "Demo Insights"
+  persist_with: refresh_schedule
 
   join: interests {
     relationship: many_to_one
@@ -50,8 +55,8 @@ explore: audience_insights_dimension_category_demo{
 
 
 explore: audience_insights_dimension_category_interest {
-
   label: "Interest Insights"
+  persist_with: refresh_schedule
 
   join: interest_interests {
     relationship: many_to_one
@@ -98,6 +103,7 @@ explore: audience_insights_dimension_category_interest {
 
 explore: audience_insights_dimension_category_device {
   label: "Device Insights"
+  persist_with: refresh_schedule
 
   join: device_interests {
     relationship: many_to_one
@@ -139,6 +145,7 @@ explore: audience_insights_dimension_category_device {
 
 explore: audience_insights_dimension_category_geo {
   label: "Geo Insights"
+  persist_with: refresh_schedule
 
   join: geo_interests {
     relationship: many_to_one
