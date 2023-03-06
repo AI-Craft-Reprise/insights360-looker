@@ -1,0 +1,63 @@
+view: audience_insights {
+  sql_table_name: "airbyte-@{env}-linkedin-ads-glue-ctg-db".audience_insights
+    ;;
+
+
+  dimension: _airbyte_ab_id {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}._airbyte_ab_id ;;
+  }
+
+  dimension: _airbyte_data {
+    hidden: yes
+    type: string
+    sql: ${TABLE}._airbyte_data ;;
+  }
+
+  dimension: _airbyte_emitted_at {
+    hidden: yes
+    type: number
+    sql: ${TABLE}._airbyte_emitted_at ;;
+  }
+
+  dimension: response {
+    hidden: yes
+    type: string
+    sql: ${_airbyte_data}.response ;;
+  }
+
+  dimension: response_value {
+    hidden: yes
+    type: string
+    sql: ${response}.value ;;
+  }
+
+  dimension: audienceinsight {
+    hidden: yes
+    type: string
+    sql: ${response_value}.audienceinsight ;;
+  }
+
+  dimension: audience_name {
+    type: string
+    sql: ${response}.audience_insights_request_name ;;
+  }
+
+   dimension: totalaudiencecount {
+    label: "Total Audience Count"
+     type: number
+    sql: ${response_value}.totalaudiencecount;;
+   }
+
+  dimension: groupedby {
+    type: string
+    sql: ${audienceinsight}.groupedby ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: []
+  }
+}
