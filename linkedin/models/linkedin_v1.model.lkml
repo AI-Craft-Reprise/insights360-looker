@@ -3,6 +3,7 @@ connection: "@{connection}"
 include: "/linkedin/**/*.view"                # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
+include: "/dashboards/linkedin/*.dashboard"
 
 datagroup: persona_refresh {
   max_cache_age: "24 hours"

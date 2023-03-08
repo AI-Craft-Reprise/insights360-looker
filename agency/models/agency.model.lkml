@@ -1,6 +1,7 @@
 connection: "@{connection}"
 
 include: "/agency/views/*.view.lkml"
+include: "/dashboards/AKM/*.dashboard"
 
 explore: agency {
 
