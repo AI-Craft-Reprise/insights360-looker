@@ -3,6 +3,9 @@ connection: "@{connection}"
 include: "/amazon/**/*.view"                # include all views in the views/ folder in this project
 include: "/dashboards/Amazon/Amazon_Persona_Creator.dashboard"
 include: "/dashboards/Amazon/Amazon_Persona_Insights.dashboard"
+#include: "/dashboards/Amazon/Custom_Audiences_Top_30_Segments.dashboard"
+include: "/dashboards/Amazon/Amazon_All_Ranked_Segments.dashboard"
+include: "/dashboards/Amazon/Amazon_Audiences.dashboard"
 # include: "/dashboards/Amazon/Overlapping_Audiences.dashboard"
 
 # include: "/**/*.view.lkml"                 # include all views in this project
